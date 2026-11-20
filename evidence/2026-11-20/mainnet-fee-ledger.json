@@ -38,5 +38,20 @@
     "action": "mainnet-retry",
     "fee_micro": 1973,
     "tx": "24f29ce04c8605bdf0df8fa2e943b676a4b8ccbca82d549f85a5b991c8c2b94b"
+  },
+  {
+    "action": "mainnet-create-relayer-b",
+    "fee_micro": 2069,
+    "tx": "78e1e45c29cc05addfa8e90a6dfe3e0da48c45aa329de6a08ef0ffb581a5c981"
+  },
+  {
+    "action": "mainnet-relayer-topup",
+    "fee_micro": 2945,
+    "tx": "2ac505fdad0aa7b23151ff654ab7c8e3687b1cb833955602eab7a3e47c695b96"
+  },
+  {
+    "action": "mainnet-separate-relayer",
+    "fee_micro": 1966,
+    "tx": "f3544067030be4708bd3ff8011eb2aa7a5007e5eec7a35b3ebcfddde818870cf"
   }
 ]

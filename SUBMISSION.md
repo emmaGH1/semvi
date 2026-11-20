@@ -1,31 +1,63 @@
-# Draft — not submitted
+# Semvi — prepared submission, not posted
 
-Semvi — retry a payment job without paying it twice.
+## November MVP entry draft
 
-An automation worker can lose its response after a successful payment. Retrying with a new transaction can pay twice. Semvi puts the business job registry inside a Tari Ootle vault: a job is consumed atomically with its payout, so another relayer or a restarted gateway cannot erase that record.
+**Semvi — retry a payment job without paying it twice.**
 
-Proof: nine real engine tests; five different transaction hashes for one job, one 100-microTARI payout and four OperationConsumed refusals. Tests also cover signed fields, expiry, network/component binding, rollback, capacity and withdrawal. Offline CLI signs intents and prepares wallet requests; browser tool displays actual proof and checks encoded payment details locally.
+When an automation worker loses a payment response, its next transaction can pay again. Semvi puts the business job registry inside a Tari Ootle vault: consuming the signed job ID and paying its recipient are one atomic action. A fresh transaction cannot erase that record.
 
-- Public code: https://github.com/emmaGH1/semvi (public, MIT, verified)
-- MVP link: https://emmagh1.github.io/semvi/ (deployed; page and proof JSON verified)
-- Approved-platform social announcement: PENDING USER REVIEW
-- Tari L1 payout address: PENDING — this differs from the Ootle L2 deployment address
+**Real mainnet proof:** published 20 November 2026 at **08:16:21 UTC**. One job paid 100 microTARI. Two freshly signed sequential retries were refused with `OperationConsumed`, including one paid by a separate relayer account. The recipient stayed at 100 microTARI. Both accounts are managed by our demo wallet; no independent user is claimed. A real deposit and payer withdrawal also succeeded.
 
-Limits: at-most-once per vault/job, 256 permanent IDs, public payment details, network fees on refusals possible. No guaranteed delivery, adoption or independent audit claim. Built with AI assistance under the entrant's direction. MIT licensed.
+- App/proof: https://emmagh1.github.io/semvi/#proof
+- Code: https://github.com/emmaGH1/semvi — MIT
+- Mainnet evidence: https://github.com/emmaGH1/semvi/blob/main/evidence/2026-11-20/mainnet-proof.json
+- Publish transaction: https://explorer.tari.mw/tx/da02930aa405cc0af69816f776216e74249e35cf1c226219662514d65ce18032
+- Announcement: **PENDING public URL and final approval**
+- Minotari L1/XTM prize address: 125zkKWHBMVvZWzNTLig4USfD7UJmcMQCqiazwtuoh59JxwfgjA1kzr2xJYt47HoeQqUYdUhk7Dxbk2mGJcijG7gHHF — private backup handoff pending
 
-## Bonus post
-PENDING MAINNET PUBLICATION AND REAL RUN. Never present engine hashes as mainnet proof. Include original entry, real template/component, publish transaction, timestamp, ready tool and archived receipt. Organizers determine eligibility and ranking.
+The mainnet-first proof page can fetch public indexer receipts and compare them with the archived run. It also inspects signed intent files locally. The CLI signs intents, prepares V2 wallet requests and dry-runs before submission. Nine real Tari engine tests and six signed-file safety tests cover duplicates, tampering, expiry, network/component binding, rollback, capacity and withdrawal.
 
-## Approved fee-funding request — submitted to moderation
-Submitted once as a standalone Community topic. Forum response: action=enqueued, success=true, pending_count=1. Not yet confirmed publicly visible; do not duplicate it. Title: Semvi — a tested Ootle MVP looking for mainnet fee funding. Neither contest submission thread was used.
+This is contract-enforced business idempotency, rather than gateway-side deduplication. It is at-most-once per vault/job, not guaranteed delivery. Each vault holds 256 permanent job IDs. Amounts, recipients and job IDs are public; refused retries cost fees. There is no early intent revocation. No external adoption or independent security audit is claimed.
 
-I'm building Semvi for the November Tari MVP contest: a contract-enforced job registry preventing duplicate payouts when an agent retries after a timeout. The core is tested in the real Ootle engine. I have no mainnet TARI yet for publication and the demo run. Would anyone contribute a small amount of Ootle TARI for deployment fees? I will record what is used and return unused funds when the donor provides a return address.
+Built with AI assistance under the entrant’s direction. Community member **0xHRA donated 500 TARI** for deployment/testing; fees used so far: **1.267380 TARI**. Donation does not imply endorsement.
 
+## First-to-Launch bonus draft
+
+**Semvi is published and exercised on Ootle mainnet.**
+
+Original November entry: **PENDING forum post URL**
+
+- Mainnet tool and proof: https://emmagh1.github.io/semvi/#proof
+- MIT code: https://github.com/emmaGH1/semvi
+- Template: `template_84f1d72f8b9e38d104e639de9fcce8d6f71098daa825c56ea0b2772d35f60580`
+- Publication finalized: **2026-11-20 08:16:21 UTC**, epoch **39067**
+- Publish: https://explorer.tari.mw/tx/da02930aa405cc0af69816f776216e74249e35cf1c226219662514d65ce18032
+- Payment: https://explorer.tari.mw/tx/ef8926b8fd724286fad5071d7507e0b792a4988ce2735fb2c09d06a57e966990
+- Separate-fee-account retry: https://explorer.tari.mw/tx/f3544067030be4708bd3ff8011eb2aa7a5007e5eec7a35b3ebcfddde818870cf
+- Full deployment/withdrawal/balance receipts: https://github.com/emmaGH1/semvi/tree/main/evidence/2026-11-20
+- L1 prize address: 125zkKWHBMVvZWzNTLig4USfD7UJmcMQCqiazwtuoh59JxwfgjA1kzr2xJYt47HoeQqUYdUhk7Dxbk2mGJcijG7gHHF
+
+The mainnet page leads with the actual payout and refusals; the localnet engine run is separately labelled. A new transaction paid by a different relayer account was refused by Semvi’s `OperationConsumed` check, with recipient balance unchanged at 100 microTARI. Both demo accounts are managed by our wallet. Payer withdrawal was tested with dust before the payout.
+
+Please consider Semvi for First to Launch. Eligibility, deadline interpretation and first-20 ranking remain the organizers’ decision.
+
+## Public announcement draft — not posted
+
+I built Semvi for the Tari November MVP contest: an on-chain payment vault that lets automation workers retry a business job without paying twice.
+
+Real Ootle mainnet proof: one payout, fresh transactions refused, recipient paid once. One retry uses a separate fee account. The proof page fetches public receipts; source is MIT.
+
+Demo/proof: https://emmagh1.github.io/semvi/
 Code: https://github.com/emmaGH1/semvi
-Proof and CLI guide: https://emmaGH1.github.io/semvi/
-Current proof is a recorded localnet engine run, not a mainnet deployment.
 
-Ootle MAINNET address:
-otl_1zpv4ag4gfpxuh9tma4vfjxd2erw47rfkxan2aj8f4jxh8h4k79t557ch08wauex4hhqkftmgt2qng4h676623yph06cfgucmktjqy7gtjpfde
+Experimental, public payment details, network fees on retries. At-most-once per vault/job; no guaranteed delivery. Built with AI assistance. Mainnet fees supported by a community donation from 0xHRA.
 
-This is L2 Ootle. Do not send L1 Minotari XTM directly here.
+## Before either contest post
+
+- Complete secure handoff of the newly created L1 wallet backup; receiving address is inserted above.
+- Prepare/approve/publish the public announcement on YouTube, Bluesky, Reddit or Medium; insert URL.
+- Confirm entrant eligibility and approve both exact forum drafts.
+- Post the November entry once; insert its URL into the bonus draft, then post the bonus claim once.
+- If Discourse queues either post, record moderation status and do not duplicate it.
+
+The earlier fee-funding topic is historical and awaits moderation; it is not a contest entry. Funding is now received. Do not repost the funding request.

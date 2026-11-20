@@ -1,0 +1,17 @@
+{
+  "action": "execute",
+  "network": "mainnet",
+  "current_epoch": "39067",
+  "fee_account": "component_69c2f1427fb000912b6f33196a510a7a04cf19287b78968b1916a47627c87d3e",
+  "max_fee": "10000",
+  "seal_signer": {
+    "Derived": {
+      "index": 2,
+      "key_branch": "account"
+    }
+  },
+  "template": "84f1d72f8b9e38d104e639de9fcce8d6f71098daa825c56ea0b2772d35f60580",
+  "payer": "9c192e538d858f9c184f6eb0b2d30b04a7c7b622f89e52e65a0f4bdc5b59855c",
+  "intent_file": "/data/home/.t3/projects/tari-hackathon/evidence/2026-11-20/mainnet-payment-intent.json",
+  "other_signers": []
+}

@@ -14,14 +14,14 @@ First-to-Launch bonus, rather than a ranked November prize. Sponsor wants usable
 
 ## Submission requirements
 
-- [ ] New November work, fitting MVP theme; November expressly permits substantial innovation on previous entries.
-- [ ] Public code with OSI-approved license, e.g. MIT.
-- [ ] Working public MVP link and description.
+- [x] New November work, fitting MVP theme; November expressly permits substantial innovation on previous entries.
+- [x] Public code with OSI-approved license, e.g. MIT.
+- [x] Working public MVP link and description.
 - [ ] Tari payout address.
 - [ ] Public announcement on Bluesky, Reddit, Medium or YouTube.
 - [ ] One complete submission post in November thread.
-- [ ] Contract actually published on Ootle mainnet, with transaction/time proof saved.
-- [ ] App configured for mainnet and fully reviewable before bonus cutoff.
+- [x] Contract actually published on Ootle mainnet, with transaction/time proof saved.
+- [x] App configured for mainnet and fully reviewable before bonus cutoff.
 - [ ] Separate bonus-thread post linking deployment and original entry.
 - [ ] Entrant is neither a Council member nor Tari Labs employee.
 
@@ -43,3 +43,8 @@ Next: user decides whether to enter; then choose one small useful journey and va
 - https://community.tari.com/t/november-bonus-contest-first-to-launch/521
 - https://community.tari.com/t/ootle-launch-date-and-launch-contest-rules/323/1
 - https://community.tari.com/t/521.json
+
+## Rechecked 20 November, 08:30 UTC
+Mainnet publication finalized at 08:16:21 UTC; archived public transaction record and receipts in evidence. Website mainnet-first refinement underway; GitHub Pages publication already authorized. Mainnet fees 1.267380 TARI of the 5-TARI authorization. User confirmed no prior L1 address; an empty official wallet has now been created, public address recorded in l1-prize-address.json. Secure backup handoff is pending. YouTube demo recommended for the announcement; no announcement account/channel or upload approval yet.
+
+Multiple entries: no explicit per-person project limit found in the three published rules threads. November posts #7 (Ootle Lockbox) and #13 (Launch Commitments) are distinct projects from Zein. This is precedent, not explicit organizer confirmation. Bonus language awards the first 20 people, so do not assume multiple bonus awards per person. No official remaining-slot tally.

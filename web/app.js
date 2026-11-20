@@ -1,24 +1,48 @@
 import {inspectIntent} from './intent.js';
 
-for(const button of document.querySelectorAll('[data-panel]')) {
-  button.addEventListener('click',()=>{
-    for(const b of document.querySelectorAll('[data-panel]')) {b.classList.toggle('selected', b===button); b.removeAttribute('aria-current');}
-    button.setAttribute('aria-current','page');
-    for(const panel of document.querySelectorAll('.panel')) panel.hidden=panel.id!==`panel-${button.dataset.panel}`;
-  });
+const shortHash=value=>`${value.slice(0,8)}…${value.slice(-8)}`;
+const receiptUrl=tx=>`https://indexer-a.ootle.tari.com/transaction-receipts/${tx}`;
+function selectPanel(){
+  const requested=location.hash.slice(1);const name=['proof','inspect','run'].includes(requested)?requested:'proof';
+  for(const b of document.querySelectorAll('[data-panel]')){const active=b.dataset.panel===name;b.classList.toggle('selected',active);if(active)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');}
+  for(const panel of document.querySelectorAll('.panel'))panel.hidden=panel.id!==`panel-${name}`;
 }
-try {
-  const r=await fetch('proof.json');if(!r.ok)throw Error(`HTTP ${r.status}`);const proof=await r.json();
-  document.querySelector('#job-id').textContent=proof.job;
-  for(const item of proof.attempts){
-    const row=document.createElement('div');row.className='attempt-row';row.setAttribute('role','row');
-    const values=[String(item.attempt),item.transaction_id,item.outcome==='Paid'?'Paid':'Already paid',item.amount_micro==='0'?'—':`${item.amount_micro} µT`];
-    values.forEach((v,i)=>{const el=document.createElement(i===1?'code':'span');el.textContent=v;el.setAttribute('role','cell');if(i===2)el.className=item.outcome==='Paid'?'paid':'refused';if(i===3)el.className='amount';row.append(el);});
-    const details=document.createElement('details');details.setAttribute('role','cell');const summary=document.createElement('summary');summary.textContent='Inspect attempt';details.append(summary);
-    const description=document.createElement('p');description.textContent=item.detail+(item.outcome==='Paid'?'':' Contract refusal: OperationConsumed.');const hash=document.createElement('code');hash.textContent=item.transaction_id;details.append(description,hash);row.append(details);document.querySelector('#attempt-rows').append(row);
+for(const button of document.querySelectorAll('[data-panel]'))button.addEventListener('click',()=>{location.hash=button.dataset.panel;});
+window.addEventListener('hashchange',selectPanel);selectPanel();
+let mainnet;
+try{
+  const r=await fetch('mainnet-proof.json');if(!r.ok)throw Error(`HTTP ${r.status}`);mainnet=await r.json();
+  document.querySelector('#settled-amount').textContent=`${mainnet.amount_micro} µT`;
+  document.querySelector('#mainnet-date').textContent=`Published ${mainnet.published_at.replace('T',' · ').replace('Z',' UTC')} · Tari mainnet`;
+  document.querySelector('#balance-before').textContent=`${mainnet.recipient_after_payment_micro} µT`;
+  document.querySelector('#balance-after').textContent=`${mainnet.recipient_after_retry_micro} µT`;
+  for(const attempt of mainnet.attempts){
+    const row=document.createElement('li');row.className=`settlement-attempt ${attempt.outcome==='Paid'?'settled':'declined'}`;
+    const step=document.createElement('span');step.className='attempt-number';step.textContent=String(attempt.attempt).padStart(2,'0');
+    const body=document.createElement('div');body.className='attempt-body';
+    const title=document.createElement('strong');title.textContent=attempt.outcome==='Paid'?'Payment settled':'Retry refused';
+    const text=document.createElement('p');text.textContent=attempt.detail;
+    const link=document.createElement('a');link.href=receiptUrl(attempt.transaction_id);link.target='_blank';link.rel='noreferrer';link.textContent=shortHash(attempt.transaction_id);link.title=attempt.transaction_id;link.setAttribute('aria-label',`Open public receipt for attempt ${attempt.attempt}`);link.className='transaction-link';
+    body.append(title,text,link);const amount=document.createElement('span');amount.className='attempt-amount';amount.textContent=attempt.outcome==='Paid'?`${mainnet.amount_micro} µT`:'0 µT';
+    row.append(step,body,amount);document.querySelector('#mainnet-attempts').append(row);
   }
+  const fields={Template:mainnet.template,'Payer vault':mainnet.vault,Recipient:mainnet.recipient,'Business job':mainnet.job,'Total deployment/test fees':`${(mainnet.fees_micro/1e6).toFixed(6)} TARI`,'Payer withdrawal':'1,000 µT deposited and withdrawn on mainnet'};
+  for(const [label,value] of Object.entries(fields)){const row=document.createElement('div'),dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=label;dd.textContent=value;row.append(dt,dd);document.querySelector('#mainnet-details').append(row);}
   document.querySelector('#proof-loading').hidden=true;document.querySelector('#proof-content').hidden=false;
-}catch(e){document.querySelector('#proof-loading').textContent=`Evidence could not load: ${e.message}. Reload the page or download the raw transcript from the project.`;}
+}catch(e){document.querySelector('#proof-loading').textContent=`Mainnet record could not load: ${e.message}. Reload or open the proof guide above.`;}
+try{
+  const r=await fetch('proof.json');if(!r.ok)throw Error(`HTTP ${r.status}`);const proof=await r.json();
+  const note=document.createElement('p');note.textContent='Recorded Tari 0.54.0 localnet engine test. These are separate from the mainnet transactions above.';document.querySelector('#engine-proof').append(note);
+  for(const item of proof.attempts){const row=document.createElement('p');row.className='engine-attempt';const code=document.createElement('code');code.textContent=shortHash(item.transaction_id);code.title=item.transaction_id;row.append(code,document.createTextNode(` · ${item.outcome==='Paid'?'Paid 100 µT':'Refused: OperationConsumed'}`));document.querySelector('#engine-proof').append(row);}
+}catch(e){document.querySelector('#engine-proof').textContent=`Engine archive unavailable: ${e.message}. Download the transcript below.`;}
+document.querySelector('#verify-receipts').addEventListener('click',async event=>{
+  const b=event.currentTarget,s=document.querySelector('#receipt-status');b.disabled=true;s.className='';s.textContent='Fetching finalized receipts from Tari’s public indexer…';
+  try{
+    if(!mainnet)throw Error('Reload this page to load the archived mainnet record');
+    for(const attempt of mainnet.attempts){const r=await fetch(receiptUrl(attempt.transaction_id),{signal:AbortSignal.timeout(15000)});if(!r.ok)throw Error(`Attempt ${attempt.attempt}: indexer returned HTTP ${r.status}`);const live=await r.json();const bytes=Uint8Array.from(atob(live.receipt),c=>c.charCodeAt(0));const digest=await crypto.subtle.digest('SHA-256',bytes);const hash=[...new Uint8Array(digest)].map(x=>x.toString(16).padStart(2,'0')).join('');if(hash!==attempt.receipt_sha256)throw Error(`Attempt ${attempt.attempt}: receipt differs from the archive`);}
+    s.textContent=`${mainnet.attempts.length} public receipts match the archived mainnet run · checked ${new Date().toLocaleTimeString()}.`;s.className='verified';
+  }catch(e){s.textContent=`Could not verify: ${e.message}. Retry, or open each receipt link directly.`;s.className='error';}finally{b.disabled=false;}
+});
 
 document.querySelector('#intent-file').addEventListener('change',async event=>{
   const status=document.querySelector('#inspect-status');const result=document.querySelector('#intent-result');result.hidden=true;status.className='';

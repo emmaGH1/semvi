@@ -1,7 +1,7 @@
 {
   "network": "mainnet",
   "wallet_version": "0.55.0",
-  "recorded_at": "2026-11-20T08:21:18.265592+00:00",
+  "recorded_at": "2026-11-20T08:29:24.497904+00:00",
   "template": "84f1d72f8b9e38d104e639de9fcce8d6f71098daa825c56ea0b2772d35f60580",
   "vault": "component_ca0301bc6756c5979099d681f5184872f1f18ec521388c660e2477bbdd82635a",
   "recipient": "component_7f6b0fca1db21c7f4bae3694133e97e1186325d10be64f4fde97ec213a315cee",
@@ -12,7 +12,7 @@
   "retry_refusal": "OperationConsumed",
   "sequential": true,
   "withdrawal_verified": true,
-  "fees_micro": 1260400,
+  "fees_micro": 1267380,
   "transactions": {
     "publish": "da02930aa405cc0af69816f776216e74249e35cf1c226219662514d65ce18032",
     "mainnet-create": "2555a70091f7c8cf7603e6cc19f075509342ee77bc0f42410625607fa7810aa9",
@@ -21,6 +21,57 @@
     "mainnet-create-recipient": "43ca5dfdbf6dcd4da0d7499ea4ca91942b0181848bb03678ff0c0fcfcb5d58db",
     "mainnet-fund-proof": "e819cdaf1c9063e17f2fef40532e60c30c0242671dad154815ec8cba0c68cc27",
     "mainnet-payment": "ef8926b8fd724286fad5071d7507e0b792a4988ce2735fb2c09d06a57e966990",
-    "mainnet-retry": "24f29ce04c8605bdf0df8fa2e943b676a4b8ccbca82d549f85a5b991c8c2b94b"
-  }
+    "mainnet-retry": "24f29ce04c8605bdf0df8fa2e943b676a4b8ccbca82d549f85a5b991c8c2b94b",
+    "mainnet-create-relayer-b": "78e1e45c29cc05addfa8e90a6dfe3e0da48c45aa329de6a08ef0ffb581a5c981",
+    "mainnet-relayer-topup": "2ac505fdad0aa7b23151ff654ab7c8e3687b1cb833955602eab7a3e47c695b96",
+    "mainnet-separate-relayer": "f3544067030be4708bd3ff8011eb2aa7a5007e5eec7a35b3ebcfddde818870cf"
+  },
+  "published_at": "2026-11-20T08:16:21Z",
+  "publication_epoch": 39067,
+  "fee_accounts_share_wallet": true,
+  "independent_operator": false,
+  "attempts": [
+    {
+      "attempt": 1,
+      "transaction_id": "ef8926b8fd724286fad5071d7507e0b792a4988ce2735fb2c09d06a57e966990",
+      "outcome": "Paid",
+      "detail": "First transaction. The signed job paid 100 microTARI.",
+      "fee_account": "component_54803df723a7e866eb4bf599343d0287d91e3a4f6ccdcb9cc4cc1b06db2bca32",
+      "seal_signer": {
+        "Derived": {
+          "index": 0,
+          "key_branch": "account"
+        }
+      },
+      "receipt_sha256": "2d5879ca44c1e93f4533de37016c567eb7b23a2a43f0b651265a298e9a3abe0f"
+    },
+    {
+      "attempt": 2,
+      "transaction_id": "24f29ce04c8605bdf0df8fa2e943b676a4b8ccbca82d549f85a5b991c8c2b94b",
+      "outcome": "OperationConsumed",
+      "detail": "Fresh transaction, different seal signer, same fee account. Contract refused: OperationConsumed.",
+      "fee_account": "component_54803df723a7e866eb4bf599343d0287d91e3a4f6ccdcb9cc4cc1b06db2bca32",
+      "seal_signer": {
+        "Derived": {
+          "index": 1,
+          "key_branch": "account"
+        }
+      },
+      "receipt_sha256": "120e1b964f3e639db43c320ed51bd168c9c7ba7fe6c5d5846d696b4cb5349511"
+    },
+    {
+      "attempt": 3,
+      "transaction_id": "f3544067030be4708bd3ff8011eb2aa7a5007e5eec7a35b3ebcfddde818870cf",
+      "outcome": "OperationConsumed",
+      "detail": "Fresh transaction paid by a separate relayer account. Contract refused: OperationConsumed. Both accounts are managed by our demo wallet.",
+      "fee_account": "component_69c2f1427fb000912b6f33196a510a7a04cf19287b78968b1916a47627c87d3e",
+      "seal_signer": {
+        "Derived": {
+          "index": 2,
+          "key_branch": "account"
+        }
+      },
+      "receipt_sha256": "b103e72401a5c9b6faa3c59472ec62ba050e31e66b0cca10a6bad1a0107a252c"
+    }
+  ]
 }

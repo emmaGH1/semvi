@@ -199,3 +199,6 @@ A newly visible panel uses a brief reveal (0.2s) only when reduced motion has no
 - **Don't** turn structural intent inspection into a signature verification claim.
 - **Don't** replace the ruled receipt vocabulary with decorative card grids.
 - **Don't** add shadows, gradients or ornamental animation to this captured system.
+
+## Mainnet proof hierarchy — 20 November 2026
+The default proof view leads with the real mainnet run: settlement, recipient balance before/after retries, distinct transaction receipt links and a public receipt comparison. State that both demo relayer accounts share our wallet. Archive execution reasons separately from what public receipts prove. Place the five-attempt localnet engine run in a labelled disclosure below. At phone width, attempts stack their outcome, explanation, short linked hash and amount; avoid narrow status columns. Preserve the remittance receipt palette, Public Sans and ruled records. Deep links #proof, #inspect and #run must restore navigation.

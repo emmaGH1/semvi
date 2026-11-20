@@ -34,7 +34,7 @@ await check('Recorded engine proof matches current contract and test sources', a
   if(proof.mainnet_deployed!==false)throw Error('Unverified mainnet claim');
 });
 await check('Mainnet publication, payment and retry receipts match public indexer', async()=>{
-  for(const label of ['publish','payment','retry']){
+  for(const label of ['publish','payment','retry','separate-relayer']){
     const local=JSON.parse(await readFile(`evidence/2026-11-20/mainnet-${label}-indexer-receipt.json`,'utf8'));
     const archived=JSON.parse(await readFile(`evidence/2026-11-20/mainnet-${label}-receipt.json`,'utf8'));
     const tx=archived.result.transaction_id;
@@ -42,9 +42,16 @@ await check('Mainnet publication, payment and retry receipts match public indexe
     if(!r.ok)throw Error(`${label}: HTTP ${r.status}`);
     const live=await r.json();
     if(!live.receipt||live.receipt!==local.receipt)throw Error(`${label}: receipt mismatch`);
-    if(label==='retry'&&(archived.result.status!=='OnlyFeeAccepted'||!JSON.stringify(archived).includes('OperationConsumed')))throw Error('Missing consumed-job refusal');
-    if(label!=='retry'&&archived.result.status!=='Accepted')throw Error(`${label}: not accepted`);
+    const retry=label==='retry'||label==='separate-relayer';
+    if(retry&&(archived.result.status!=='OnlyFeeAccepted'||!JSON.stringify(archived).includes('OperationConsumed')))throw Error('Missing consumed-job refusal');
+    if(!retry&&archived.result.status!=='Accepted')throw Error(`${label}: not accepted`);
   }
+  const a=JSON.parse(await readFile('evidence/2026-11-20/mainnet-payment-spec.json','utf8'));
+  const b=JSON.parse(await readFile('evidence/2026-11-20/mainnet-separate-relayer-spec.json','utf8'));
+  if(a.fee_account===b.fee_account||JSON.stringify(a.seal_signer)===JSON.stringify(b.seal_signer))throw Error('Separate relayer must use a different fee account and signer');
+  const before=JSON.parse(await readFile('evidence/2026-11-20/mainnet-recipient-before-retry.json','utf8'));
+  const after=JSON.parse(await readFile('evidence/2026-11-20/mainnet-recipient-after-retry.json','utf8'));
+  if(before.result.balances[0].balance!=='100'||after.result.balances[0].balance!=='100')throw Error('Recipient balance mismatch');
 });
 console.log(`${checks.filter(Boolean).length} of ${checks.length} passed`);
 console.log('Mainnet reads and finalized receipts re-fetched; recorded local engine proof checked separately.');

@@ -71,6 +71,20 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .put_last_instruction_output_on_workspace("funds")
                 .call_method(component(&spec, "rail")?, "fund", args![Workspace("funds")]);
         }
+        "transfer" => {
+            tx = tx
+                .call_method(
+                    component(&spec, "fee_account")?,
+                    "withdraw",
+                    args![TARI_TOKEN, Amount::from(number(&spec, "amount_micro")?)],
+                )
+                .put_last_instruction_output_on_workspace("transfer")
+                .call_method(
+                    component(&spec, "recipient")?,
+                    "deposit",
+                    args![Workspace("transfer")],
+                );
+        }
         "execute" => {
             let intent: Value =
                 serde_json::from_str(&fs::read_to_string(text(&spec, "intent_file")?)?)?;
@@ -124,7 +138,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     args![Workspace("refund")],
                 );
         }
-        _ => return Err("action must be create_account, create, fund, execute or withdraw".into()),
+        _ => {
+            return Err(
+                "action must be create_account, create, fund, transfer, execute or withdraw".into(),
+            );
+        }
     }
     // Walletd 0.55 signs V2 only. The official V2 unsigned envelope contains
     // the same UnsignedTransactionV1 body; walletd supplies V2 authorization.

@@ -1,0 +1,78 @@
+{
+  "transaction": {
+    "transaction_id": "da02930aa405cc0af69816f776216e74249e35cf1c226219662514d65ce18032",
+    "transaction": {
+      "V2": {
+        "body": {
+          "transaction": {
+            "network": 0,
+            "fee_instructions": [
+              {
+                "CallMethod": {
+                  "call": {
+                    "Address": "component_54803df723a7e866eb4bf599343d0287d91e3a4f6ccdcb9cc4cc1b06db2bca32"
+                  },
+                  "method": "pay_fee",
+                  "args": [
+                    {
+                      "Literal": "1a0016e360"
+                    }
+                  ]
+                }
+              }
+            ],
+            "instructions": [
+              {
+                "PublishTemplate": {
+                  "binary": 0,
+                  "metadata_hash": null
+                }
+              }
+            ],
+            "inputs": [
+              {
+                "substate_id": "resource_0101010101010101010101010101010101010101010101010101010101010101",
+                "version": null,
+                "is_write": true
+              },
+              {
+                "substate_id": "component_54803df723a7e866eb4bf599343d0287d91e3a4f6ccdcb9cc4cc1b06db2bca32",
+                "version": null,
+                "is_write": true
+              },
+              {
+                "substate_id": "vault_5458da4b36a7d2578beccb182d5bbb5f5a343923cdf01755ef3ac2125be070ae",
+                "version": null,
+                "is_write": true
+              }
+            ],
+            "min_epoch": null,
+            "max_epoch": 39070,
+            "main_signer": "SealSigner",
+            "dry_run": false,
+            "blob_hashes": [
+              "f9ee5d08f08c94bd63338b56eda98de0f640dc59be3d036e44b784a1e0992547"
+            ],
+            "blob_sizes": [
+              150224
+            ],
+            "nonce": 15392670856195805176
+          },
+          "signatures": []
+        },
+        "seal_signature": {
+          "public_key": "10595ea2a8484dcb957bed589919aac8dd5f0d363766aec8e9ac8d73deb6f157",
+          "signature": "e84eaec0aa2721d9f7a2cce838ee7df1ea4584611f724fc377a2f60a302c822dfd8767754e0021800bab46d030bd72ba30c6944cdda05c31c94503acc5b24087"
+        }
+      }
+    },
+    "created_at": "2026-11-20 08:16:11.0",
+    "summary": {
+      "outcome": "Commit",
+      "total_fees_paid": 1239932,
+      "finalized_at": "2026-11-20 08:16:21.0"
+    },
+    "rejected_reason": null,
+    "source": "local"
+  }
+}

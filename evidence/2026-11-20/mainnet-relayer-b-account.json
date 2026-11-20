@@ -1,0 +1,28 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "account": {
+      "birthday_epoch": 0,
+      "component_address": "component_69c2f1427fb000912b6f33196a510a7a04cf19287b78968b1916a47627c87d3e",
+      "is_confirmed_on_chain": false,
+      "is_default": false,
+      "name": "semvi-relayer-b",
+      "owner_key_id": {
+        "Derived": {
+          "index": 2,
+          "key_branch": "account"
+        }
+      },
+      "owner_public_key": "d0e9341a36f3d574c0a94a8673c96060681e59ff7138466e27edaebee88d0f3b",
+      "view_only_key_id": {
+        "Derived": {
+          "index": 2,
+          "key_branch": "view_only_key"
+        }
+      }
+    },
+    "address": "otl_16r5ngx3k702hfs9ff2r88jtqvp5puk0lwyuyvm38akhta6ydpuamyykgnhytqcx6tvm4mm6de83t6pf5ehc44crfgdqdr7lh7e0x79gd5mud3",
+    "created": true
+  },
+  "id": 1
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "width": 390,
+    "mainnet_attempts": 3,
+    "verification": "3 public receipts match the archived mainnet run · checked 8:31:04 AM.",
+    "overflow": false,
+    "hash_navigation": true,
+    "page_errors": []
+  },
+  {
+    "width": 768,
+    "mainnet_attempts": 3,
+    "verification": "3 public receipts match the archived mainnet run · checked 8:31:06 AM.",
+    "overflow": false,
+    "hash_navigation": true,
+    "page_errors": []
+  },
+  {
+    "width": 1440,
+    "mainnet_attempts": 3,
+    "verification": "3 public receipts match the archived mainnet run · checked 8:31:08 AM.",
+    "overflow": false,
+    "hash_navigation": true,
+    "page_errors": []
+  }
+]

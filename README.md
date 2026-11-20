@@ -8,11 +8,11 @@ Built for automation builders recovering from timeouts, lost responses and resta
 
 ## Current proof
 
-Nine tests pass in the real Tari 0.54.0 engine. One job paid 100 microTARI; four fresh retry transactions were refused with `OperationConsumed`. The recipient stayed at 100 and the vault at 900. [Raw transcript](evidence/2026-11-20/engine-tests.txt) · [Judge proof map](JUDGES.md).
+**Published on Tari mainnet, 20 Nov 2026 at 08:16:21 UTC.** A 100-microTARI payment succeeded. Two fresh sequential transactions were refused with `OperationConsumed`; the last retry used a separate fee account and seal signer. The recipient stayed at 100 microTARI. Both relayer accounts are operated by our demo wallet; this is not an independent-user test. [Mainnet proof and transaction IDs](evidence/2026-11-20/mainnet-proof.json).
 
-**Published and exercised on mainnet, 20 Nov 2026.** A 100-microTARI payment succeeded; a new transaction signed by a different relayer was refused with `OperationConsumed`. The recipient stayed at 100 microTARI. A real dust deposit and payer withdrawal also succeeded. [Mainnet proof and transaction IDs](evidence/2026-11-20/mainnet-proof.json). Total deployment/test fees: 1.260400 TARI.
+A real 1,000-microTARI deposit and payer withdrawal also succeeded. Total deployment/test fees: **1.267380 TARI**, funded by a community donation from 0xHRA. The proof page leads with mainnet and can fetch public receipts to compare with the archived run. It relies on the public indexer; it does not independently verify validator consensus proofs.
 
-The five-attempt browser table remains the separately labelled localnet engine run. No external user adoption or security audit is claimed.
+Separately, nine real Tari 0.54.0 engine tests pass. The five-attempt test pays one job once and refuses four retries. [Raw engine transcript](evidence/2026-11-20/engine-tests.txt) · [Judge proof map](JUDGES.md). No external user adoption or independent security audit is claimed.
 
 ## Verify
 

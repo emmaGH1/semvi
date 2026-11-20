@@ -13,28 +13,29 @@
       <a class="wordmark" href="./" aria-label="Semvi home"><svg viewBox="0 0 28 28" aria-hidden="true"><path d="M5 5v11a7 7 0 0 0 7 7h11M13 5v10a1 1 0 0 0 1 1h9"/></svg>Semvi</a>
       <p class="product-note">Payment retries,<br>with one settlement.</p>
       <nav aria-label="Workspace">
-        <button class="nav-item selected" data-panel="proof" aria-current="page">Recorded proof</button>
+        <button class="nav-item selected" data-panel="proof" aria-current="page">Mainnet proof</button>
         <button class="nav-item" data-panel="inspect">Inspect a job</button>
-        <button class="nav-item" data-panel="run">Run Semvi</button>
+        <button class="nav-item" data-panel="run">Use Semvi</button>
       </nav>
       <div class="sidebar-bottom"><span>Built on Tari Ootle</span><p>Open-source contract.<br>No central payment gateway.</p></div>
     </aside>
     <main id="workspace">
-      <header class="topbar"><span>Payment workspace</span><div class="header-links"><a href="https://github.com/emmaGH1/semvi" target="_blank" rel="noreferrer">Source</a><a href="https://github.com/emmaGH1/semvi/blob/main/JUDGES.md" target="_blank" rel="noreferrer">Proof guide</a><a href="https://ootle.tari.com/" target="_blank" rel="noreferrer">Tari docs</a></div></header>
+      <header class="topbar"><span>Settlement evidence</span><div class="header-links"><a href="https://github.com/emmaGH1/semvi" target="_blank" rel="noreferrer">Source</a><a href="https://github.com/emmaGH1/semvi/blob/main/JUDGES.md" target="_blank" rel="noreferrer">Proof guide</a><a href="https://ootle.tari.com/" target="_blank" rel="noreferrer">Tari docs</a></div></header>
       <section id="panel-proof" class="panel">
-        <div class="page-heading"><h1>A retry shouldn’t become<br>a second payment.</h1><p>One business job. Different transaction hashes.<br>The contract keeps track of what was already paid.</p></div>
-        <div id="proof-loading" role="status">Loading the recorded engine evidence…</div>
+        <div class="page-heading"><h1>A lost response.<br>One payment.</h1><p>When your worker loses a payment response, a fresh transaction shouldn’t pay twice.<br>Semvi’s Tari contract remembers the business job.</p></div>
+        <div id="proof-loading" role="status">Loading the mainnet settlement record…</div>
         <div id="proof-content" hidden>
-          <div class="result"><div><h2>The job was paid once.</h2><p>Five signed transactions. One payout of <strong>100 µT</strong>.</p></div><span class="result-mark" aria-label="Verified in recorded engine run"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4 10-10"/></svg></span></div>
-          <div class="provenance"><strong>Recorded engine run</strong><span>Tari 0.54.0 · Localnet · 20 Nov 2026</span><p>This is a real engine test, not a mainnet payment. Separately, mainnet publication, payout and duplicate refusal are now verified. <a href="mainnet-proof.json">Read mainnet receipts and transaction IDs</a>.</p></div>
-          <div class="section-line"><h2>Same job. Fresh attempts.</h2><a href="engine-tests.txt" download>Download raw evidence</a></div>
-          <div class="job-line"><span>Business job ID</span><code id="job-id"></code></div>
-          <div class="attempt-table" role="table" aria-label="Recorded payment attempts">
-            <div class="table-head" role="row"><span role="columnheader" aria-label="Attempt number">#</span><span role="columnheader">Transaction</span><span role="columnheader">Contract result</span><span role="columnheader">Paid</span></div>
-            <div id="attempt-rows"></div>
-          </div>
-          <div class="explanation"><h3>Why this is different from replay protection</h3><p>Every attempt has a different transaction hash. The second relayer submits a new transaction for the same business job. Semvi refuses it because the job is consumed—not because a transaction was replayed.</p></div>
-          <details class="details"><summary>Read the contract’s boundaries</summary><p>At most one payment per job ID, per vault. This does not guarantee delivery. Consumed IDs are never pruned; each vault holds up to 256 jobs. A new vault has its own namespace. Payment amounts and recipients are public. A refused retry may still cost network fees.</p></details>
+          <div class="result"><div><h2>Paid once on Tari mainnet.</h2><p>Recipient received <strong id="settled-amount"></strong>. Fresh retries were refused.</p></div><span class="result-mark" aria-label="Recorded mainnet settlement"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4 10-10"/></svg></span></div>
+          <div class="provenance"><strong id="mainnet-date"></strong><p>Real, sequential mainnet transactions from our demo accounts. No independent user or concurrent-retry claim.</p></div>
+          <div class="balance-proof"><div><span>Recipient before retries</span><strong id="balance-before"></strong></div><svg viewBox="0 0 32 20" aria-hidden="true"><path d="M1 10h28m-7-7 7 7-7 7"/></svg><div><span>Recipient after retries</span><strong id="balance-after"></strong></div></div>
+          <div class="section-line"><h2>One job. Fresh transactions.</h2><a href="mainnet-proof.json">Full mainnet record</a></div>
+          <ol id="mainnet-attempts" class="settlement-list" aria-label="Mainnet payment attempts"></ol>
+          <div class="verification"><div><h3>Check the public receipts</h3><p>Fetch the finalized receipts from Tari’s public indexer and compare them with this archived run.</p></div><button id="verify-receipts" class="primary">Verify live receipts</button><p id="receipt-status" role="status">Not checked this session.</p></div>
+          <details class="details"><summary>Contract, job and execution details</summary><dl id="mainnet-details"></dl><p>Receipt comparison checks the indexer’s response against our archive. It does not independently verify validator consensus proofs. The OperationConsumed reason comes from the archived wallet execution result; the public receipt records the fee-only outcome.</p></details>
+          <div class="explanation"><h3>Why transaction replay protection isn’t enough</h3><p>A restarted worker makes a new transaction. Its hash changes, but the business job stays the same. Semvi consumes that job ID on chain, atomically with payment, so losing a gateway’s local records cannot authorize it again.</p></div>
+          <details class="details"><summary>Engine test: one payment and four more fresh retries</summary><div id="engine-proof"></div><a href="engine-tests.txt" download>Download the nine-test transcript</a></details>
+          <details class="details"><summary>What this guarantees—and its limits</summary><p>At most one payment per job ID, per vault. This does not guarantee delivery. Each vault holds 256 permanent IDs. A new vault has a separate namespace. Payment amounts and recipients are public. A refused retry still costs network fees. Signed intents cannot be revoked before expiry; refilling a vault can make outstanding intents payable again. Use short expiry windows.</p></details>
+          <div class="next-step"><h2>Give your worker a stable job ID.</h2><p>Sign once, build a fresh transaction on retry, and let the contract keep the paid-job record.</p><a class="text-action" href="#run">Use the CLI and read the integration guide <span aria-hidden="true">→</span></a></div>
         </div>
       </section>
       <section id="panel-inspect" class="panel" hidden>

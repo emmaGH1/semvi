@@ -7,7 +7,7 @@ p.add_argument('command', choices=['status', 'publish', 'transaction', 'receipt'
 p.add_argument('--file', help='WASM for publication or wallet request JSON for a transaction')
 p.add_argument('--tx', help='Transaction ID for receipt')
 p.add_argument('--max-fee', type=int, help='Publication fee ceiling in microTARI')
-p.add_argument('--fee-account', default='oncerail-deploy')
+p.add_argument('--fee-account', default='semvi-deploy')
 p.add_argument('--cookie-file', default=os.environ.get('TARI_WALLET_COOKIE_FILE'))
 p.add_argument('--submit', action='store_true', help='ACTUALLY SPEND/SUBMIT; requires explicit human authorization')
 p.add_argument('--out', help='Save public response evidence')
@@ -44,8 +44,8 @@ try:
     if 'error' in info: raise RuntimeError(info['error']['message'])
     if a.submit:
         # Explicit network selection avoids accidentally spending on a daemon switched to mainnet.
-        if os.environ.get('ONCERAIL_APPROVED_NETWORK') != info['result']['network']:
-            p.error('For --submit set ONCERAIL_APPROVED_NETWORK to the daemon network after human approval')
+        if os.environ.get('SEMVI_APPROVED_NETWORK') != info['result']['network']:
+            p.error('For --submit set SEMVI_APPROVED_NETWORK to the daemon network after human approval')
     result = rpc(method, params)
     if a.out: pathlib.Path(a.out).write_text(json.dumps(result, indent=2)+'\n')
     print(json.dumps(result, indent=2))

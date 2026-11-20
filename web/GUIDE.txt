@@ -1,4 +1,4 @@
-ONCERAIL CLI GUIDE
+SEMVI CLI GUIDE
 
 Current status: real engine tests pass; mainnet publication awaits funding.
 Experimental MVP; inspect the contract before using real funds.
@@ -21,7 +21,7 @@ guide when bridging. The tool does not automate conversion or acquire funds.
 
 ESTIMATE PUBLISHING (NO SUBMISSION)
   python3 scripts/wallet.py publish \
-    --file target/wasm32-unknown-unknown/release/oncerail.wasm \
+    --file target/wasm32-unknown-unknown/release/semvi.wasm \
     --max-fee YOUR_MICROTARI_FEE_CEILING
 
 The fee account must exist on chain and be funded. An empty unconfirmed
@@ -57,7 +57,7 @@ The helper sets a fresh nonce and three-epoch transaction validity window.
 
 FUND A VAULT
 Keep the base fields above, replace action with fund, remove template/payer,
-and add rail (your OnceRail component) and amount_micro (decimal string).
+and add rail (your Semvi component) and amount_micro (decimal string).
 Funding withdraws revealed TARI from fee_account and deposits it in rail.
 Native stealth holdings must first be made usable as revealed account-vault
 funds through official wallet tooling. No silent privacy-mode substitution.
@@ -80,7 +80,7 @@ Already-paid jobs fail with OperationConsumed. Relayers cannot redirect funds.
 
 SUBMIT ONLY AFTER EXPLICIT APPROVAL
 Actual submission requires BOTH the flag and approved-network environment:
-  ONCERAIL_APPROVED_NETWORK=mainnet python3 scripts/wallet.py transaction \
+  SEMVI_APPROVED_NETWORK=mainnet python3 scripts/wallet.py transaction \
     --file prepared-request.json --submit --out transaction-response.json
 Publication has the same --submit/network gate. Tool availability does not
 constitute spending permission. Record the returned ID before waiting:

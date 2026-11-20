@@ -8,35 +8,35 @@
   "attempts": [
     {
       "attempt": 1,
-      "transaction_id": "5ff1c647396ae5fe09779f74e563843e3142ecb1867398ba32cabe9e86d96c77",
+      "transaction_id": "cc186789414f760081a8a62a4c82e819d46ddb194b35d50efd54bbe3cda61bcb",
       "outcome": "Paid",
       "detail": "Accepted main intent. Recipient received 100 microTARI.",
       "amount_micro": "100"
     },
     {
       "attempt": 2,
-      "transaction_id": "133ca5d1aa394a202b0ec89f515bab59725828b6ef5e7451dd98eff1c27c31e8",
+      "transaction_id": "377502c3e11c210f3d66f5ee0952c89d48059017e78722a8602d67fa62ccbc3e",
       "outcome": "OperationConsumed",
       "detail": "A fresh transaction from the second relayer. The contract rejected this consumed job ID.",
       "amount_micro": "0"
     },
     {
       "attempt": 3,
-      "transaction_id": "89b30ebe0fbb189a0cd67b629b09e8e9bdc4495fc505a974c89364438e811c15",
+      "transaction_id": "5911207f4010d869a1221545bf4ab664c2e069cd0ab57d3f64b083ed87f5da82",
       "outcome": "OperationConsumed",
       "detail": "A fresh transaction from the second relayer. The contract rejected this consumed job ID.",
       "amount_micro": "0"
     },
     {
       "attempt": 4,
-      "transaction_id": "0b9d8077d9e27aaba09048c5c4aabda7002332f2369a0413698392e639404814",
+      "transaction_id": "7ac7fed389995fc58960f92d1002885d6b9837a893bfdf1a6a9561b73f8f8473",
       "outcome": "OperationConsumed",
       "detail": "A fresh transaction from the second relayer. The contract rejected this consumed job ID.",
       "amount_micro": "0"
     },
     {
       "attempt": 5,
-      "transaction_id": "2a079cf6241baa12101677ee1574944105674f73dbc55ad0444f591e7cdaca6d",
+      "transaction_id": "a8372d2417ee5be5e4d168d8a658aa7144f191cd593503ace81e8b01479b7f3d",
       "outcome": "OperationConsumed",
       "detail": "A fresh transaction from the second relayer. The contract rejected this consumed job ID.",
       "amount_micro": "0"

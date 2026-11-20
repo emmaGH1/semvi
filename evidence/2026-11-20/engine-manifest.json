@@ -3,10 +3,10 @@
   "tests_passed": 9,
   "environment": "localnet engine; not mainnet",
   "hashes": {
-    "src/lib.rs": "d60edf7a526d318eb66745896aa4cc71bc55947c117307323e72986e3271290b",
-    "tests/settlement.rs": "98d9eac64e45e7d2c4fecbbffa43f19fd1bc9e2956ca55cdff1bdb0ec52dce69",
-    "Cargo.toml": "6bb66d516685e60e95880100190da26d2dbd7a4dac135ee44f9ec0fccd8c148f",
-    "Cargo.lock": "8fec1cf0f2f0a3a7e1ac934e23d9093d3e8e64c7001f42f729f85a98e8616e02",
-    "evidence/2026-11-20/engine-tests.txt": "153355625b6ed9f2955ec13877399b9b3193ed199eaca73995d0a6c279844675"
+    "src/lib.rs": "0c0c96014540ad9b3abcbf679284cc333ee2c12c19f58f8a1dfcd544ee60a397",
+    "tests/settlement.rs": "1f67ddf1da98abe3c11d3a379d4ea08586bf0ef6f8a97850f4eee55386c4bc13",
+    "Cargo.toml": "70f3aa0d4013f833233c98e3e3ae568f6e74583e7d52e76c85b7a424c7a02093",
+    "Cargo.lock": "b1c39cfc8b8370b8136b47943bdd02d1ca53778cb7ef7834fe761e80fc20924e",
+    "evidence/2026-11-20/engine-tests.txt": "211026eef40da3da77bf919ac5f816ebe17ec47abbf4e716c5626a04fcd52bf6"
   }
 }

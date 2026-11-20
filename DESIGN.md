@@ -1,5 +1,5 @@
 ---
-name: OnceRail
+name: Semvi
 description: A remittance receipt interface for inspecting payment retries and their evidence.
 colors:
   green: "#155b43"
@@ -84,13 +84,13 @@ components:
     padding: "1rem 1.2rem"
 ---
 
-# Design System: OnceRail
+# Design System: Semvi
 
 ## Overview
 
 **Creative North Star: "The Remittance Receipt"**
 
-The remittance receipt gives OnceRail a restrained green, ink and white vocabulary. Ruled rows, aligned amounts and compact labels make payment evidence easy to inspect. The visual emphasis belongs to the recorded result and its immediately adjacent provenance.
+The remittance receipt gives Semvi a restrained green, ink and white vocabulary. Ruled rows, aligned amounts and compact labels make payment evidence easy to inspect. The visual emphasis belongs to the recorded result and its immediately adjacent provenance.
 
 Public Sans carries both headings and working text; system monospace distinguishes transaction identifiers and commands. Flat tonal surfaces and modest corners keep the interface calm and practical.
 

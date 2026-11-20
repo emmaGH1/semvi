@@ -1,6 +1,6 @@
-# OnceRail — chosen by user 2026-11-20
+# Semvi — chosen by user 2026-11-20
 
-For automation builders who can pay twice after a timeout, OnceRail lets them safely relay a signed payment job again, using Tari Ootle to enforce at-most-once settlement per vault/job ID.
+For automation builders who can pay twice after a timeout, Semvi lets them safely relay a signed payment job again, using Tari Ootle to enforce at-most-once settlement per vault/job ID.
 
 ## One journey
 1. Create a payer-owned vault and fund it with TARI.
@@ -28,7 +28,7 @@ Signed intents and transfer atomicity work in current real Ootle engine. Hour-on
 Deadline conservative Nov 21 01:00 WAT; reserve buffer for deadline ambiguity.
 
 ## Ideas evaluated (sponsor/stakes/next-week/real/plain/buildable, each 0–2)
-- OnceRail: 2/2/1/1/2/2 = 10. Agent-only; recommended by Opus critique. Contract enforcement wedge versus hub-side idempotency.
+- Semvi: 2/2/1/1/2/2 = 10. Agent-only; recommended by Opus critique. Contract enforcement wedge versus hub-side idempotency.
 - SafeSend: 2/2/1/1/2/2 = 10. Dropped: close timelock/claim-link overlap; weak advantage over small test payment.
 - Handover rental collateral: 2/2/1/1/2/1 = 9. Dropped: unresolved disputes, close escrow overlap.
 - Group-buy all-or-refund: 2/2/1/1/2/2 = 10. Dropped: crowded crowdfunding/ROSCA territory.

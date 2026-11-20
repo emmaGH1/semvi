@@ -1,8 +1,8 @@
-# OnceRail
+# Semvi
 
 **Retry a payment job without paying it twice.** An immutable Tari Ootle vault consumes a business job ID atomically with its payment. A fresh transaction or another relayer cannot pay that job again.
 
-Built for automation builders recovering from timeouts, lost responses and restarted workers. Transaction replay protection rejects the same transaction; OnceRail also rejects a different valid transaction for the same business job.
+Built for automation builders recovering from timeouts, lost responses and restarted workers. Transaction replay protection rejects the same transaction; Semvi also rejects a different valid transaction for the same business job.
 
 ## Current proof
 
@@ -68,6 +68,6 @@ The dedicated payer key has been imported into the local 0.54.0 wallet (public-k
 
 ## Originality
 
-Existing entries cover budgets, per-call metering and post-payment reconciliation. A prior Tari Agent Pay gateway advertises hub-side idempotency. OnceRail enforces its narrower business-job registry **on chain**, across newly signed transactions from two relayers, so resetting a gateway database cannot erase a paid-job record. No competitor source was incorporated into the product.
+Existing entries cover budgets, per-call metering and post-payment reconciliation. A prior Tari Agent Pay gateway advertises hub-side idempotency. Semvi enforces its narrower business-job registry **on chain**, across newly signed transactions from two relayers, so resetting a gateway database cannot erase a paid-job record. No competitor source was incorporated into the product.
 
 MIT licensed. Public Sans is used under its [SIL Open Font License](web/fonts/OFL.txt).

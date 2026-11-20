@@ -2,20 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="OnceRail makes business payment retries safe through a job registry enforced by Tari Ootle.">
-  <title>OnceRail — payment retry proof</title>
+  <meta name="description" content="Semvi makes business payment retries safe through a job registry enforced by Tari Ootle.">
+  <title>Semvi — payment retry proof</title>
   <link rel="icon" href="logo.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css">
 </head>
 <body>
   <a class="skip" href="#workspace">Skip to workspace</a>
   <div class="shell">
     <aside class="sidebar">
-      <a class="wordmark" href="./" aria-label="OnceRail home"><svg viewBox="0 0 28 28" aria-hidden="true"><path d="M5 5v11a7 7 0 0 0 7 7h11M13 5v10a1 1 0 0 0 1 1h9"/></svg>OnceRail</a>
+      <a class="wordmark" href="./" aria-label="Semvi home"><svg viewBox="0 0 28 28" aria-hidden="true"><path d="M5 5v11a7 7 0 0 0 7 7h11M13 5v10a1 1 0 0 0 1 1h9"/></svg>Semvi</a>
       <p class="product-note">Payment retries,<br>with one settlement.</p>
       <nav aria-label="Workspace">
         <button class="nav-item selected" data-panel="proof" aria-current="page">Recorded proof</button>
         <button class="nav-item" data-panel="inspect">Inspect a job</button>
-        <button class="nav-item" data-panel="run">Run OnceRail</button>
+        <button class="nav-item" data-panel="run">Run Semvi</button>
       </nav>
       <div class="sidebar-bottom"><span>Built on Tari Ootle</span><p>Open-source contract.<br>No central payment gateway.</p></div>
     </aside>
@@ -33,12 +33,12 @@
             <div class="table-head" role="row"><span role="columnheader" aria-label="Attempt number">#</span><span role="columnheader">Transaction</span><span role="columnheader">Contract result</span><span role="columnheader">Paid</span></div>
             <div id="attempt-rows"></div>
           </div>
-          <div class="explanation"><h3>Why this is different from replay protection</h3><p>Every attempt has a different transaction hash. The second relayer submits a new transaction for the same business job. OnceRail refuses it because the job is consumed—not because a transaction was replayed.</p></div>
+          <div class="explanation"><h3>Why this is different from replay protection</h3><p>Every attempt has a different transaction hash. The second relayer submits a new transaction for the same business job. Semvi refuses it because the job is consumed—not because a transaction was replayed.</p></div>
           <details class="details"><summary>Read the contract’s boundaries</summary><p>At most one payment per job ID, per vault. This does not guarantee delivery. Consumed IDs are never pruned; each vault holds up to 256 jobs. A new vault has its own namespace. Payment amounts and recipients are public. A refused retry may still cost network fees.</p></details>
         </div>
       </section>
       <section id="panel-inspect" class="panel" hidden>
-        <div class="page-heading"><h1>Know what the job<br>will ask the contract to pay.</h1><p>Open a signed intent from the OnceRail CLI.<br>Your file stays in this browser.</p></div>
+        <div class="page-heading"><h1>Know what the job<br>will ask the contract to pay.</h1><p>Open a signed intent from the Semvi CLI.<br>Your file stays in this browser.</p></div>
         <div class="file-area"><label for="intent-file">Select an intent JSON file</label><input id="intent-file" type="file" accept="application/json,.json"><p>Use the output of <code>intent sign</code>. Never upload a seed phrase or private key.</p></div>
         <p id="inspect-status" role="status">No intent loaded.</p>
         <div id="intent-result" hidden><h2>Payment details</h2><dl id="intent-details"></dl><p class="notice">Structural inspection only. Signature validity and permission to spend are verified by the Tari contract when the transaction executes. This page cannot submit payments.</p></div>

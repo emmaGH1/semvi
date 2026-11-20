@@ -68,7 +68,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         "execute" => {
             let intent: Value =
                 serde_json::from_str(&fs::read_to_string(text(&spec, "intent_file")?)?)?;
-            if intent["network"] != spec["network"] || intent["schema"] != "oncerail.intent.v1" {
+            if intent["network"] != spec["network"] || intent["schema"] != "semvi.intent.v1" {
                 return Err("Intent network/schema mismatch".into());
             }
             let encoded: Vec<InstructionArg> = serde_json::from_value(intent["args"].clone())?;
@@ -91,7 +91,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 }
             }
             if text(&intent, "message")?
-                != String::from_utf8(oncerail::intent_message(&job, &recipient, amount, expiry))?
+                != String::from_utf8(semvi::intent_message(&job, &recipient, amount, expiry))?
             {
                 return Err("Intent message does not match payment fields".into());
             }

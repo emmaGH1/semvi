@@ -1,5 +1,5 @@
 //! Offline intent signer. Secret material is read from a file and never printed.
-use oncerail::{SIGNATURE_DOMAIN, intent_message};
+use semvi::{SIGNATURE_DOMAIN, intent_message};
 use std::{env, fs, io::Read, path::Path, str::FromStr};
 use tari_crypto::{
     keys::{PublicKey as _, SecretKey},
@@ -69,7 +69,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!(
         "{}",
         serde_json::to_string_pretty(&serde_json::json!({
-            "schema": "oncerail.intent.v1", "network": a[3], "vault": vault,
+            "schema": "semvi.intent.v1", "network": a[3], "vault": vault,
             "job": job, "recipient": recipient, "amount_micro": amount.to_string(),
             "expiry_epoch": expiry.to_string(), "payer": RistrettoPublicKey::from_secret_key(&key).to_byte_type(),
             "message": String::from_utf8(message)?,

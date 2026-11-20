@@ -1,0 +1,24 @@
+{
+  "checked_at": "2026-11-20T07:27:09.767930+00:00",
+  "source": "MoonMail public showcase gifts",
+  "source_url": "https://seal-clubber.github.io/MoonMail/",
+  "gifts": [
+    {
+      "component": "component_49edc837522876221b28f3c28c31714b5f0aabd72a55ad56e9c510313579b96d",
+      "amount_micro": 1000000,
+      "claimed": true
+    },
+    {
+      "component": "component_4957908e74dfaa3b55310551173b4ab80e94677e257a7dfec12b251ce3b1359e",
+      "amount_micro": 1000000,
+      "claimed": true
+    },
+    {
+      "component": "component_49853289f7916b8eb543a5dad716997fd81f408d6b6e57342874f8fc072b3b44",
+      "amount_micro": 1000000,
+      "claimed": true
+    }
+  ],
+  "available_count": 0,
+  "action": "Read only; no claim or spending"
+}

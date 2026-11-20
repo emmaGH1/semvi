@@ -19,7 +19,7 @@ await check('Mainnet consensus epoch available', async () => {
   if (!Number.isSafeInteger(j.current_epoch) || j.current_epoch <= 0) throw Error('Missing epoch');
 });
 await check('Compiled contract is a WASM binary', async () => {
-  const b = await readFile('target/wasm32-unknown-unknown/release/oncerail.wasm');
+  const b = await readFile('target/wasm32-unknown-unknown/release/semvi.wasm');
   if (b.subarray(0,4).toString('hex') !== '0061736d') throw Error('Invalid WASM');
 });
 await check('Recorded engine proof matches current contract and test sources', async()=>{

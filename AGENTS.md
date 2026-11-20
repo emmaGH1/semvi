@@ -1,8 +1,8 @@
-# OnceRail: Tari November MVP sprint
+# Semvi: Tari November MVP sprint
 
 ## North star
 
-User chose OnceRail, 2026-11-20: for automation builders who risk duplicate payouts after timeouts, one funded Tari contract executes each signed business job at most once. Journey: fund → sign job → relay → lose response/retry with a different transaction → observe one payout and explicit consumed-job refusal. Done means real engine proof, mainnet publication and run, usable tool, and reviewable submission evidence. No outside user is confirmed.
+User chose Semvi, 2026-11-20: for automation builders who risk duplicate payouts after timeouts, one funded Tari contract executes each signed business job at most once. Journey: fund → sign job → relay → lose response/retry with a different transaction → observe one payout and explicit consumed-job refusal. Done means real engine proof, mainnet publication and run, usable tool, and reviewable submission evidence. No outside user is confirmed.
 
 Cut list: new token, agent chat, custodial gateway, social integrations, dashboards unrelated to this journey, marketing metrics, fictional users, hidden fallback simulation. No budget-policy clone.
 

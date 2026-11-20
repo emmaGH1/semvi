@@ -1,4 +1,4 @@
-# OnceRail — proof status
+# Semvi — proof status
 
 At-most-once payouts per vault and business job ID, across different valid transactions. This is not a claim of guaranteed delivery, zero fees on retries, private payouts, or user adoption.
 

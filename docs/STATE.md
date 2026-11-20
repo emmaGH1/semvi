@@ -1,7 +1,7 @@
 # State — 2026-11-20
 
 ## Decision
-Entered; user explicitly selected OnceRail. User wants minimal involvement and main-prize quality alongside early-launch bonus. No outside tester or wallet/funds.
+Entered; user selected the duplicate-payment prevention idea, then explicitly approved the shorter name Semvi. User wants minimal involvement and main-prize quality alongside early-launch bonus. No outside tester; deployment wallet exists but remains unfunded.
 
 ## Verified
 - Mainnet /info and /epoch-manager/stats HTTP 200; raw evidence saved.
@@ -12,7 +12,7 @@ Entered; user explicitly selected OnceRail. User wants minimal involvement and m
 - Opus critique rejects cancellable timelock and rental escrow as weak overlap; recommends on-chain business idempotency. Search finds Tari Agent Pay with hub-side idempotency, so enforce and prove difference.
 
 ## Next action
-User approved claiming one publicly offered free starter gift if available, and spending up to 5 TARI of received funds on deployment/test fees, with per-transaction estimates. No fiat purchases, contest/social posts or organizer/community contact authorized. Public MIT GitHub/free Pages publication is still pending; user requested a more mature product name before publishing. Check name collisions and get the name selected before renaming identifiers/signature domains and regenerating proof. Funding remains zero; MoonMail's three public 1-TARI showcase gifts were already claimed. A donation request is prepared in SUBMISSION.md but not authorized to post.
+User approved claiming one publicly offered free starter gift if available, and spending up to 5 TARI of received funds on deployment/test fees, with per-transaction estimates. No fiat purchases, contest/social posts or organizer/community contact authorized. Public MIT GitHub/free Pages publication is still pending. User approved Semvi; rename is complete across contract, signature domain, intent schema, CLI, UI and documentation. All nine engine and six JS tests pass after rename; proof and six desktop/mobile captures regenerated. Local wallet account renamed semvi-deploy with unchanged keys/address. Funding remains zero; fresh read-only check at approximately 07:27 UTC confirms all three MoonMail public gifts are claimed. The 2,000-XTM Sapient support post was for named October entrants, not a new available grant. A Semvi donation request is prepared in SUBMISSION.md but not authorized to post.
 
 After funding: estimate publication; publish only with approval; create vault and verify a dust deposit/withdrawal through walletd using the imported payer key before a larger deposit. Then run a real payment and fresh sequential duplicate, archive receipts, update the UI from engine-only to explicitly separated real mainnet proof, and prepare final submission for user approval.
 
@@ -31,7 +31,7 @@ After funding: estimate publication; publish only with approval; create vault an
 - Wallet cookie path appends mainnet to base path; use actual created path. Never print cookie.
 
 ## Pending human inputs
-Concrete publication/spending approval and fee funding later. Forum/social posting approval at final review. No secret requested.
+Public code/site publication approval and permission to post the prepared fee-funding request remain pending. Up to 5 TARI in received funds is authorized for deployment/test fees; fiat purchases are not authorized. Contest/social announcement approval remains reserved for final review. No secret requested.
 
 ## Later
 Recruit real tester after usable MVP; SDK integration for a real webhook client. No adoption claims until observed.

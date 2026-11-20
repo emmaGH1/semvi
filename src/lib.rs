@@ -1,9 +1,9 @@
-//! OnceRail: at-most-once settlement per immutable payer vault and business job ID.
+//! Semvi: at-most-once settlement per immutable payer vault and business job ID.
 use std::collections::BTreeSet;
 use tari_template_lib::prelude::*;
 
-custom_signature_domain!(OnceRailDomain, b"oncerail.payout.v1");
-pub const SIGNATURE_DOMAIN: &[u8] = b"oncerail.payout.v1";
+custom_signature_domain!(SemviDomain, b"semvi.payout.v1");
+pub const SIGNATURE_DOMAIN: &[u8] = b"semvi.payout.v1";
 pub const MAX_JOBS: usize = 256;
 
 /// Canonical payload. Component and network binding are added by Ootle's verifier.
@@ -13,20 +13,20 @@ pub fn intent_message(
     amount: u64,
     expiry: u64,
 ) -> Vec<u8> {
-    format!("oncerail:v1|{job}|{recipient}|{amount}|{expiry}").into_bytes()
+    format!("semvi:v1|{job}|{recipient}|{amount}|{expiry}").into_bytes()
 }
 
 #[template]
-mod oncerail {
+mod semvi {
     use super::*;
 
-    pub struct OnceRail {
+    pub struct Semvi {
         payer: RistrettoPublicKeyBytes,
         funds: Vault,
         consumed: BTreeSet<Hash32>,
     }
 
-    impl OnceRail {
+    impl Semvi {
         pub fn new(payer: RistrettoPublicKeyBytes) -> Component<Self> {
             Component::new(Self {
                 payer,
@@ -51,7 +51,7 @@ mod oncerail {
             recipient: ComponentAddress,
             amount: u64,
             expiry: u64,
-            signature: Signature<OnceRailDomain>,
+            signature: Signature<SemviDomain>,
         ) {
             assert!(!self.consumed.contains(&job), "OperationConsumed");
             assert!(self.consumed.len() < MAX_JOBS, "VaultCapacityReached");

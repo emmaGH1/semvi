@@ -8,7 +8,7 @@ function cborUint(value) {
   }
 }
 export function inspectIntent(j) {
-  if (j.schema !== 'oncerail.intent.v1') throw Error('This is not a OnceRail v1 intent. Use the intent sign command.');
+  if (j.schema !== 'semvi.intent.v1') throw Error('This is not a Semvi v1 intent. Use the intent sign command.');
   if (!['mainnet','esmeralda','localnet'].includes(j.network)) throw Error('Unknown intent network.');
   if (!/^[a-f0-9]{64}$/.test(j.job) || !/^[a-f0-9]{64}$/.test(j.payer)) throw Error('Job ID and payer must be 32-byte hexadecimal values.');
   if (!/^component_[a-f0-9]{64}$/.test(j.vault) || !/^component_[a-f0-9]{64}$/.test(j.recipient)) throw Error('Vault and recipient must be valid component address strings.');
@@ -20,7 +20,7 @@ export function inspectIntent(j) {
   if (!Array.isArray(j.args) || j.args.length !== 5) throw Error('Expected five encoded contract arguments.');
   expected.forEach((hex,i) => {if(j.args[i]?.Literal !== hex) throw Error('The visible fields differ from the encoded payment arguments. Do not relay this file.');});
   if (!/^(?:[a-f0-9]{2})+$/.test(j.args[4]?.Literal ?? '')) throw Error('Missing encoded signature.');
-  const message = `oncerail:v1|${j.job}|${j.recipient}|${j.amount_micro}|${j.expiry_epoch}`;
+  const message = `semvi:v1|${j.job}|${j.recipient}|${j.amount_micro}|${j.expiry_epoch}`;
   if(j.message !== message) throw Error('The signed-message description differs from the payment fields.');
   return {network:j.network,job:j.job,vault:j.vault,recipient:j.recipient,amount_micro:j.amount_micro,expiry_epoch:j.expiry_epoch,payer:j.payer};
 }

@@ -1,6 +1,8 @@
 {
+  "brand": "Semvi",
   "check": "offline CLI smoke; no transaction submitted",
-  "signer": "built and generated valid payload",
+  "schema": "semvi.intent.v1",
+  "signature_domain": "semvi.payout.v1",
   "fresh_unsigned_requests": true,
   "tampered_metadata_rejected": true,
   "rejection": "Error: \"Intent display fields do not match encoded payment arguments\""

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "generatedAt": "2026-11-20T01:11:09.812962+00:00",
-  "title": "Design System: OnceRail",
+  "title": "Design System: Semvi",
   "extensions": {
     "colorMeta": {
       "green": {
@@ -124,7 +124,7 @@
       "kind": "nav",
       "refersTo": "nav-item",
       "description": "Three text destinations with a pale selected state.",
-      "html": "<nav class=\"ds-nav\" aria-label=\"Workspace\"><button class=\"ds-nav-item ds-selected\" aria-current=\"page\">Recorded proof</button><button class=\"ds-nav-item\">Inspect a job</button><button class=\"ds-nav-item\">Run OnceRail</button></nav>",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Workspace\"><button class=\"ds-nav-item ds-selected\" aria-current=\"page\">Recorded proof</button><button class=\"ds-nav-item\">Inspect a job</button><button class=\"ds-nav-item\">Run Semvi</button></nav>",
       "css": ".ds-nav{display:flex;flex-direction:column;gap:.35rem;background:#f6f8f6;padding:1rem;max-width:235px}.ds-nav-item{font-family:var(--sans,'Public Sans',sans-serif);text-align:left;border:0;border-radius:5px;background:none;color:var(--muted,#54665e);padding:.75rem .8rem;font-size:.9rem;font-weight:500;cursor:pointer}.ds-nav-item:hover{background:#e7ede8;color:var(--ink,#172c26)}.ds-nav-item.ds-selected{background:#dce9df;color:var(--green,#155b43);font-weight:600}.ds-nav-item:focus-visible{outline:3px solid #278b68;outline-offset:4px}"
     },
     {
@@ -160,7 +160,7 @@
   ],
   "narrative": {
     "northStar": "The Remittance Receipt",
-    "overview": "The remittance receipt gives OnceRail a restrained green, ink and white vocabulary. Ruled rows, aligned amounts and compact labels make payment evidence easy to inspect. The visual emphasis belongs to the recorded result and its immediately adjacent provenance.\n\nPublic Sans carries both headings and working text; system monospace distinguishes transaction identifiers and commands. Flat tonal surfaces and modest corners keep the interface calm and practical.",
+    "overview": "The remittance receipt gives Semvi a restrained green, ink and white vocabulary. Ruled rows, aligned amounts and compact labels make payment evidence easy to inspect. The visual emphasis belongs to the recorded result and its immediately adjacent provenance.\n\nPublic Sans carries both headings and working text; system monospace distinguishes transaction identifiers and commands. Flat tonal surfaces and modest corners keep the interface calm and practical.",
     "keyCharacteristics": [
       "Green result band paired with a pale provenance band.",
       "Ruled transaction rows with aligned numeric amounts.",

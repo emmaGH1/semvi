@@ -1,4 +1,4 @@
-use oncerail::{SIGNATURE_DOMAIN, intent_message};
+use semvi::{SIGNATURE_DOMAIN, intent_message};
 use tari_ootle_common_types::{TemplateSignatureBinding, sign_template_message_schnorr};
 use tari_template_lib::prelude::*;
 use tari_template_lib::types::crypto::NoSignatureDomain;
@@ -29,7 +29,7 @@ impl Fixture {
         let (recipient, _, relay_a) = engine.create_empty_account();
         let (_, _, relay_b) = engine.create_empty_account();
         let payer = RistrettoPublicKey::from_secret_key(&payer_secret).to_byte_type();
-        let rail: ComponentAddress = engine.call_function("OnceRail", "new", args![payer], vec![]);
+        let rail: ComponentAddress = engine.call_function("Semvi", "new", args![payer], vec![]);
         let tx = engine
             .transaction()
             .call_method(
@@ -183,9 +183,7 @@ fn signature_is_bound_to_its_component() {
     let mut f = Fixture::new();
     let job = Hash32::from_array([11; 32]);
     let payer = RistrettoPublicKey::from_secret_key(&f.payer_secret).to_byte_type();
-    let other: ComponentAddress = f
-        .engine
-        .call_function("OnceRail", "new", args![payer], vec![]);
+    let other: ComponentAddress = f.engine.call_function("Semvi", "new", args![payer], vec![]);
     let sig = f.sign(job, f.recipient, 100, 100);
     let tx = f
         .engine
@@ -206,7 +204,7 @@ fn signature_is_bound_to_its_component() {
 fn failed_downstream_deposit_does_not_burn_job_id() {
     let mut f = Fixture::new();
     let job = Hash32::from_array([12; 32]);
-    // OnceRail itself has no deposit method; the inner transfer fails after insertion.
+    // Semvi itself has no deposit method; the inner transfer fails after insertion.
     let sig = f.sign(job, f.rail, 100, 100);
     let tx = f
         .engine
@@ -317,7 +315,7 @@ fn insufficient_funds_do_not_consume_a_job() {
 #[test]
 fn capacity_never_prunes_old_jobs_or_traps_unused_funds() {
     let mut f = Fixture::new();
-    for n in 0..oncerail::MAX_JOBS {
+    for n in 0..semvi::MAX_JOBS {
         let mut id = [0u8; 32];
         id[..8].copy_from_slice(&(n as u64).to_le_bytes());
         let job = Hash32::from_array(id);
@@ -365,7 +363,7 @@ fn capacity_never_prunes_old_jobs_or_traps_unused_funds() {
         f.engine.execute_expect_failure(tx, vec![]),
         "OperationConsumed",
     );
-    let remaining = 1000 - oncerail::MAX_JOBS as u64;
+    let remaining = 1000 - semvi::MAX_JOBS as u64;
     let tx = f
         .engine
         .transaction()

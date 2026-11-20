@@ -1,16 +1,17 @@
 {
+  "brand": "Semvi",
   "passed": true,
   "viewports": [
     1440,
     390
   ],
-  "capture_note": "System scrollbars hidden to match overlay-scrollbar phone behavior; captures equal viewport width.",
+  "capture_note": "System scrollbars hidden to match overlay-scrollbar phone behavior.",
   "checks": [
-    "proof rows",
-    "valid localnet offline sample inspection",
-    "tab navigation",
-    "source guide HTTP 200",
-    "all panels no horizontal overflow",
+    "Semvi title/wordmark",
+    "five actual engine proof rows",
+    "valid semvi.intent.v1 localnet sample",
+    "tamper rejection",
+    "all three panels no overflow",
     "no page errors"
   ],
   "captures": [

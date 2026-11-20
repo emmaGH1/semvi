@@ -1,6 +1,10 @@
-# OnceRail build log — 2026-11-20
+# Semvi build log — 2026-11-20
 
-- User entered and selected OnceRail after competitor inventory and one Opus critique. Cancellable timelock and rental deposit ideas were rejected for overlap and unresolved disputes.
+Originally developed under the working name OnceRail. The user approved Semvi as the final name before any public release or mainnet deployment. Contract identifiers, intent schema and signature domain were renamed together; evidence was regenerated from new real runs rather than editing old transaction output.
+
+07:24–07:28 UTC: Semvi rename completed. All nine real engine tests and six JS tests pass; native signer/preparer and WASM rebuilt. Regenerated CLI smoke, engine manifest, actual proof transactions and all six desktop/mobile captures. Local deployment account name updated without changing keys/address. No funds, public publication or contact performed.
+
+- User entered and selected Semvi after competitor inventory and one Opus critique. Cancellable timelock and rental deposit ideas were rejected for overlap and unresolved disputes.
 - Connected to official mainnet, installed checksum-verified 0.54.0 wallet daemon, authenticated locally and created an empty deployment account. No money spent or network publication submitted.
 - Advertised official skill URLs returned 404; saved llms.txt and checked tagged source instead of guessing endpoints.
 - Built the actual WASM template. Replaced macro-unsupported raw arrays with SDK Hash32; checked actual SDK methods to fix API differences.

@@ -7,10 +7,10 @@ import {gunzipSync} from 'node:zlib';
 
 export const HELPERS_VERSION = '0.1.0';
 const SHA256 = Object.freeze({
-  'linux-x64': null,
-  'linux-arm64': null,
-  'darwin-x64': null,
-  'darwin-arm64': null,
+  'linux-x64': '76ac7379f51faf494cdf2ce5514c342898527c62b63f6a2cdc7f5666f7b33a04',
+  'linux-arm64': '0513e1cd36165aa58b1ffcf59bfe34f0bd56fe2b07fee08ee567177a15ede261',
+  'darwin-x64': '08aaf14fb763e7dd69776f2b8eff34ab3d9d5d4f9f1cbe86f8d5c7a0363612c4',
+  'darwin-arm64': 'f9f717fc409fae99a49e190e99da84b3c587a8699cabc2f94cda1b469d469b46',
 });
 const RELEASE = `https://github.com/emmaGH1/semvi/releases/download/helpers-v${HELPERS_VERSION}`;
 const HELPERS = ['intent', 'prepare'];

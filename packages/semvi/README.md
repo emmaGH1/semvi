@@ -13,7 +13,7 @@ npx semvi-helpers install
 
 The installer uses the GitHub release for the helper version embedded in the package. It checks the compressed archive against the package's platform-specific SHA-256 before extracting it. The cache is `~/.cache/semvi/helpers/<version>/<platform>`, or the directory you set in `SEMVI_HELPERS_DIR`. Use a dedicated directory under a writable parent so the installer can place both binaries together. Use a fresh directory or move the old one aside when changing versions. npm install itself runs no helper download.
 
-**First-release bootstrap.** The default installer requires embedded hashes. Once the GitHub release exists, reviewers using the bootstrap checkout can run `npx semvi-helpers install --allow-unpinned`. This checks the download against `SHA256SUMS` from the same release. It trusts GitHub and the release publisher for both files. Use a package revision with embedded hashes for routine installs. Keep the installed helpers in a directory writable only by users you trust. [Release and pinning procedure](../../RELEASING.md)
+**Verified downloads.** Helpers v0.1.0 are pinned: the installer checks each archive against the SHA-256 embedded in this package before extracting it, so a changed release file is refused. Keep the installed helpers in a directory writable only by users you trust. [Release and pinning procedure](../../RELEASING.md)
 
 ### Build from source instead
 

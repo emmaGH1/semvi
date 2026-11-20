@@ -1,0 +1,18 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "address": "component_7f6b0fca1db21c7f4bae3694133e97e1186325d10be64f4fde97ec213a315cee",
+    "balances": [
+      {
+        "balance": "100",
+        "confidential_balance": "0",
+        "divisibility": 6,
+        "resource_address": "resource_0101010101010101010101010101010101010101010101010101010101010101",
+        "resource_type": "Stealth",
+        "token_symbol": "TARI",
+        "vault_address": "vault_7ff235f4cd1b8fe3f2d722e00e90279e965843d32bbefbe5b11d9b9042334b11"
+      }
+    ]
+  },
+  "id": 1
+}

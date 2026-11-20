@@ -1,0 +1,23 @@
+{
+  "checked_at": "2026-11-20T08:15:46.336977+00:00",
+  "network": "mainnet",
+  "wallet_version": "0.55.0",
+  "receipt_confirmed": true,
+  "received_tari": 500,
+  "balances": [
+    {
+      "balance": "500000000",
+      "confidential_balance": "0",
+      "divisibility": 6,
+      "resource_address": "resource_0101010101010101010101010101010101010101010101010101010101010101",
+      "resource_type": "Stealth",
+      "token_symbol": "TARI",
+      "vault_address": "vault_5458da4b36a7d2578beccb182d5bbb5f5a343923cdf01755ef3ac2125be070ae"
+    }
+  ],
+  "stealth_output_count": 0,
+  "donor_supplied_transaction_url": "https://explorer.tari.mw/tx/08cfc90fad2d6dce911bee20d48f1999b111356516cf4963ce9ec17da354904a",
+  "transaction_attribution": "Donor supplied; not independently decoded. Wallet receipt independently confirmed.",
+  "network_spending_tari": 0,
+  "approved_fee_limit_tari": 5
+}

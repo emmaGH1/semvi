@@ -1,0 +1,26 @@
+{
+  "network": "mainnet",
+  "wallet_version": "0.55.0",
+  "recorded_at": "2026-11-20T08:21:18.265592+00:00",
+  "template": "84f1d72f8b9e38d104e639de9fcce8d6f71098daa825c56ea0b2772d35f60580",
+  "vault": "component_ca0301bc6756c5979099d681f5184872f1f18ec521388c660e2477bbdd82635a",
+  "recipient": "component_7f6b0fca1db21c7f4bae3694133e97e1186325d10be64f4fde97ec213a315cee",
+  "job": "66d8547aab0d6eb2117522acdfe7a2550099045c1ead1137c7ebaddee152d610",
+  "amount_micro": "100",
+  "recipient_after_payment_micro": "100",
+  "recipient_after_retry_micro": "100",
+  "retry_refusal": "OperationConsumed",
+  "sequential": true,
+  "withdrawal_verified": true,
+  "fees_micro": 1260400,
+  "transactions": {
+    "publish": "da02930aa405cc0af69816f776216e74249e35cf1c226219662514d65ce18032",
+    "mainnet-create": "2555a70091f7c8cf7603e6cc19f075509342ee77bc0f42410625607fa7810aa9",
+    "mainnet-fund-dust": "87958e33934d3fa20c2329381b1614fdeb4be83b2b62bde30cdd70091f112e9f",
+    "mainnet-withdraw-dust": "77e20b98d0161b7641abaf8f3fe30a38b4a07d44da9698474a94bf56c2634501",
+    "mainnet-create-recipient": "43ca5dfdbf6dcd4da0d7499ea4ca91942b0181848bb03678ff0c0fcfcb5d58db",
+    "mainnet-fund-proof": "e819cdaf1c9063e17f2fef40532e60c30c0242671dad154815ec8cba0c68cc27",
+    "mainnet-payment": "ef8926b8fd724286fad5071d7507e0b792a4988ce2735fb2c09d06a57e966990",
+    "mainnet-retry": "24f29ce04c8605bdf0df8fa2e943b676a4b8ccbca82d549f85a5b991c8c2b94b"
+  }
+}

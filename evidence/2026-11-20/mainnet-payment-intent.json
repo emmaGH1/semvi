@@ -1,0 +1,28 @@
+{
+  "amount_micro": "100",
+  "args": [
+    {
+      "Literal": "582066d8547aab0d6eb2117522acdfe7a2550099045c1ead1137c7ebaddee152d610"
+    },
+    {
+      "Literal": "d88058207f6b0fca1db21c7f4bae3694133e97e1186325d10be64f4fde97ec213a315cee"
+    },
+    {
+      "Literal": "1864"
+    },
+    {
+      "Literal": "19989e"
+    },
+    {
+      "Literal": "81820081825820d0a550000fba2802d33424ee2ac7c449dd7db3eeded1f09d690bb26c330d7b2858202ada1ca96a2d32a7878b02bf989ae2c37c56200c4029357c9cfe8db68061090e"
+    }
+  ],
+  "expiry_epoch": "39070",
+  "job": "66d8547aab0d6eb2117522acdfe7a2550099045c1ead1137c7ebaddee152d610",
+  "message": "semvi:v1|66d8547aab0d6eb2117522acdfe7a2550099045c1ead1137c7ebaddee152d610|component_7f6b0fca1db21c7f4bae3694133e97e1186325d10be64f4fde97ec213a315cee|100|39070",
+  "network": "mainnet",
+  "payer": "9c192e538d858f9c184f6eb0b2d30b04a7c7b622f89e52e65a0f4bdc5b59855c",
+  "recipient": "component_7f6b0fca1db21c7f4bae3694133e97e1186325d10be64f4fde97ec213a315cee",
+  "schema": "semvi.intent.v1",
+  "vault": "component_ca0301bc6756c5979099d681f5184872f1f18ec521388c660e2477bbdd82635a"
+}

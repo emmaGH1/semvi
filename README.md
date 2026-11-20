@@ -10,7 +10,9 @@ Built for automation builders recovering from timeouts, lost responses and resta
 
 Nine tests pass in the real Tari 0.54.0 engine. One job paid 100 microTARI; four fresh retry transactions were refused with `OperationConsumed`. The recipient stayed at 100 and the vault at 900. [Raw transcript](evidence/2026-11-20/engine-tests.txt) · [Judge proof map](JUDGES.md).
 
-**Mainnet publication and settlement are pending fee funding.** The browser proof is a recorded localnet engine run, clearly labelled. No external user adoption or security audit is claimed.
+**Published and exercised on mainnet, 20 Nov 2026.** A 100-microTARI payment succeeded; a new transaction signed by a different relayer was refused with `OperationConsumed`. The recipient stayed at 100 microTARI. A real dust deposit and payer withdrawal also succeeded. [Mainnet proof and transaction IDs](evidence/2026-11-20/mainnet-proof.json). Total deployment/test fees: 1.260400 TARI.
+
+The five-attempt browser table remains the separately labelled localnet engine run. No external user adoption or security audit is claimed.
 
 ## Verify
 
@@ -45,7 +47,7 @@ target/debug/examples/intent sign /secure/payer.key \
 
 Derive JOB_HASH from a stable business operation ID and persist the `(network, vault, job)` mapping before submission. Generating another ID authorizes another payment. The [CLI guide](web/GUIDE.txt) covers creation, funding, signing, relaying, dry runs, receipts and withdrawal.
 
-The offline `prepare` helper uses Tari's transaction builder and checks that displayed intent fields match encoded arguments. `scripts/wallet.py` only dry-runs unless explicit submission and network flags are supplied.
+The offline `prepare` helper uses Tari's transaction builder and checks that displayed intent fields match encoded arguments. It emits the V2 unsigned envelope required by walletd 0.55; the official V2 schema reuses the V1 body, and walletd supplies the V2 signatures. `scripts/wallet.py` only dry-runs unless explicit submission and network flags are supplied.
 
 The buildless `web/` interface displays recorded proof, reads mainnet status and inspects signed job files locally. It holds no keys and cannot submit payments.
 
@@ -66,7 +68,7 @@ python3 -m http.server 4173 --bind 127.0.0.1 --directory web
 - Permanent job-list storage grows until the 256-job cap, so execution/storage fees grow with use.
 - The recorded OperationConsumed refusals are sequential retries. Concurrent submissions can be rejected earlier by network input locking; that does not establish our refusal reason.
 
-The dedicated payer key has been imported into the local 0.54.0 wallet (public-key evidence saved), but a real wallet-driven mainnet withdrawal is still unproven. The first funded run must test a dust deposit and withdrawal before placing any larger balance in the vault.
+The dedicated payer key was imported into walletd, and a 1,000-microTARI deposit and withdrawal succeeded on mainnet through walletd 0.55. [Withdrawal receipt](evidence/2026-11-20/mainnet-withdraw-dust-receipt.json).
 
 ## Originality
 

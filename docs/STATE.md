@@ -1,7 +1,7 @@
 # State — 2026-11-20
 
 ## Decision
-Entered; user selected the duplicate-payment prevention idea, then explicitly approved the shorter name Semvi. User wants minimal involvement and main-prize quality alongside early-launch bonus. No outside tester; deployment wallet exists but remains unfunded.
+Entered; user selected the duplicate-payment prevention idea, then explicitly approved the shorter name Semvi. User wants minimal involvement and main-prize quality alongside early-launch bonus. No outside tester; deployment wallet has received 500 TARI; mainnet publication, withdrawal and payout/retry are now verified.
 
 ## Verified
 - Mainnet /info and /epoch-manager/stats HTTP 200; raw evidence saved.
@@ -37,3 +37,12 @@ Funding request awaits moderation, not login access or posting permission. Up to
 
 ## Later
 Recruit real tester after usable MVP; SDK integration for a real webhook client. No adoption claims until observed.
+
+## Latest funding check
+2026-11-20T08:09:53.902907+00:00: User supplied Telegram screenshot: 0xHRA reports sending 500 TARI. Receipt is not yet confirmed: balances and stealth outputs remain empty after completed scans. Backed up encrypted wallet privately, upgraded official checksum-verified walletd to 0.55.0 to match indexer, and rescanned successfully. No funds spent. Need donor transaction ID/explorer link to trace receipt. Approved fee cap remains 5 TARI, regardless of donated amount.
+
+## Funding received
+2026-11-20T08:15:46.336977+00:00: Mainnet wallet independently reports 500000000 microTARI (500 TARI). User provided donor explorer link recorded in funding evidence; explorer fetch unavailable and wallet transaction lookup is not a public indexer lookup, so transaction attribution is not independently decoded. Funding blocker is cleared. No fees spent; authorization remains up to 5 TARI for deployment/test fees, estimating each transaction. Proceed with authorized deployment and dust withdrawal acceptance gate.
+
+## Mainnet run completed
+2026-11-20T08:21:18.265592+00:00: Published template 84f1d72f8b9e38d104e639de9fcce8d6f71098daa825c56ea0b2772d35f60580. Created vault component_ca0301bc6756c5979099d681f5184872f1f18ec521388c660e2477bbdd82635a. Dust deposit and withdrawal succeeded. Paid 100 microTARI to separate demo recipient; fresh V2 retry from a different seal signer finalized OnlyFeeAccepted with OperationConsumed. Recipient balance remained 100. Total actual fees 1.260400 TARI, under authorized 5 TARI. Walletd 0.55 signs V2 only; prepare now emits the official V2 envelope with unchanged unsigned body. No new contract changes or extra deployment. No contest/social submission performed. Next: complete mainnet proof presentation/demo and reviewable submission pack; obtain L1 payout address and final submission approval.

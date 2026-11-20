@@ -7,9 +7,9 @@ User chose Semvi, 2026-11-20: for automation builders who risk duplicate payouts
 Cut list: new token, agent chat, custodial gateway, social integrations, dashboards unrelated to this journey, marketing metrics, fictional users, hidden fallback simulation. No budget-policy clone.
 
 ## Verified constants (2026-11-20; do not guess)
-- Mainnet indexer https://indexer-a.ootle.tari.com; GET /info confirms network mainnet, version 0.54.0.
-- Official release v0.54.0, template library 0.41.0, engine test tooling 0.54.0.
-- Local authenticated wallet daemon 0.54.0 connects to mainnet; wallet.get_info authenticated successfully. Not funded, no deployment yet.
+- Mainnet indexer https://indexer-a.ootle.tari.com; GET /info confirms network mainnet, version 0.55.0.
+- Mainnet/wallet release v0.55.0; contract and engine proof remain pinned to template library 0.41.0 and engine tooling 0.54.0. V2 unsigned transaction envelope is emitted for walletd signing.
+- Local authenticated wallet daemon 0.55.0 connects to mainnet. Received 500 TARI; publication, dust withdrawal, payout and distinct-relayer consumed-job refusal finalized. Total fees 1.260400 TARI of approved 5 TARI.
 - Official docs index saved at docs/sponsor/ootle-llms.txt. Both advertised Codex and Claude skill URLs return HTTP 404; use checked official source and docs.
 - Conservative bonus cutoff 2026-11-21 00:00 UTC (01:00 WAT); source deadline is ambiguous. Main contest cutoff Dec 1 00:00 UTC.
 

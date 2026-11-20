@@ -1,0 +1,82 @@
+{
+  "detect_inputs": true,
+  "detect_inputs_use_unversioned": true,
+  "lock_ids": [],
+  "other_signers": [
+    {
+      "Imported": {
+        "local_key_id": 1
+      }
+    }
+  ],
+  "seal_signer": {
+    "Derived": {
+      "index": 0,
+      "key_branch": "account"
+    }
+  },
+  "signatures": [],
+  "transaction": {
+    "V2": {
+      "blobs": [],
+      "dry_run": false,
+      "fee_instructions": [
+        {
+          "CallMethod": {
+            "args": [
+              {
+                "Literal": "1a000186a0"
+              }
+            ],
+            "call": {
+              "Address": "component_54803df723a7e866eb4bf599343d0287d91e3a4f6ccdcb9cc4cc1b06db2bca32"
+            },
+            "method": "pay_fee"
+          }
+        }
+      ],
+      "inputs": [],
+      "instructions": [
+        {
+          "CallMethod": {
+            "args": [
+              {
+                "Literal": "1903e8"
+              }
+            ],
+            "call": {
+              "Address": "component_ca0301bc6756c5979099d681f5184872f1f18ec521388c660e2477bbdd82635a"
+            },
+            "method": "withdraw"
+          }
+        },
+        {
+          "PutLastInstructionOutputOnWorkspace": {
+            "key": 0
+          }
+        },
+        {
+          "CallMethod": {
+            "args": [
+              {
+                "Workspace": {
+                  "id": 0,
+                  "offset": null
+                }
+              }
+            ],
+            "call": {
+              "Address": "component_54803df723a7e866eb4bf599343d0287d91e3a4f6ccdcb9cc4cc1b06db2bca32"
+            },
+            "method": "deposit"
+          }
+        }
+      ],
+      "main_signer": "SealSigner",
+      "max_epoch": 39070,
+      "min_epoch": null,
+      "network": 0,
+      "nonce": 1795162696780479739
+    }
+  }
+}

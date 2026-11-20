@@ -33,6 +33,19 @@ await check('Recorded engine proof matches current contract and test sources', a
   if(new Set(proof.attempts.map(x=>x.transaction_id)).size!==5)throw Error('Expected five different engine transaction IDs');
   if(proof.mainnet_deployed!==false)throw Error('Unverified mainnet claim');
 });
+await check('Mainnet publication, payment and retry receipts match public indexer', async()=>{
+  for(const label of ['publish','payment','retry']){
+    const local=JSON.parse(await readFile(`evidence/2026-11-20/mainnet-${label}-indexer-receipt.json`,'utf8'));
+    const archived=JSON.parse(await readFile(`evidence/2026-11-20/mainnet-${label}-receipt.json`,'utf8'));
+    const tx=archived.result.transaction_id;
+    const r=await fetch(`https://indexer-a.ootle.tari.com/transaction-receipts/${tx}`,{signal:AbortSignal.timeout(15000)});
+    if(!r.ok)throw Error(`${label}: HTTP ${r.status}`);
+    const live=await r.json();
+    if(!live.receipt||live.receipt!==local.receipt)throw Error(`${label}: receipt mismatch`);
+    if(label==='retry'&&(archived.result.status!=='OnlyFeeAccepted'||!JSON.stringify(archived).includes('OperationConsumed')))throw Error('Missing consumed-job refusal');
+    if(label!=='retry'&&archived.result.status!=='Accepted')throw Error(`${label}: not accepted`);
+  }
+});
 console.log(`${checks.filter(Boolean).length} of ${checks.length} passed`);
-console.log('Mainnet reads and recorded local engine proof verified. Mainnet settlement is not yet claimed.');
+console.log('Mainnet reads and finalized receipts re-fetched; recorded local engine proof checked separately.');
 process.exitCode = checks.every(Boolean) ? 0 : 1;

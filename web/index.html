@@ -26,7 +26,7 @@
         <div id="proof-loading" role="status">Loading the recorded engine evidence…</div>
         <div id="proof-content" hidden>
           <div class="result"><div><h2>The job was paid once.</h2><p>Five signed transactions. One payout of <strong>100 µT</strong>.</p></div><span class="result-mark" aria-label="Verified in recorded engine run"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4 10-10"/></svg></span></div>
-          <div class="provenance"><strong>Recorded engine run</strong><span>Tari 0.54.0 · Localnet · 20 Nov 2026</span><p>This is a real engine test, not a mainnet payment. Mainnet deployment is pending fee funding.</p></div>
+          <div class="provenance"><strong>Recorded engine run</strong><span>Tari 0.54.0 · Localnet · 20 Nov 2026</span><p>This is a real engine test, not a mainnet payment. Separately, mainnet publication, payout and duplicate refusal are now verified. <a href="mainnet-proof.json">Read mainnet receipts and transaction IDs</a>.</p></div>
           <div class="section-line"><h2>Same job. Fresh attempts.</h2><a href="engine-tests.txt" download>Download raw evidence</a></div>
           <div class="job-line"><span>Business job ID</span><code id="job-id"></code></div>
           <div class="attempt-table" role="table" aria-label="Recorded payment attempts">
@@ -53,7 +53,7 @@ target/debug/examples/intent sign /secure/payer.key \
 target/debug/examples/prepare request-spec.json</code></pre><p>Replace the uppercase arguments with your values. A vault must already exist and be funded. Preparation and signing do not submit anything.</p></div>
         <div class="run-section"><h2>Dry-run before spending</h2><p>The loopback wallet client authenticates with a local cookie. By default, it only simulates a transaction. Submission requires an explicit flag and network approval.</p><pre><code>python3 scripts/wallet.py transaction \
   --file prepared-request.json</code></pre><a href="GUIDE.txt" download>Download the complete CLI guide</a></div>
-        <p class="notice">Experimental MVP. Engine tests pass; real mainnet settlement is pending. No external user adoption or security audit is claimed.</p>
+        <p class="notice">Experimental MVP. Mainnet payout, duplicate refusal and payer withdrawal verified; <a href="mainnet-proof.json">read the separate mainnet proof</a>. No external user adoption or security audit is claimed.</p>
       </section>
       <footer><div><strong>Mainnet read check</strong><span id="network-status" role="status">Not checked this session.</span></div><button id="network-check" class="secondary">Check network</button></footer>
     </main>

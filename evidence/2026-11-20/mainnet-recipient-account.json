@@ -1,0 +1,28 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "account": {
+      "birthday_epoch": 0,
+      "component_address": "component_7f6b0fca1db21c7f4bae3694133e97e1186325d10be64f4fde97ec213a315cee",
+      "is_confirmed_on_chain": false,
+      "is_default": false,
+      "name": "semvi-recipient",
+      "owner_key_id": {
+        "Derived": {
+          "index": 1,
+          "key_branch": "account"
+        }
+      },
+      "owner_public_key": "24b54b2ca9d90fb4a2f2be6ab4932bd6add9f545e40835001fed288882e28813",
+      "view_only_key_id": {
+        "Derived": {
+          "index": 1,
+          "key_branch": "view_only_key"
+        }
+      }
+    },
+    "address": "otl_1yj65kt9fmy8mfghjhe4tfyet66kana29usyr2qqla55g3qhz3qfm3ff3prgkrvfhat6q6jh5rj9mk7cnkvhlwa5eect2gx4u2nwu7yg0ljyyk",
+    "created": true
+  },
+  "id": 1
+}

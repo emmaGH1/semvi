@@ -1,0 +1,8 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "dry_run_fee": null,
+    "transaction_id": "da02930aa405cc0af69816f776216e74249e35cf1c226219662514d65ce18032"
+  },
+  "id": 1
+}

@@ -50,6 +50,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     .with_nonce(nonce)
     .pay_fee_from_component(component(&spec, "fee_account")?, max_fee);
     match text(&spec, "action")? {
+        "create_account" => {
+            tx = tx.create_account(RistrettoPublicKeyBytes::from_str(text(
+                &spec,
+                "owner_public_key",
+            )?)?);
+        }
         "create" => {
             let payer = RistrettoPublicKeyBytes::from_str(text(&spec, "payer")?)?;
             let template = TemplateAddress::from_str(text(&spec, "template")?)?;
@@ -118,12 +124,20 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     args![Workspace("refund")],
                 );
         }
-        _ => return Err("action must be create, fund, execute or withdraw".into()),
+        _ => return Err("action must be create_account, create, fund, execute or withdraw".into()),
     }
+    // Walletd 0.55 signs V2 only. The official V2 unsigned envelope contains
+    // the same UnsignedTransactionV1 body; walletd supplies V2 authorization.
+    // https://github.com/tari-project/tari-ootle/blob/v0.55.0/crates/transaction/src/unsigned_transaction.rs
+    let unsigned = serde_json::to_value(tx.build_unsigned())?;
+    let body = unsigned
+        .get("V1")
+        .ok_or("Expected pinned SDK V1 unsigned body")?;
+    let unsigned_v2 = serde_json::json!({"V2": body});
     println!(
         "{}",
         serde_json::to_string_pretty(&serde_json::json!({
-            "transaction":tx.build_unsigned(), "seal_signer":spec["seal_signer"],
+            "transaction":unsigned_v2, "seal_signer":spec["seal_signer"],
             "other_signers":spec.get("other_signers").cloned().unwrap_or(serde_json::json!([])),
             "signatures":[], "detect_inputs":true, "detect_inputs_use_unversioned":true, "lock_ids":[],
         }))?

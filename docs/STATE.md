@@ -75,3 +75,6 @@ User approved commit/push. Commit b0bfa0d pushed to main; Pages workflow succeed
 
 ## YouTube published — 2026-11-20T11:35:12Z
 User uploaded demo v2: https://youtu.be/wkOu1xMxNpE (public; oEmbed title matches, channel @thefacelessmanwonders). Forum entry and bonus drafts rewritten in SUBMISSION.md around the video and the redesigned site; removed the stale claim that the page inspects intent files. Awaiting user approval to post the entry, then the bonus claim. L1 prize-wallet backup handoff still outstanding.
+
+## Forum posting blocked — 2026-11-20T11:38:47Z
+User approved posting both. Entry POST to topic 520 returned 422. Account heisemma (created 07:32 UTC) was auto-silenced at 07:38 UTC by Discourse with reason "New user typed too fast", triggered by the earlier scripted funding-topic post. System PM: on hold until staff review. can_send_private_messages=false. Nothing was posted; no retry attempted. Threads 520/521 are run by admin Fox. Do NOT fake typing-duration fields or create another account. Next: user asks Tari staff (Fox) via Discord/Telegram to review/unsilence, then pastes forum-1-entry.md and forum-2-bonus.md (in /data/workspace/semvi-demo-v2) by hand. Bonus thread showed 13 launch claims at 11:30 UTC.

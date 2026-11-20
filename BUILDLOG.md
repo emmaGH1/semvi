@@ -6,6 +6,8 @@ Originally developed under the working name OnceRail. The user approved Semvi as
 
 07:30 UTC: after explicit user approval, created public emmaGH1/semvi repository, pushed source and enabled free GitHub Pages. Workflow 44695458426 succeeded, including file-safety checks; deployed site and proof JSON verified. Funding post authorized but not posted because forum browser is signed out; secure credential prompt requested. No contest entry submitted or money spent.
 
+Forum authentication later succeeded via secure prompts. Submitted the approved funding topic once; Discourse queued it for moderation (success=true, action=enqueued). No publicly visible topic URL exists yet. One-use credential files removed; session stays outside source control. No contest submission or spending.
+
 - User entered and selected Semvi after competitor inventory and one Opus critique. Cancellable timelock and rental deposit ideas were rejected for overlap and unresolved disputes.
 - Connected to official mainnet, installed checksum-verified 0.54.0 wallet daemon, authenticated locally and created an empty deployment account. No money spent or network publication submitted.
 - Advertised official skill URLs returned 404; saved llms.txt and checked tagged source instead of guessing endpoints.

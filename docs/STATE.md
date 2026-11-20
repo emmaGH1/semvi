@@ -12,7 +12,7 @@ Entered; user selected the duplicate-payment prevention idea, then explicitly ap
 - Opus critique rejects cancellable timelock and rental escrow as weak overlap; recommends on-chain business idempotency. Search finds Tari Agent Pay with hub-side idempotency, so enforce and prove difference.
 
 ## Next action
-User approved public MIT GitHub/free Pages publication AND posting the prepared small fee-funding request to the Tari community. Source is public; site https://emmagh1.github.io/semvi/ deployed successfully (GitHub Actions run 44695458426), verified HTTP 200 and five actual recorded engine proof attempts. Funding request is NOT posted: available forum browser is signed out. Secure login prompt is pending; first request timed out. Do not ask for credentials in chat or imply the post was made.
+User approved public MIT GitHub/free Pages publication AND posting the prepared small fee-funding request to the Tari community. Source is public; site https://emmagh1.github.io/semvi/ deployed successfully (GitHub Actions run 44695458426), verified HTTP 200 and five actual recorded engine proof attempts. Forum authentication succeeded through secure credential prompts. The single approved Community funding topic was submitted and returned action=enqueued, success=true, pending_count=1. It awaits moderation and is NOT confirmed publicly visible. Do not submit another copy. Session is stored outside repo; one-use credential files were removed.
 
 Previously authorized: claim one publicly offered free starter gift if available and spend up to 5 TARI of received funds on deployment/test fees, with per-transaction estimates. No fiat purchases or contest/social announcement submission authorized. Semvi rename and verification are complete. Local account semvi-deploy has unchanged keys/address. Funding remains unresolved; fresh read-only check around 07:27 UTC found all three MoonMail gifts claimed. The 2,000-XTM Sapient support post was for named October entrants, not an available new grant.
 
@@ -33,7 +33,7 @@ After funding: estimate publication; publish only with approval; create vault an
 - Wallet cookie path appends mainnet to base path; use actual created path. Never print cookie.
 
 ## Pending human inputs
-Forum login access through the secure secret prompt is needed to post the already approved fee-funding request. Public source/site and this request are authorized; do not ask again. Up to 5 TARI in received funds is authorized for deployment/test fees; no fiat purchases. Contest/social announcement approval remains reserved for final review.
+Funding request awaits moderation, not login access or posting permission. Up to 5 TARI in received funds is authorized for deployment/test fees; no fiat purchases. User asked about self-funding alternatives; official burn guide says XTM→TARI is 1:1 less claim fees but takes about a day on mainnet, threatening the conservative bonus cutoff. A direct purchase of already-on-Ootle TARI would avoid a new burn; no vendor, quote, fiat budget or purchase is approved. Contest/social announcement approval remains reserved for final review.
 
 ## Later
 Recruit real tester after usable MVP; SDK integration for a real webhook client. No adoption claims until observed.

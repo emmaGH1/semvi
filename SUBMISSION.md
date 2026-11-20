@@ -16,8 +16,8 @@ Limits: at-most-once per vault/job, 256 permanent IDs, public payment details, n
 ## Bonus post
 PENDING MAINNET PUBLICATION AND REAL RUN. Never present engine hashes as mainnet proof. Include original entry, real template/component, publish transaction, timestamp, ready tool and archived receipt. Organizers determine eligibility and ranking.
 
-## Approved fee-funding request — not posted yet
-Blocked on forum login access. Post as a standalone project/funding discussion, not an entry in either submissions-only contest thread. Suggested title: Semvi — a tested Ootle MVP looking for mainnet fee funding.
+## Approved fee-funding request — submitted to moderation
+Submitted once as a standalone Community topic. Forum response: action=enqueued, success=true, pending_count=1. Not yet confirmed publicly visible; do not duplicate it. Title: Semvi — a tested Ootle MVP looking for mainnet fee funding. Neither contest submission thread was used.
 
 I'm building Semvi for the November Tari MVP contest: a contract-enforced job registry preventing duplicate payouts when an agent retries after a timeout. The core is tested in the real Ootle engine. I have no mainnet TARI yet for publication and the demo run. Would anyone contribute a small amount of Ootle TARI for deployment fees? I will record what is used and return unused funds when the donor provides a return address.
 

@@ -83,3 +83,4 @@ User approved posting both. Entry POST to topic 520 returned 422. Account heisem
 - Forum hold lifted by staff. User posted by hand.
 - MVP entry: https://community.tari.com/t/november-build-contest-thread-mvp/520/31 (13:42:48 UTC), public, not hidden; links video, site, source.
 - Bonus claim: https://community.tari.com/t/november-bonus-contest-first-to-launch/521/19 (13:46:44 UTC), public; links entry #31, evidence. Bonus thread had 16 earlier claims from 14 people.
+- Fox ruling (relayed by user, 2026-11-20): First to Launch pays only one bonus per person. More than one MVP contest entry per person is allowed. Semvi's claim (#19) is our one bonus claim.

@@ -1,0 +1,128 @@
+{
+  "result": {
+    "events": [
+      {
+        "payload": {
+          "amount": 10000
+        },
+        "substate_id": "vault_6921b788f2aea2d13d0024194d9535b4bba5193a2e65481d5c864cdd5d6cc268",
+        "template_address": "0000000000000000000000000000000000000000000000000000000000000000",
+        "topic": "std.vault.pay_fee"
+      }
+    ],
+    "fee_receipt": {
+      "cost_breakdown": {
+        "breakdown": {
+          "InputLoad": 13,
+          "NativeExecution": 515,
+          "RuntimeCall": 7,
+          "Storage": 459,
+          "SubstateCreate": 250,
+          "TemplateLoad": 500,
+          "TransactionWeight": 184,
+          "WasmExecution": 40
+        }
+      },
+      "exhaust_burn": 1968,
+      "total_fee_overcharge": 0,
+      "total_fee_payment": 10000,
+      "total_fees_paid": 1968
+    },
+    "logs": [],
+    "result": {
+      "AcceptFeeRejectRest": [
+        {
+          "down_substates": [
+            [
+              "vault_6921b788f2aea2d13d0024194d9535b4bba5193a2e65481d5c864cdd5d6cc268",
+              1
+            ]
+          ],
+          "fee_withdrawals": [],
+          "up_substates": [
+            [
+              "vault_6921b788f2aea2d13d0024194d9535b4bba5193a2e65481d5c864cdd5d6cc268",
+              {
+                "substate": {
+                  "Vault": {
+                    "freeze_flags": 0,
+                    "resource_container": {
+                      "Stealth": {
+                        "address": "resource_0101010101010101010101010101010101010101010101010101010101010101",
+                        "locked_amount": "0",
+                        "revealed_amount": "16066"
+                      }
+                    }
+                  }
+                },
+                "version": 2
+              }
+            ],
+            [
+              "txreceipt_33e8091ed429eafbbfc8ce41e33a25e869f3f3f347254f60ae697bf084d83778",
+              {
+                "substate": {
+                  "TransactionReceipt": {
+                    "diff_summary": {
+                      "downed": [],
+                      "upped": [
+                        {
+                          "substate_id": "vault_6921b788f2aea2d13d0024194d9535b4bba5193a2e65481d5c864cdd5d6cc268",
+                          "value_hash": "a8cb430ce20c296b22840867c53ef0c460d3c8caa1faf12bb4fb4b54639b1aa5",
+                          "version": 2
+                        }
+                      ]
+                    },
+                    "epoch": 39072,
+                    "events": [
+                      {
+                        "payload": {
+                          "amount": 10000
+                        },
+                        "substate_id": "vault_6921b788f2aea2d13d0024194d9535b4bba5193a2e65481d5c864cdd5d6cc268",
+                        "template_address": "0000000000000000000000000000000000000000000000000000000000000000",
+                        "topic": "std.vault.pay_fee"
+                      }
+                    ],
+                    "fee_receipt": {
+                      "cost_breakdown": {
+                        "breakdown": {
+                          "InputLoad": 13,
+                          "NativeExecution": 515,
+                          "RuntimeCall": 7,
+                          "Storage": 459,
+                          "SubstateCreate": 250,
+                          "TemplateLoad": 500,
+                          "TransactionWeight": 184,
+                          "WasmExecution": 40
+                        }
+                      },
+                      "exhaust_burn": 1968,
+                      "total_fee_overcharge": 0,
+                      "total_fee_payment": 10000,
+                      "total_fees_paid": 1968
+                    },
+                    "fee_withdrawals": [],
+                    "intent_commitment": "8a234d690a57782504b92983095d008c100814cb5652da1982eb22a1f315d5f5",
+                    "outcome": "FeeIntentCommit"
+                  }
+                },
+                "version": 0
+              }
+            ]
+          ]
+        },
+        {
+          "ExecutionFailure": {
+            "code": "TemplateError",
+            "message": "At instruction #1: Template error: OperationConsumed"
+          }
+        }
+      ]
+    },
+    "total_fees_required": 1968,
+    "transaction_hash": "33e8091ed429eafbbfc8ce41e33a25e869f3f3f347254f60ae697bf084d83778"
+  },
+  "status": "OnlyFeeAccepted",
+  "transaction_id": "33e8091ed429eafbbfc8ce41e33a25e869f3f3f347254f60ae697bf084d83778"
+}

@@ -10,7 +10,9 @@ Built for automation builders recovering from timeouts, lost responses and resta
 
 **Published on Tari mainnet, 20 Nov 2026 at 08:16:21 UTC.** A 100-microTARI payment succeeded. Two fresh sequential transactions were refused with `OperationConsumed`; the last retry used a separate fee account and seal signer. The recipient stayed at 100 microTARI. Both relayer accounts are operated by our demo wallet; this is not an independent-user test. [Mainnet proof and transaction IDs](evidence/2026-11-20/mainnet-proof.json).
 
-A real 1,000-microTARI deposit and payer withdrawal also succeeded. Total deployment/test fees: **1.267380 TARI**, funded by a community donation from 0xHRA. The proof page leads with mainnet and can fetch public receipts to compare with the archived run. It relies on the public indexer; it does not independently verify validator consensus proofs.
+**Run 2, recorded live for the demo (10:24 UTC):** the operator console signed job `invoice-2026-1120-0042`, sent it through `semvi-deploy` while withholding the result from the worker, then retried with a fresh transaction from `semvi-relayer-b`. The first send finalized `Accepted`; the retry finalized `OnlyFeeAccepted` with `OperationConsumed`. The recipient went from 100 to 200 microTARI, one payment for one new job. [Receipts and console log](evidence/2026-11-20/live-run).
+
+A real 1,000-microTARI deposit and payer withdrawal also succeeded. Total deployment/test fees: **1.273945 TARI**, funded by a community donation from 0xHRA. The proof page leads with mainnet and can fetch public receipts to compare with the archived run. It relies on the public indexer; it does not independently verify validator consensus proofs.
 
 Separately, nine real Tari 0.54.0 engine tests pass. The five-attempt test pays one job once and refuses four retries. [Raw engine transcript](evidence/2026-11-20/engine-tests.txt) · [Judge proof map](JUDGES.md). No external user adoption or independent security audit is claimed.
 
@@ -49,11 +51,15 @@ Derive JOB_HASH from a stable business operation ID and persist the `(network, v
 
 The offline `prepare` helper uses Tari's transaction builder and checks that displayed intent fields match encoded arguments. It emits the V2 unsigned envelope required by walletd 0.55; the official V2 schema reuses the V1 body, and walletd supplies the V2 signatures. `scripts/wallet.py` only dry-runs unless explicit submission and network flags are supplied.
 
-The buildless `web/` interface displays recorded proof, reads mainnet status and inspects signed job files locally. It holds no keys and cannot submit payments.
+The buildless `web/` page reads the live vault straight from Tari's public indexer: its consumed job IDs (the "job card"), balance and template. Anyone can check whether a business reference or job ID was paid. It holds no keys and cannot submit payments.
 
 ```sh
 python3 -m http.server 4173 --bind 127.0.0.1 --directory web
 ```
+
+### Operator console
+
+`console/server.mjs` serves the same page plus a local API that drives your own `tari_ootle_walletd`: sign a job, send it, drop the response, retry with a fresh transaction from another relayer account, then ask the vault what happened. It binds to 127.0.0.1 only and keeps the payer key and wallet cookie in the process. See [console/README.md](console/README.md). `SEMVI_REHEARSE=1` dry-runs every relay.
 
 ## Guarantees and limits
 

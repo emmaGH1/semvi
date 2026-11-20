@@ -12,7 +12,7 @@
   "retry_refusal": "OperationConsumed",
   "sequential": true,
   "withdrawal_verified": true,
-  "fees_micro": 1267380,
+  "fees_micro": 1273945,
   "transactions": {
     "publish": "da02930aa405cc0af69816f776216e74249e35cf1c226219662514d65ce18032",
     "mainnet-create": "2555a70091f7c8cf7603e6cc19f075509342ee77bc0f42410625607fa7810aa9",
@@ -24,7 +24,9 @@
     "mainnet-retry": "24f29ce04c8605bdf0df8fa2e943b676a4b8ccbca82d549f85a5b991c8c2b94b",
     "mainnet-create-relayer-b": "78e1e45c29cc05addfa8e90a6dfe3e0da48c45aa329de6a08ef0ffb581a5c981",
     "mainnet-relayer-topup": "2ac505fdad0aa7b23151ff654ab7c8e3687b1cb833955602eab7a3e47c695b96",
-    "mainnet-separate-relayer": "f3544067030be4708bd3ff8011eb2aa7a5007e5eec7a35b3ebcfddde818870cf"
+    "mainnet-separate-relayer": "f3544067030be4708bd3ff8011eb2aa7a5007e5eec7a35b3ebcfddde818870cf",
+    "live-payment": "568fae79b3f70690c1434ce9487dd7c12c6a2cb40c547d4a86995d9cd0c785ab",
+    "live-retry": "33e8091ed429eafbbfc8ce41e33a25e869f3f3f347254f60ae697bf084d83778"
   },
   "published_at": "2026-11-20T08:16:21Z",
   "publication_epoch": 39067,
@@ -43,7 +45,9 @@
           "key_branch": "account"
         }
       },
-      "receipt_sha256": "2d5879ca44c1e93f4533de37016c567eb7b23a2a43f0b651265a298e9a3abe0f"
+      "receipt_sha256": "2d5879ca44c1e93f4533de37016c567eb7b23a2a43f0b651265a298e9a3abe0f",
+      "title": "First send",
+      "who": "Relayer semvi-deploy \u00b7 paid 100 \u00b5T to the recipient account."
     },
     {
       "attempt": 2,
@@ -57,7 +61,9 @@
           "key_branch": "account"
         }
       },
-      "receipt_sha256": "120e1b964f3e639db43c320ed51bd168c9c7ba7fe6c5d5846d696b4cb5349511"
+      "receipt_sha256": "120e1b964f3e639db43c320ed51bd168c9c7ba7fe6c5d5846d696b4cb5349511",
+      "title": "Fresh retry",
+      "who": "Same fee account, different signing key, new transaction hash."
     },
     {
       "attempt": 3,
@@ -71,7 +77,96 @@
           "key_branch": "account"
         }
       },
-      "receipt_sha256": "b103e72401a5c9b6faa3c59472ec62ba050e31e66b0cca10a6bad1a0107a252c"
+      "receipt_sha256": "b103e72401a5c9b6faa3c59472ec62ba050e31e66b0cca10a6bad1a0107a252c",
+      "title": "Fresh retry, other relayer",
+      "who": "Separate fee account semvi-relayer-b. Both relayers live in our demo wallet."
+    }
+  ],
+  "runs": [
+    {
+      "title": "Run 2 \u00b7 recorded live for the demo",
+      "when": "20 Nov 2026 \u00b7 10:24\u201310:25 UTC",
+      "reference": "invoice-2026-1120-0042",
+      "job": "43504c17c4820f11d63c08b7ab7e73c2712327af8a2361fce57a7a575863322c",
+      "amount_micro": "100",
+      "attempts": [
+        {
+          "attempt": 1,
+          "transaction_id": "568fae79b3f70690c1434ce9487dd7c12c6a2cb40c547d4a86995d9cd0c785ab",
+          "outcome": "Paid",
+          "title": "First send, response dropped",
+          "who": "Relayer semvi-deploy. The console hid the result from the worker to simulate a timeout.",
+          "fee_micro": 4597,
+          "receipt_sha256": "9db555181ea690fc9a6398dff8fbd9b02f51868d3916ffacb73489ddb001423e"
+        },
+        {
+          "attempt": 2,
+          "transaction_id": "33e8091ed429eafbbfc8ce41e33a25e869f3f3f347254f60ae697bf084d83778",
+          "outcome": "OperationConsumed",
+          "title": "Fresh retry, other relayer",
+          "who": "Separate fee account semvi-relayer-b, new transaction hash. Refused on chain.",
+          "fee_micro": 1968,
+          "receipt_sha256": "f3da4c52a14cf883c7ee16c35022ef2afb31e826f22df9a863439bf90ea870a8"
+        }
+      ],
+      "recipient_before_micro": "100",
+      "recipient_after_micro": "200"
+    },
+    {
+      "title": "Run 1 \u00b7 the morning of publication",
+      "when": "20 Nov 2026 \u00b7 08:16\u201308:29 UTC",
+      "job": "66d8547aab0d6eb2117522acdfe7a2550099045c1ead1137c7ebaddee152d610",
+      "amount_micro": "100",
+      "attempts": [
+        {
+          "attempt": 1,
+          "transaction_id": "ef8926b8fd724286fad5071d7507e0b792a4988ce2735fb2c09d06a57e966990",
+          "outcome": "Paid",
+          "detail": "First transaction. The signed job paid 100 microTARI.",
+          "fee_account": "component_54803df723a7e866eb4bf599343d0287d91e3a4f6ccdcb9cc4cc1b06db2bca32",
+          "seal_signer": {
+            "Derived": {
+              "index": 0,
+              "key_branch": "account"
+            }
+          },
+          "receipt_sha256": "2d5879ca44c1e93f4533de37016c567eb7b23a2a43f0b651265a298e9a3abe0f",
+          "title": "First send",
+          "who": "Relayer semvi-deploy \u00b7 paid 100 \u00b5T to the recipient account."
+        },
+        {
+          "attempt": 2,
+          "transaction_id": "24f29ce04c8605bdf0df8fa2e943b676a4b8ccbca82d549f85a5b991c8c2b94b",
+          "outcome": "OperationConsumed",
+          "detail": "Fresh transaction, different seal signer, same fee account. Contract refused: OperationConsumed.",
+          "fee_account": "component_54803df723a7e866eb4bf599343d0287d91e3a4f6ccdcb9cc4cc1b06db2bca32",
+          "seal_signer": {
+            "Derived": {
+              "index": 1,
+              "key_branch": "account"
+            }
+          },
+          "receipt_sha256": "120e1b964f3e639db43c320ed51bd168c9c7ba7fe6c5d5846d696b4cb5349511",
+          "title": "Fresh retry",
+          "who": "Same fee account, different signing key, new transaction hash."
+        },
+        {
+          "attempt": 3,
+          "transaction_id": "f3544067030be4708bd3ff8011eb2aa7a5007e5eec7a35b3ebcfddde818870cf",
+          "outcome": "OperationConsumed",
+          "detail": "Fresh transaction paid by a separate relayer account. Contract refused: OperationConsumed. Both accounts are managed by our demo wallet.",
+          "fee_account": "component_69c2f1427fb000912b6f33196a510a7a04cf19287b78968b1916a47627c87d3e",
+          "seal_signer": {
+            "Derived": {
+              "index": 2,
+              "key_branch": "account"
+            }
+          },
+          "receipt_sha256": "b103e72401a5c9b6faa3c59472ec62ba050e31e66b0cca10a6bad1a0107a252c",
+          "title": "Fresh retry, other relayer",
+          "who": "Separate fee account semvi-relayer-b. Both relayers live in our demo wallet."
+        }
+      ]
     }
   ]
 }

@@ -2,63 +2,146 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Semvi makes business payment retries safe through a job registry enforced by Tari Ootle.">
-  <title>Semvi — payment retry proof</title>
-  <link rel="icon" href="logo.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css">
+  <meta name="description" content="Semvi is a Tari Ootle contract that pays each signed business job at most once, so a worker can retry a lost payment without paying twice.">
+  <title>Semvi — retry without paying twice</title>
+  <link rel="icon" href="logo.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/bricolage.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <a class="skip" href="#workspace">Skip to workspace</a>
-  <div class="shell">
-    <aside class="sidebar">
-      <a class="wordmark" href="./" aria-label="Semvi home"><svg viewBox="0 0 28 28" aria-hidden="true"><path d="M5 5v11a7 7 0 0 0 7 7h11M13 5v10a1 1 0 0 0 1 1h9"/></svg>Semvi</a>
-      <p class="product-note">Payment retries,<br>with one settlement.</p>
-      <nav aria-label="Workspace">
-        <button class="nav-item selected" data-panel="proof" aria-current="page">Mainnet proof</button>
-        <button class="nav-item" data-panel="inspect">Inspect a job</button>
-        <button class="nav-item" data-panel="run">Use Semvi</button>
-      </nav>
-      <div class="sidebar-bottom"><span>Built on Tari Ootle</span><p>Open-source contract.<br>No central payment gateway.</p></div>
-    </aside>
-    <main id="workspace">
-      <header class="topbar"><span>Settlement evidence</span><div class="header-links"><a href="https://github.com/emmaGH1/semvi" target="_blank" rel="noreferrer">Source</a><a href="https://github.com/emmaGH1/semvi/blob/main/JUDGES.md" target="_blank" rel="noreferrer">Proof guide</a><a href="https://ootle.tari.com/" target="_blank" rel="noreferrer">Tari docs</a></div></header>
-      <section id="panel-proof" class="panel">
-        <div class="page-heading"><h1>A lost response.<br>One payment.</h1><p>When your worker loses a payment response, a fresh transaction shouldn’t pay twice.<br>Semvi’s Tari contract remembers the business job.</p></div>
-        <div id="proof-loading" role="status">Loading the mainnet settlement record…</div>
-        <div id="proof-content" hidden>
-          <div class="result"><div><h2>Paid once on Tari mainnet.</h2><p>Recipient received <strong id="settled-amount"></strong>. Fresh retries were refused.</p></div><span class="result-mark" aria-label="Recorded mainnet settlement"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4 10-10"/></svg></span></div>
-          <div class="provenance"><strong id="mainnet-date"></strong><p>Real, sequential mainnet transactions from our demo accounts. No independent user or concurrent-retry claim.</p></div>
-          <div class="balance-proof"><div><span>Recipient before retries</span><strong id="balance-before"></strong></div><svg viewBox="0 0 32 20" aria-hidden="true"><path d="M1 10h28m-7-7 7 7-7 7"/></svg><div><span>Recipient after retries</span><strong id="balance-after"></strong></div></div>
-          <div class="section-line"><h2>One job. Fresh transactions.</h2><a href="mainnet-proof.json">Full mainnet record</a></div>
-          <ol id="mainnet-attempts" class="settlement-list" aria-label="Mainnet payment attempts"></ol>
-          <div class="verification"><div><h3>Check the public receipts</h3><p>Fetch the finalized receipts from Tari’s public indexer and compare them with this archived run.</p></div><button id="verify-receipts" class="primary">Verify live receipts</button><p id="receipt-status" role="status">Not checked this session.</p></div>
-          <details class="details"><summary>Contract, job and execution details</summary><dl id="mainnet-details"></dl><p>Receipt comparison checks the indexer’s response against our archive. It does not independently verify validator consensus proofs. The OperationConsumed reason comes from the archived wallet execution result; the public receipt records the fee-only outcome.</p></details>
-          <div class="explanation"><h3>Why transaction replay protection isn’t enough</h3><p>A restarted worker makes a new transaction. Its hash changes, but the business job stays the same. Semvi consumes that job ID on chain, atomically with payment, so losing a gateway’s local records cannot authorize it again.</p></div>
-          <details class="details"><summary>Engine test: one payment and four more fresh retries</summary><div id="engine-proof"></div><a href="engine-tests.txt" download>Download the nine-test transcript</a></details>
-          <details class="details"><summary>What this guarantees—and its limits</summary><p>At most one payment per job ID, per vault. This does not guarantee delivery. Each vault holds 256 permanent IDs. A new vault has a separate namespace. Payment amounts and recipients are public. A refused retry still costs network fees. Signed intents cannot be revoked before expiry; refilling a vault can make outstanding intents payable again. Use short expiry windows.</p></details>
-          <div class="next-step"><h2>Give your worker a stable job ID.</h2><p>Sign once, build a fresh transaction on retry, and let the contract keep the paid-job record.</p><a class="text-action" href="#run">Use the CLI and read the integration guide <span aria-hidden="true">→</span></a></div>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="bar">
+    <a class="mark" href="#top" aria-label="Semvi home"><svg viewBox="0 0 28 28" aria-hidden="true"><path d="M5 5v11a7 7 0 0 0 7 7h11M13 5v10a1 1 0 0 0 1 1h9"/></svg>Semvi</a>
+    <p class="net" id="net" role="status"><span class="dot" aria-hidden="true"></span><span id="net-text">Connecting to Tari mainnet…</span></p>
+    <nav aria-label="Sections">
+      <a href="#check">Check a job</a><a href="#ledger">Mainnet record</a><a href="#stack">How it works</a><a href="#console" class="console-link">Console</a>
+      <a href="https://github.com/emmaGH1/semvi" target="_blank" rel="noreferrer">Source</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <p class="eyebrow">A payment vault on Tari Ootle</p>
+        <h1>Retry the payment.<br><span>Never pay it twice.</span></h1>
+        <p class="lede">Your worker sends a payout, the response never comes back, and it tries again with a fresh transaction. Semvi’s contract remembers the <em>business job</em>, not the transaction. The second payment is refused on chain.</p>
+        <div class="actions"><a class="btn primary" href="#check">Check a job</a><a class="btn" href="#ledger">See the mainnet record</a></div>
+      </div>
+
+      <figure class="card punch" aria-labelledby="punch-title">
+        <div class="punch-head">
+          <div><p class="label">Live vault · Tari mainnet</p><h2 id="punch-title">Job card</h2></div>
+          <p class="punch-count"><strong id="jobs-used">–</strong><span>/256 jobs used</span></p>
         </div>
-      </section>
-      <section id="panel-inspect" class="panel" hidden>
-        <div class="page-heading"><h1>Know what the job<br>will ask the contract to pay.</h1><p>Open a signed intent from the Semvi CLI.<br>Your file stays in this browser.</p></div>
-        <div class="file-area"><label for="intent-file">Select an intent JSON file</label><input id="intent-file" type="file" accept="application/json,.json"><p>Use the output of <code>intent sign</code>. Never upload a seed phrase or private key.</p></div>
-        <p id="inspect-status" role="status">No intent loaded.</p>
-        <div id="intent-result" hidden><h2>Payment details</h2><dl id="intent-details"></dl><p class="notice">Structural inspection only. Signature validity and permission to spend are verified by the Tari contract when the transaction executes. This page cannot submit payments.</p></div>
-      </section>
-      <section id="panel-run" class="panel" hidden>
-        <div class="page-heading"><h1>Keep the business job.<br>Retry the transaction.</h1><p>The contract is the source of truth.<br>Your gateway’s database doesn’t have to be.</p></div>
-        <div class="run-section"><h2>Verify the core claim</h2><p>Run the official Tari engine tests. The transcript shows different transaction hashes, the contract’s refusal reason, and the exact recipient balance.</p><pre><code>cargo test --test settlement -- --nocapture</code></pre><button class="secondary" data-copy="cargo test --test settlement -- --nocapture">Copy test command</button></div>
-        <div class="run-section"><h2>Sign once, relay again</h2><p>Create a dedicated intent key, sign a job for a fixed vault and recipient, and build a fresh transaction for every retry. Amounts are in microTARI.</p><pre><code>cargo build --examples
-target/debug/examples/intent keygen /secure/payer.key
-target/debug/examples/intent sign /secure/payer.key \
-  mainnet VAULT JOB_HASH RECIPIENT AMOUNT EXPIRY
-target/debug/examples/prepare request-spec.json</code></pre><p>Replace the uppercase arguments with your values. A vault must already exist and be funded. Preparation and signing do not submit anything.</p></div>
-        <div class="run-section"><h2>Dry-run before spending</h2><p>The loopback wallet client authenticates with a local cookie. By default, it only simulates a transaction. Submission requires an explicit flag and network approval.</p><pre><code>python3 scripts/wallet.py transaction \
-  --file prepared-request.json</code></pre><a href="GUIDE.txt" download>Download the complete CLI guide</a></div>
-        <p class="notice">Experimental MVP. Mainnet payout, duplicate refusal and payer withdrawal verified; <a href="mainnet-proof.json">read the separate mainnet proof</a>. No external user adoption or security audit is claimed.</p>
-      </section>
-      <footer><div><strong>Mainnet read check</strong><span id="network-status" role="status">Not checked this session.</span></div><button id="network-check" class="secondary">Check network</button></footer>
-    </main>
-  </div>
+        <div class="holes" id="holes" role="img" aria-label="Loading the vault’s consumed job IDs from Tari mainnet"></div>
+        <dl class="punch-facts">
+          <div><dt>Balance</dt><dd id="vault-balance">–</dd></div>
+          <div><dt>Template</dt><dd id="vault-template">–</dd></div>
+          <div><dt>Component</dt><dd><a id="vault-link" class="mono" href="#" target="_blank" rel="noreferrer">–</a></dd></div>
+        </dl>
+        <figcaption id="punch-note">Each punched hole is a job ID the contract has paid. It is never cleared. Read from Tari’s public indexer as this page loads.</figcaption>
+      </figure>
+    </section>
+
+    <section class="check" id="check" aria-labelledby="check-title">
+      <div class="section-head"><h2 id="check-title">Was this job paid?</h2><p>Enter the business reference your worker used, such as an invoice number, or paste a 64-character job ID. The page computes the job ID the way the Semvi CLI does and asks the live vault.</p></div>
+      <form id="lookup" class="lookup" autocomplete="off">
+        <label for="lookup-input">Business reference or job ID</label>
+        <div class="field"><input id="lookup-input" name="q" placeholder="invoice-2026-1120-A" spellcheck="false" required><button class="btn primary" type="submit">Check vault</button></div>
+      </form>
+      <div id="lookup-result" class="lookup-result" role="status" aria-live="polite"></div>
+    </section>
+
+    <section class="ledger" id="ledger" aria-labelledby="ledger-title">
+      <div class="section-head"><h2 id="ledger-title">On mainnet, one job, many transactions</h2><p>Real transactions against vault <span class="mono" id="ledger-vault">component_ca03…</span>. Every retry is a <em>new</em> transaction with a new hash. Only the first one moves money.</p></div>
+      <div id="runs"></div>
+      <div class="verify">
+        <button id="verify" class="btn">Re-check receipts on the indexer</button>
+        <p id="verify-status" role="status">Fetches each finalized receipt from Tari’s public indexer and compares its hash with the archived run.</p>
+      </div>
+    </section>
+
+    <section class="stack" id="stack" aria-labelledby="stack-title">
+      <div class="section-head"><h2 id="stack-title">What runs where on Tari</h2><p>No server of ours holds the payment record. Each step uses a piece of the Tari Ootle stack.</p></div>
+      <ol class="flow">
+        <li><p class="step-tool">Payer key · <span class="mono">intent sign</span></p><h3>Sign the job once</h3><p>The payer signs recipient, amount, expiry and job ID. Ootle’s signature binding ties it to mainnet and to this one vault component, under the domain <span class="mono">semvi.payout.v1</span>.</p></li>
+        <li><p class="step-tool">Any wallet · <span class="mono">tari_ootle_walletd</span></p><h3>Relay it, again and again</h3><p>A relayer builds a fresh transaction with Tari’s transaction builder and pays the network fee. Retries can use another account. The relayer cannot change who gets paid.</p></li>
+        <li><p class="step-tool">Validators · <span class="mono">Semvi template (WASM)</span></p><h3>Pay and record in one step</h3>
+<pre class="code"><code><span class="c">// src/lib.rs · inside execute()</span>
+assert!(!self.consumed.contains(&amp;job), <span class="s">"OperationConsumed"</span>);
+<span class="c">// …expiry and signature checks…</span>
+self.consumed.insert(job);
+let payment = self.funds.withdraw(amount);
+ComponentManager::get(recipient).invoke(<span class="s">"deposit"</span>, args![payment]);</code></pre>
+          <p>If the deposit fails, the whole step rolls back and the job stays unpaid.</p></li>
+        <li><p class="step-tool">Public indexer · <span class="mono">indexer-a.ootle.tari.com</span></p><h3>Anyone can check</h3><p>Receipts, the vault’s job list and its balance are public substates. This page reads them directly, with no backend.</p></li>
+      </ol>
+    </section>
+
+    <section class="console" id="console" aria-labelledby="console-title">
+      <div class="section-head"><h2 id="console-title">Operator console</h2><p id="console-intro">Drive a real payout and retry through your own Tari wallet daemon. The console runs on your machine, so it only works when this page is served by <span class="mono">node console/server.mjs</span>.</p></div>
+      <div id="console-offline" class="offline">
+        <pre class="code"><code>cargo build --examples
+TARI_WALLET_COOKIE_FILE=~/.tari/mainnet/.cookie \
+SEMVI_PAYER_KEY=/secure/payer.key \
+SEMVI_VAULT=component_… SEMVI_RECIPIENT=component_… \
+SEMVI_RELAYERS=relayer-a,relayer-b SEMVI_APPROVED_NETWORK=mainnet \
+node console/server.mjs</code></pre>
+        <p>Then open <span class="mono">http://127.0.0.1:4317/#console</span>. Without <span class="mono">SEMVI_APPROVED_NETWORK</span> the console signs but will not submit.</p>
+      </div>
+      <div id="console-live" class="live" hidden>
+        <div class="stackbar" id="stackbar"></div>
+        <div class="steps">
+          <article class="step" id="step-sign">
+            <p class="step-n">Step 1</p><h3>Sign a payout job</h3>
+            <form id="sign-form" class="mini">
+              <label>Business reference<input id="ref" value="" spellcheck="false" required></label>
+              <label>Amount, µT<input id="amount" type="number" min="1" max="1000" value="100" required></label>
+              <button class="btn primary" type="submit">Sign job</button>
+            </form>
+            <div class="out" id="sign-out"></div>
+          </article>
+          <article class="step" id="step-send" aria-disabled="true">
+            <p class="step-n">Step 2</p><h3>Send it</h3>
+            <p class="hint">Relayer <strong id="relayer-a">–</strong> submits it. With the box ticked, the worker loses the response.</p>
+            <label class="check-row"><input type="checkbox" id="drop" checked> Drop the response</label>
+            <button class="btn primary" id="send" disabled>Send payout</button>
+            <div class="out" id="send-out"></div>
+          </article>
+          <article class="step" id="step-retry" aria-disabled="true">
+            <p class="step-n">Step 3</p><h3>Retry with a fresh transaction</h3>
+            <p class="hint">Same signed job, brand-new transaction, sent by relayer <strong id="relayer-b">–</strong>.</p>
+            <button class="btn primary" id="retry" disabled>Retry payout</button>
+            <div class="out" id="retry-out"></div>
+          </article>
+          <article class="step" id="step-truth" aria-disabled="true">
+            <p class="step-n">Step 4</p><h3>Find out what happened</h3>
+            <p class="hint">Ask the chain, not the worker’s memory.</p>
+            <button class="btn" id="truth" disabled>Check the vault</button>
+            <div class="out" id="truth-out"></div>
+          </article>
+        </div>
+        <section class="feed" aria-label="Calls to the Tari stack"><h3>Calls to Tari</h3><ol id="feed"></ol></section>
+      </div>
+    </section>
+
+    <section class="limits" aria-labelledby="limits-title">
+      <h2 id="limits-title">What it promises, and what it doesn’t</h2>
+      <ul>
+        <li><strong>At most once per vault and job ID.</strong> Not guaranteed delivery. If a payment never lands, the job stays unpaid and can be sent again.</li>
+        <li><strong>256 job IDs per vault, kept forever.</strong> A full vault refuses new jobs; the payer can still withdraw. A new vault starts a new card.</li>
+        <li><strong>A refused retry still pays its network fee,</strong> about 0.002 TARI on mainnet today.</li>
+        <li><strong>Everything is public.</strong> Amounts, recipients and job IDs are visible on chain. Hash business references you don’t want to reveal.</li>
+        <li><strong>Signed jobs can’t be revoked early.</strong> Keep expiry short. Refilling a vault can make an unexpired job payable.</li>
+        <li><strong>Our mainnet runs use accounts in one demo wallet.</strong> No outside users or audit are claimed yet.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p><span class="mark small"><svg viewBox="0 0 28 28" aria-hidden="true"><path d="M5 5v11a7 7 0 0 0 7 7h11M13 5v10a1 1 0 0 0 1 1h9"/></svg>Semvi</span> MIT licensed. Built on <a href="https://ootle.tari.com/" target="_blank" rel="noreferrer">Tari Ootle</a> for the Tari November build contest.</p>
+    <p><a href="https://github.com/emmaGH1/semvi" target="_blank" rel="noreferrer">Source</a> · <a href="GUIDE.txt">CLI guide</a> · <a href="mainnet-proof.json">Mainnet record (JSON)</a> · <a href="engine-tests.txt">Engine test transcript</a></p>
+  </footer>
   <script type="module" src="app.js"></script>
 </body>
 </html>

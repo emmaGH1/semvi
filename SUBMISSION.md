@@ -6,7 +6,7 @@
 
 When an automation worker loses a payment response, its next transaction can pay again. Semvi puts the business job registry inside a Tari Ootle vault: consuming the signed job ID and paying its recipient are one atomic action. A fresh transaction cannot erase that record.
 
-**Real mainnet proof:** published 20 November 2026 at **08:16:21 UTC**. One job paid 100 microTARI. Two freshly signed sequential retries were refused with `OperationConsumed`, including one paid by a separate relayer account. The recipient stayed at 100 microTARI. Both accounts are managed by our demo wallet; no independent user is claimed. A real deposit and payer withdrawal also succeeded.
+**Real mainnet proof:** published 20 November 2026 at **08:16:21 UTC**. One job paid 100 microTARI. Two freshly signed sequential retries were refused with `OperationConsumed`, including one paid by a separate relayer account. The recipient stayed at 100 microTARI. Both accounts are managed by our demo wallet; no independent user is claimed. A real deposit and payer withdrawal also succeeded. A second job was run live on camera through the new operator console at 10:24 UTC: first send Accepted with its response withheld from the worker, fresh retry from the other relayer refused with `OperationConsumed`, recipient 100 → 200 microTARI.
 
 - App/proof: https://emmagh1.github.io/semvi/#proof
 - Code: https://github.com/emmaGH1/semvi — MIT
@@ -19,7 +19,7 @@ The mainnet-first proof page can fetch public indexer receipts and compare them 
 
 This is contract-enforced business idempotency, rather than gateway-side deduplication. It is at-most-once per vault/job, not guaranteed delivery. Each vault holds 256 permanent job IDs. Amounts, recipients and job IDs are public; refused retries cost fees. There is no early intent revocation. No external adoption or independent security audit is claimed.
 
-Built with AI assistance under the entrant’s direction. Community member **0xHRA donated 500 TARI** for deployment/testing; fees used so far: **1.267380 TARI**. Donation does not imply endorsement.
+Built with AI assistance under the entrant’s direction. Community member **0xHRA donated 500 TARI** for deployment/testing; fees used so far: **1.273945 TARI**. Donation does not imply endorsement.
 
 ## First-to-Launch bonus draft
 
@@ -42,6 +42,8 @@ The mainnet page leads with the actual payout and refusals; the localnet engine 
 Please consider Semvi for First to Launch. Eligibility, deadline interpretation and first-20 ranking remain the organizers’ decision.
 
 ## Public announcement draft — not posted
+
+Selected channel: https://youtube.com/@thefacelessmanwonders . Replacement demo (118 s, live mainnet console run, Eleven v4 narration in the user's clone, burned captions + SRT) is at /data/workspace/semvi-demo-v2, awaiting user review. The channel link is not the required announcement URL; insert the public video URL after approval/upload.
 
 I built Semvi for the Tari November MVP contest: an on-chain payment vault that lets automation workers retry a business job without paying twice.
 

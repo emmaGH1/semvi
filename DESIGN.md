@@ -1,88 +1,26 @@
 ---
 name: Semvi
-description: A remittance receipt interface for inspecting payment retries and their evidence.
+description: A live job card for a Tari Ootle payout vault, and a console that proves a retry is refused.
 colors:
-  green: "#155b43"
-  ink: "#172c26"
-  muted: "#54665e"
-  green-soft: "#edf3ef"
-  line: "#d7dfda"
-  amber: "#805015"
-  paper: "#fff"
-  sidebar: "#f6f8f6"
-  nav-hover: "#e7ede8"
-  nav-selected: "#dce9df"
-  code-surface: "#f3f6f3"
-  button-border: "#aebdb3"
-  upload-border: "#869c8e"
-  focus: "#278b68"
-  error: "#a12828"
+  stock: "#E9EDF1"
+  card: "#FFFFFF"
+  ink: "#0E141C"
+  muted: "#596473"
+  rule: "#CDD4DC"
+  cobalt: "#2340D3"
+  cobalt-soft: "#E3E8FB"
+  stamp: "#C81E37"
+  stamp-soft: "#FBE6E9"
 typography:
-  headline:
-    fontFamily: "'Public Sans', sans-serif"
-    fontSize: "clamp(1.9rem,3.1vw,2.7rem)"
-    fontWeight: 600
-    lineHeight: 1.18
-    letterSpacing: "-.035em"
-  title:
-    fontFamily: "'Public Sans', sans-serif"
-    fontSize: "1.4rem"
-    fontWeight: 600
-    lineHeight: 1.3
-    letterSpacing: "-.02em"
-  body:
-    fontFamily: "'Public Sans', sans-serif"
-    fontSize: "1rem"
-    fontWeight: 400
-    lineHeight: 1.6
-  label:
-    fontFamily: "'Public Sans', sans-serif"
-    fontSize: ".8rem"
-    fontWeight: 500
-  code:
-    fontFamily: "ui-monospace, SFMono-Regular, Consolas, monospace"
-    fontSize: ".85rem"
-rounded:
-  file-button: "4px"
-  control: "5px"
-  notice: "6px"
-  receipt: "8px"
-spacing:
-  half: ".5rem"
-  compact: ".8rem"
-  base: "1rem"
-  inset: "1.2rem"
-  section: "2.4rem"
-  desktop-gutter: "3rem"
-components:
-  button-secondary:
-    backgroundColor: "{colors.paper}"
-    textColor: "{colors.green}"
-    rounded: "{rounded.control}"
-    padding: ".5rem .8rem"
-    typography: "{typography.label}"
-  button-secondary-hover:
-    backgroundColor: "{colors.green-soft}"
-  nav-item:
-    textColor: "{colors.muted}"
-    rounded: "{rounded.control}"
-    padding: ".75rem .8rem"
-  nav-item-selected:
-    backgroundColor: "{colors.nav-selected}"
-    textColor: "{colors.green}"
-  receipt-result:
-    backgroundColor: "{colors.green}"
-    textColor: "{colors.paper}"
-    padding: "1.4rem 1.6rem"
-  receipt-provenance:
-    backgroundColor: "{colors.green-soft}"
-    padding: "1rem 1.6rem"
-  notice:
-    backgroundColor: "{colors.green-soft}"
-    textColor: "{colors.muted}"
-    rounded: "{rounded.notice}"
-    padding: "1rem 1.2rem"
+  display: "Bricolage Grotesque 800, stretch 84%, tracking -0.045em"
+  body: "Instrument Sans 400-600"
+  data: "Martian Mono 400-500 for hashes, labels and the Tari call feed"
+signature: "The job card: a 16x16 grid of punch holes, one per job ID the vault can ever pay (256), read live from the public indexer. Paid jobs are punched and never cleared."
+stamps: "Paid (cobalt) and Refused (red) are rubber-stamp marks on ticket-shaped transaction cards."
 ---
+
+The 2026-11-20 redesign replaced the earlier green sidebar layout. The design notes below describe that earlier interface and are kept for history.
+
 
 # Design System: Semvi
 

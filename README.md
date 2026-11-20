@@ -32,6 +32,8 @@ The tooling compiles and executes the actual WASM contract. Engine tests require
 
 ## Use
 
+For payout bots, the [Semvi Node.js package](packages/semvi/README.md) signs, relays and checks jobs through a JavaScript API. Start with the dry-run quickstart or the [example bot](packages/semvi/examples/payout-bot.mjs).
+
 ```sh
 cargo build --examples
 target/debug/examples/intent keygen /secure/payer.key

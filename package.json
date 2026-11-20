@@ -1,1 +1,10 @@
-{"name":"semvi","private":true,"type":"module","scripts":{"test":"node --test tests/intent.test.mjs","check-live":"node scripts/check-live.mjs"}}
+{
+  "name": "semvi",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/intent.test.mjs packages/semvi/test/semvi.test.mjs",
+    "test:indexer:live": "node --test packages/semvi/test/indexer.live.test.mjs",
+    "check-live": "node scripts/check-live.mjs"
+  }
+}

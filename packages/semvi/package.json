@@ -1,0 +1,13 @@
+{
+  "name": "semvi",
+  "version": "0.1.0",
+  "description": "Sign, relay and look up at-most-once Tari Ootle payouts",
+  "license": "MIT",
+  "type": "module",
+  "engines": {"node": ">=20"},
+  "exports": {
+    ".": "./index.js",
+    "./indexer": "./lib/ootle.js"
+  },
+  "files": ["index.js", "lib", "examples"]
+}

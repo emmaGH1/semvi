@@ -1,0 +1,128 @@
+
+Getting Started | Tari Ootle Playground
+Skip to content
+Tari Ootle Playground
+Search
+Ctrl
+K
+Cancel
+GitHub
+Select theme
+Dark
+Light
+Auto
+Getting Started
+Concepts
+Overview
+Architecture
+Consensus
+State and Execution
+Privacy
+Privacy in Applications
+Stablecoins
+Templates and Assets
+Tokenomics
+Glossary
+Guides
+Setup a Wallet
+Templates Overview
+Building a Guessing Game
+Testing Your Template
+Publish the Guessing Game
+Play the Guessing Game
+Transaction Overview
+Tari Cli
+Resources
+Fungible Tokens (ERC-20)
+Authorization and Access
+API Keys for AI Agents
+Stealth Transfers
+Watch-only Accounts
+Burn Minotari for TARI
+How Burn Claims Work
+Exchange Integration
+Randomness in Templates
+Validator Nodes
+Run a Validator Node
+Networking and Ports
+Operating a Validator
+Hardware Requirements
+Reference
+API Overview
+Fees
+Limits
+Metrics
+Reducing Template Size
+Types Reference
+Validator Node Requirements
+For Bots
+GitHub
+Select theme
+Dark
+Light
+Auto
+On this page
+Overview
+Prerequisites
+Next Steps
+On this page
+Overview
+Prerequisites
+Next Steps
+Getting Started
+Using an AI coding agent?
+Install the Ootle skill so Claude Code (or another agent) understands the SDK, CLI
+workflow, and common pitfalls:
+Terminal window
+mkdir
+-p
+.claude/skills/ootle
+ &&
+curl
+-fsSo
+.claude/skills/ootle/SKILL.md
+\
+https://ootle.tari.com/.well-known/skills/claude-code/SKILL.md
+Skills for Cursor, Windsurf, and Aider are listed at
+ootle.tari.com/llms.txt
+.
+Prerequisites
+Section titled “Prerequisites”
+Before you begin, ensure you have the following installed:
+Rust:
+ The Rust programming language and Cargo package manager. We recommend using
+rustup
+ to manage your Rust toolchains.
+You’ll need the
+wasm32-unknown-unknown
+ target.
+Terminal window
+curl
+--proto
+'
+=https
+'
+--tlsv1.2
+-sSf
+https://sh.rustup.rs
+|
+sh
+rustup
+target
+add
+wasm32-unknown-unknown
+Tari Ootle CLI (Optional but Recommended):
+ For local testing and publishing templates, we suggest using the Tari Ootle CLI.
+Install it with
+cargo install tari-ootle-cli
+ (this creates a binary called
+tari
+).
+Next Steps
+Section titled “Next Steps”
+Set up a wallet to interact with the Ootle network. Follow our
+Wallet Setup guide
+ to get started.
+Next
+Overview
+→

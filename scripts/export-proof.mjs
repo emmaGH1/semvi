@@ -1,0 +1,15 @@
+import {readFile,writeFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+const log=await readFile('evidence/2026-11-20/engine-tests.txt','utf8');
+const matches=[...log.matchAll(/PROOF retry=(\d+) first=([a-f0-9]+) retry_tx=([a-f0-9]+) rejection=(\w+) recipient=(\d+) vault=(\d+)/g)];
+if(matches.length!==4||!log.includes('9 passed; 0 failed'))throw Error('Expected the actual nine-test passing transcript with four retry proofs');
+const first=matches[0][2];
+if(matches.some(m=>m[2]!==first||m[4]!=='OperationConsumed'||m[5]!=='100'||m[6]!=='900'))throw Error('Inconsistent proof values');
+const attempts=[{attempt:1,transaction_id:first,outcome:'Paid',detail:'Accepted main intent. Recipient received 100 microTARI.',amount_micro:'100'},...matches.map(m=>({attempt:Number(m[1])+1,transaction_id:m[3],outcome:m[4],detail:'A fresh transaction from the second relayer. The contract rejected this consumed job ID.',amount_micro:'0'}))];
+if(new Set(attempts.map(x=>x.transaction_id)).size!==5)throw Error('Proof must contain different transaction hashes');
+await writeFile('web/proof.json',JSON.stringify({environment:'Tari engine 0.54.0 / localnet',recorded_at:'2026-11-20',job:'07'.repeat(32),tests_passed:9,recipient_balance_micro:'100',vault_balance_micro:'900',attempts,mainnet_deployed:false},null,2)+'\n');
+await writeFile('web/engine-tests.txt',log);
+const paths=['src/lib.rs','tests/settlement.rs','Cargo.toml','Cargo.lock','evidence/2026-11-20/engine-tests.txt'];
+const hashes={};for(const p of paths)hashes[p]=createHash('sha256').update(await readFile(p)).digest('hex');
+await writeFile('evidence/2026-11-20/engine-manifest.json',JSON.stringify({engine_version:'0.54.0',tests_passed:9,environment:'localnet engine; not mainnet',hashes},null,2)+'\n');
+console.log('Exported five actual engine transactions and source-linked proof manifest.');

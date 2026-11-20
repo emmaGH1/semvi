@@ -1,0 +1,32 @@
+[package]
+name = "oncerail"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+description = "At-most-once business payouts enforced by Tari Ootle"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+tari_template_lib = "=0.41.0"
+
+[dev-dependencies]
+tari_template_test_tooling = "=0.54.0"
+tari_ootle_common_types = "=0.54.0"
+ootle-network = "0.2"
+tari_crypto = "0.24.1"
+serde_json = "1"
+hex = "0.4"
+tari_template_lib = { version = "=0.41.0", features = ["serde"] }
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+strip = true
+panic = "abort"
+
+[profile.dev]
+debug = 0
+incremental = false

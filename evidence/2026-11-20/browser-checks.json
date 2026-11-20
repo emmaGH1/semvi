@@ -1,0 +1,54 @@
+{
+  "passed": true,
+  "viewports": [
+    1440,
+    390
+  ],
+  "capture_note": "System scrollbars hidden to match overlay-scrollbar phone behavior; captures equal viewport width.",
+  "checks": [
+    "proof rows",
+    "valid localnet offline sample inspection",
+    "tab navigation",
+    "source guide HTTP 200",
+    "all panels no horizontal overflow",
+    "no page errors"
+  ],
+  "captures": [
+    {
+      "file": "desktop.png",
+      "viewport": 1440,
+      "client": 1440,
+      "scroll": 1440
+    },
+    {
+      "file": "inspect-desktop.png",
+      "viewport": 1440,
+      "client": 1440,
+      "scroll": 1440
+    },
+    {
+      "file": "run-desktop.png",
+      "viewport": 1440,
+      "client": 1440,
+      "scroll": 1440
+    },
+    {
+      "file": "mobile.png",
+      "viewport": 390,
+      "client": 390,
+      "scroll": 390
+    },
+    {
+      "file": "inspect-mobile.png",
+      "viewport": 390,
+      "client": 390,
+      "scroll": 390
+    },
+    {
+      "file": "run-mobile.png",
+      "viewport": 390,
+      "client": 390,
+      "scroll": 390
+    }
+  ]
+}

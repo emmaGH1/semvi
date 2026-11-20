@@ -1,0 +1,68 @@
+# Tari Ootle Documentation
+
+> Tari Ootle is a decentralized application layer built on the Tari L2 network. Templates (smart contracts) are written in Rust, compiled to WASM, and published on-chain. This documentation covers template authoring, resources, vaults, access rules, transactions, and client-side integration.
+
+## Getting Started
+
+- [Overview](https://ootle.tari.com/introduction/): Key concepts — templates, components, resources, vaults, buckets, transactions
+- [Getting Started](https://ootle.tari.com/guides/getting-started/): Prerequisites and first steps
+- [Setup a Wallet](https://ootle.tari.com/guides/setup-a-wallet/): Install and configure a wallet for publishing templates
+
+## Concepts
+
+- [Overview](https://ootle.tari.com/concepts/overview/): The big picture — Ootle and the base layer, node roles, and finality
+- [Architecture](https://ootle.tari.com/concepts/architecture/): Node roles, sharding, committees, epochs, and the P2P layer
+- [Consensus](https://ootle.tari.com/concepts/consensus/): Chained HotStuff BFT, the three-chain rule, quorums, and cross-shard transactions
+- [State and Execution](https://ootle.tari.com/concepts/state-and-execution/): Substates, the Jellyfish Merkle tree, the TVM, and fees
+- [Privacy](https://ootle.tari.com/concepts/privacy/): Pedersen commitments, Bulletproofs+, stealth addresses, view keys, and the threat model
+- [Privacy in Applications](https://ootle.tari.com/concepts/privacy-in-applications/): What privacy means for a deployed application — bearer assets, HTLCs, atomic swaps, and escrow
+- [Stablecoins](https://ootle.tari.com/concepts/stablecoin/): Building a stablecoin from Ootle primitives — issuance, redemption, supply auditing, and the privacy boundary
+- [Templates and Assets](https://ootle.tari.com/concepts/templates-and-assets/): The four resource types, built-in templates, and application patterns
+- [Tokenomics](https://ootle.tari.com/concepts/tokenomics/): The native token, the one-way burn-to-mint bridge, and fee distribution
+- [Glossary](https://ootle.tari.com/concepts/glossary/): An A–Z of the terms used across the Concepts section
+
+## Guides
+
+- [Templates Overview](https://ootle.tari.com/guides/template-overview/): The `#[template]` macro, constructors, state, and component lifecycle
+- [Building a Guessing Game](https://ootle.tari.com/guides/build-a-guessing-game/): End-to-end walkthrough of writing a template
+- [Publishing Templates](https://ootle.tari.com/guides/publishing-templates/): Compile to WASM and publish via wallet or CLI
+- [Play the Guessing Game](https://ootle.tari.com/guides/play-the-guessing-game/): Interact with a published component
+- [Transaction Overview](https://ootle.tari.com/guides/transaction-overview/): How transactions are constructed and executed
+- [Tari CLI](https://ootle.tari.com/guides/cli/): Command-line tools for development
+- [Resources](https://ootle.tari.com/guides/resources/): Fungible, non-fungible, confidential, and stealth resource types
+- [Fungible Tokens (ERC-20)](https://ootle.tari.com/guides/fungible-tokens/): Tokens are native resources; a reusable token template, transfers, approve and transferFrom
+- [Authorization and Access](https://ootle.tari.com/guides/authorization-and-access/): `rule!` macro, `ComponentAccessRules`, `OwnerRule`, `CallerContext`
+- [Testing Your Template](https://ootle.tari.com/guides/testing-templates/): Unit-test templates with the template test tooling
+- [Stealth Transfers](https://ootle.tari.com/guides/stealth-resources/): Private transfers — commitments, stealth addresses, and condition trees
+- [Burn Minotari for TARI](https://ootle.tari.com/guides/burn-minotari/): Burn Minotari with minotari_console_wallet and claim TARI with the wallet daemon, by hand or via gRPC/JSON-RPC
+- [How Burn Claims Work](https://ootle.tari.com/guides/claim-burn/): How burn claims are proven, verified against scanned L1 headers, and protected from double claims
+- [API Keys for AI Agents](https://ootle.tari.com/guides/agent-api-keys/): Issue and use API keys for agent-driven wallets
+- [Randomness in Templates](https://ootle.tari.com/guides/randomness/): Sources of randomness available inside a template
+
+## Validator Nodes
+
+- [Run a Validator Node](https://ootle.tari.com/validators/run-a-validator-node/): Install, generate the identity seed phrase, configure and start a validator; joining the validator set
+- [Networking and Ports](https://ootle.tari.com/validators/networking-and-ports/): Public p2p port, private JSON-RPC and metrics, firewall and Docker networking
+- [Operating a Validator](https://ootle.tari.com/validators/operating-a-validator/): Claiming fees, backups and restore, upgrades, logs and health checks
+- [Validator Node Requirements](https://ootle.tari.com/reference/validator-node-requirements/): CPU, memory and storage a validator needs
+
+## Reference
+
+- [API Overview](https://ootle.tari.com/reference/api-overview/): Full API reference for `tari_template_lib` and related crates
+- [Types Reference](https://ootle.tari.com/reference/types/): `Amount`, `ComponentAddress`, `ResourceAddress`, `NonFungibleId`, and more
+- [Limits](https://ootle.tari.com/reference/limits/): Size, count, weight and compute limits on transactions, templates and blocks
+- [Indexer API](https://ootle.tari.com/indexer/indexer-api.html): OpenAPI docs for the Tari Indexer REST API
+- [crates.io (tari_template_lib)](https://docs.rs/tari_template_lib/latest/tari_template_lib/): Rust crate documentation
+
+## AI Coding Agent Skills
+
+- [Agent Skills Discovery](https://ootle.tari.com/.well-known/skills/): Machine-readable index of all available agent skills
+- [Claude Code skill](https://ootle.tari.com/.well-known/skills/claude-code/SKILL.md): Tari Ootle development instructions for Claude Code
+- [Cursor skill](https://ootle.tari.com/.well-known/skills/cursor/SKILL.md): Tari Ootle development instructions for Cursor
+- [GitHub Copilot skill](https://ootle.tari.com/.well-known/skills/github-copilot/SKILL.md): Tari Ootle development instructions for GitHub Copilot
+- [Windsurf skill](https://ootle.tari.com/.well-known/skills/windsurf/SKILL.md): Tari Ootle development instructions for Windsurf
+- [Aider skill](https://ootle.tari.com/.well-known/skills/aider/SKILL.md): Tari Ootle development instructions for Aider
+- [OpenAI Codex skill](https://ootle.tari.com/.well-known/skills/openai-codex/SKILL.md): Tari Ootle development instructions for OpenAI Codex
+- [Amp skill](https://ootle.tari.com/.well-known/skills/amp/SKILL.md): Tari Ootle development instructions for Amp
+- [Google Gemini skill](https://ootle.tari.com/.well-known/skills/google-gemini/SKILL.md): Tari Ootle development instructions for Google Gemini
+- [Antigravity skill](https://ootle.tari.com/.well-known/skills/antigravity/SKILL.md): Tari Ootle development instructions for Antigravity

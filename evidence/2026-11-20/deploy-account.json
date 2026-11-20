@@ -1,0 +1,23 @@
+{
+  "account": {
+    "birthday_epoch": 0,
+    "component_address": "component_54803df723a7e866eb4bf599343d0287d91e3a4f6ccdcb9cc4cc1b06db2bca32",
+    "is_confirmed_on_chain": false,
+    "is_default": true,
+    "name": "oncerail-deploy",
+    "owner_key_id": {
+      "Derived": {
+        "index": 0,
+        "key_branch": "account"
+      }
+    },
+    "owner_public_key": "10595ea2a8484dcb957bed589919aac8dd5f0d363766aec8e9ac8d73deb6f157",
+    "view_only_key_id": {
+      "Derived": {
+        "index": 0,
+        "key_branch": "view_only_key"
+      }
+    }
+  },
+  "address": "otl_1zpv4ag4gfpxuh9tma4vfjxd2erw47rfkxan2aj8f4jxh8h4k79t557ch08wauex4hhqkftmgt2qng4h676623yph06cfgucmktjqy7gtjpfde"
+}

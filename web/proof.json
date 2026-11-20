@@ -1,0 +1,46 @@
+{
+  "environment": "Tari engine 0.54.0 / localnet",
+  "recorded_at": "2026-11-20",
+  "job": "0707070707070707070707070707070707070707070707070707070707070707",
+  "tests_passed": 9,
+  "recipient_balance_micro": "100",
+  "vault_balance_micro": "900",
+  "attempts": [
+    {
+      "attempt": 1,
+      "transaction_id": "5ff1c647396ae5fe09779f74e563843e3142ecb1867398ba32cabe9e86d96c77",
+      "outcome": "Paid",
+      "detail": "Accepted main intent. Recipient received 100 microTARI.",
+      "amount_micro": "100"
+    },
+    {
+      "attempt": 2,
+      "transaction_id": "133ca5d1aa394a202b0ec89f515bab59725828b6ef5e7451dd98eff1c27c31e8",
+      "outcome": "OperationConsumed",
+      "detail": "A fresh transaction from the second relayer. The contract rejected this consumed job ID.",
+      "amount_micro": "0"
+    },
+    {
+      "attempt": 3,
+      "transaction_id": "89b30ebe0fbb189a0cd67b629b09e8e9bdc4495fc505a974c89364438e811c15",
+      "outcome": "OperationConsumed",
+      "detail": "A fresh transaction from the second relayer. The contract rejected this consumed job ID.",
+      "amount_micro": "0"
+    },
+    {
+      "attempt": 4,
+      "transaction_id": "0b9d8077d9e27aaba09048c5c4aabda7002332f2369a0413698392e639404814",
+      "outcome": "OperationConsumed",
+      "detail": "A fresh transaction from the second relayer. The contract rejected this consumed job ID.",
+      "amount_micro": "0"
+    },
+    {
+      "attempt": 5,
+      "transaction_id": "2a079cf6241baa12101677ee1574944105674f73dbc55ad0444f591e7cdaca6d",
+      "outcome": "OperationConsumed",
+      "detail": "A fresh transaction from the second relayer. The contract rejected this consumed job ID.",
+      "amount_micro": "0"
+    }
+  ],
+  "mainnet_deployed": false
+}

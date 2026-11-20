@@ -1,0 +1,12 @@
+{
+  "engine_version": "0.54.0",
+  "tests_passed": 9,
+  "environment": "localnet engine; not mainnet",
+  "hashes": {
+    "src/lib.rs": "d60edf7a526d318eb66745896aa4cc71bc55947c117307323e72986e3271290b",
+    "tests/settlement.rs": "98d9eac64e45e7d2c4fecbbffa43f19fd1bc9e2956ca55cdff1bdb0ec52dce69",
+    "Cargo.toml": "6bb66d516685e60e95880100190da26d2dbd7a4dac135ee44f9ec0fccd8c148f",
+    "Cargo.lock": "8fec1cf0f2f0a3a7e1ac934e23d9093d3e8e64c7001f42f729f85a98e8616e02",
+    "evidence/2026-11-20/engine-tests.txt": "153355625b6ed9f2955ec13877399b9b3193ed199eaca73995d0a6c279844675"
+  }
+}

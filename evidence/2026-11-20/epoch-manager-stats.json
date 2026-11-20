@@ -1,0 +1,11 @@
+{
+  "checked_at": "2026-11-20T00:39:28.850588+00:00",
+  "url": "https://indexer-a.ootle.tari.com/epoch-manager/stats",
+  "status": 200,
+  "body": {
+    "current_epoch": 39044,
+    "consensus_epoch": 39044,
+    "current_block_height": 390441,
+    "current_block_hash": "aa9d734902a6dc13202fd84eb962b3fa6ccaa0c3989e0f7c7e6426b6d25c30dd"
+  }
+}

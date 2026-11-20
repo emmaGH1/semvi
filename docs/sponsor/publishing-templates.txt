@@ -1,0 +1,171 @@
+
+Publishing Templates | Tari Ootle Playground
+Skip to content
+Tari Ootle Playground
+Search
+Ctrl
+K
+Cancel
+GitHub
+Select theme
+Dark
+Light
+Auto
+Getting Started
+Concepts
+Overview
+Architecture
+Consensus
+State and Execution
+Privacy
+Privacy in Applications
+Stablecoins
+Templates and Assets
+Tokenomics
+Glossary
+Guides
+Setup a Wallet
+Templates Overview
+Building a Guessing Game
+Testing Your Template
+Publish the Guessing Game
+Play the Guessing Game
+Transaction Overview
+Tari Cli
+Resources
+Fungible Tokens (ERC-20)
+Authorization and Access
+API Keys for AI Agents
+Stealth Transfers
+Watch-only Accounts
+Burn Minotari for TARI
+How Burn Claims Work
+Exchange Integration
+Randomness in Templates
+Validator Nodes
+Run a Validator Node
+Networking and Ports
+Operating a Validator
+Hardware Requirements
+Reference
+API Overview
+Fees
+Limits
+Metrics
+Reducing Template Size
+Types Reference
+Validator Node Requirements
+For Bots
+GitHub
+Select theme
+Dark
+Light
+Auto
+On this page
+Overview
+Covered in this guide
+Compiling Your Template
+Publishing Your Template
+Next Steps
+On this page
+Overview
+Covered in this guide
+Compiling Your Template
+Publishing Your Template
+Next Steps
+Publishing Templates
+Covered in this guide
+Section titled “Covered in this guide”
+In this guide, you will:
+Compile your Rust template into a WebAssembly (WASM) binary.
+Understand the process of publishing templates to the Tari Ootle network.
+Learn how to use the Tari Ootle Walletd to publish your template.
+This guide assumes you have already read
+Templates Overview
+.
+Compiling Your Template
+Section titled “Compiling Your Template”
+To publish your template, you first need to compile it to WebAssembly (WASM).
+Run the following command in your terminal:
+Terminal window
+cargo
+build
+--target
+wasm32-unknown-unknown
+--release
+Tip
+The compiled WASM file will be located at
+target/wasm32-unknown-unknown/release/your_template_name.wasm
+. This is the
+file you will publish to the Tari Ootle network.
+The size of that binary is capped at 1 MiB, and it is priced three times: in the publish fee, which
+rises quadratically above a 96 KiB allowance; in the compile every validator runs at publish, charged
+as execution points by binary size; and in the
+TemplateLoad
+ fee that every caller of your template
+pays. A few lines in your
+Cargo.toml
+ typically cut it by a third — see
+Reducing Template Size
+.
+The wallet daemon runs
+wasm-opt
+ over the binary for you before it estimates the fee or publishes,
+so you do not need to optimize it yourself.
+Publishing Your Template
+Section titled “Publishing Your Template”
+To publish your template, you need to create a transaction that includes the
+PublishTemplate
+ instruction.
+This transaction will publish your compiled WASM template to the Tari Ootle network.
+Using the Tari Ootle Wallet Web UI
+See
+Set up a Wallet
+ if you have not already set one up.
+Ensure it is running before starting.
+Tip
+You’ll need some
+TTARI
+ in your wallet to pay for transaction fees when publishing your template.
+If you don’t have any
+TTARI
+,
+burn Minotari and claim it
+, or click
+“Claim Testnet Funds” in the wallet UI if the testnet faucet holds funds.
+Click on “Publish Template” in the top right corner of the wallet web UI on the “Home” page.
+You should see a dialogue like the one below:
+In this dialogue:
+Select the fee account containing
+TTARI
+ to pay for the transaction fees.
+Upload the compiled WASM file of your template. You can find this file in the
+target/wasm32-unknown-unknown/release/{name}.wasm
+ directory of your crate project after running the build command.
+Click “Estimate Fee” to calculate the estimated transaction fee. This will automatically fill in the fee field with the amount of
+TTARI
+ required to publish your template.
+Click “Publish Template” to submit the transaction and publish your template to the network.
+After the transaction is confirmed, your template will be published and available for use on the Tari Ootle network.
+You can view your published templates, including the addresses which we’ll need later, by navigating to “Templates” in the left sidebar of the wallet web UI.
+What we did:
+We compiled our Rust template to WebAssembly (WASM) using Cargo.
+We used the Tari Ootle Wallet web UI to publish our compiled template to the Tari Ootle testnet
+Now that your template is published, it’s ready to be used in transactions!
+Next Steps
+Section titled “Next Steps”
+Learn how to
+reduce your template’s size
+ to publish it more cheaply.
+Learn some basics about
+Ootle transactions
+.
+Learn how to programmatically
+interact with the guessing game template
+.
+←
+Previous
+Testing Your Template
+Next
+Play the Guessing Game
+→

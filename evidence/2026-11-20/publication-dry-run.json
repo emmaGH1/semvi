@@ -1,0 +1,9 @@
+{
+  "jsonrpc": "2.0",
+  "error": {
+    "code": 404,
+    "message": "Application error: 404: Not found: Substate component_54803df723a7e866eb4bf599343d0287d91e3a4f6ccdcb9cc4cc1b06db2bca32 does not exist",
+    "data": null
+  },
+  "id": 1
+}

@@ -1,0 +1,283 @@
+
+Wallet Setup | Tari Ootle Playground
+Skip to content
+Tari Ootle Playground
+Search
+Ctrl
+K
+Cancel
+GitHub
+Select theme
+Dark
+Light
+Auto
+Getting Started
+Concepts
+Overview
+Architecture
+Consensus
+State and Execution
+Privacy
+Privacy in Applications
+Stablecoins
+Templates and Assets
+Tokenomics
+Glossary
+Guides
+Setup a Wallet
+Templates Overview
+Building a Guessing Game
+Testing Your Template
+Publish the Guessing Game
+Play the Guessing Game
+Transaction Overview
+Tari Cli
+Resources
+Fungible Tokens (ERC-20)
+Authorization and Access
+API Keys for AI Agents
+Stealth Transfers
+Watch-only Accounts
+Burn Minotari for TARI
+How Burn Claims Work
+Exchange Integration
+Randomness in Templates
+Validator Nodes
+Run a Validator Node
+Networking and Ports
+Operating a Validator
+Hardware Requirements
+Reference
+API Overview
+Fees
+Limits
+Metrics
+Reducing Template Size
+Types Reference
+Validator Node Requirements
+For Bots
+GitHub
+Select theme
+Dark
+Light
+Auto
+On this page
+Overview
+Covered in this guide
+1. Running a Wallet Daemon
+2. Creating your first account
+3. Get funds
+4. Sending and Receiving funds
+5. A Note on Authentication
+6. Resetting your wallet (testnet only)
+We’re done
+On this page
+Overview
+Covered in this guide
+1. Running a Wallet Daemon
+2. Creating your first account
+3. Get funds
+4. Sending and Receiving funds
+5. A Note on Authentication
+6. Resetting your wallet (testnet only)
+We’re done
+Wallet Setup
+Covered in this guide
+Section titled “Covered in this guide”
+In this guide, you will:
+Download and install the Tari Ootle Wallet daemon.
+Connect your wallet to the
+esmeralda
+ testnet.
+Create a default account for managing your keys and funds.
+Claim testnet funds from the built-in faucet to pay for transactions.
+This guide will walk you through setting up a wallet daemon and connecting it to the
+esmeralda
+ testnet.
+This wallet will allow you to manage your funds and interact with the Tari L2 network.
+1. Running a Wallet Daemon
+Section titled “1. Running a Wallet Daemon”
+Download the latest release of the wallet daemon for your platform:
+Release Notes:
+v0.54.0
+ (11/17/2026)
+Asset Name
+Size
+Link
+tari_ootle_walletd-0.54.0-3a92eb7-linux-arm64
+63.04 MB
+Download
+tari_ootle_walletd-0.54.0-3a92eb7-linux-x86_64
+62.65 MB
+Download
+tari_ootle_walletd-0.54.0-3a92eb7-macos-arm64
+52.22 MB
+Download
+tari_ootle_walletd-0.54.0-3a92eb7-windows-arm64.exe
+34.33 MB
+Download
+tari_ootle_walletd-0.54.0-3a92eb7-windows-x64.exe
+38.57 MB
+Download
+Once downloaded, place the executable in a directory of your choice (probably somewhere in your
+PATH
+).
+On Linux and MacOS, you may need to set execute permission before running it. You can do this with the following command:
+Terminal window
+# Rename the downloaded file to tari_ootle_walletd for convenience
+mv
+ [downloaded-file] tari_ootle_walletd
+# Set execute permission
+chmod
++x
+tari_ootle_walletd
+Check that it works by running:
+Terminal window
+./tari_ootle_walletd
+--help
+Start the wallet daemon with the following command:
+Terminal window
+# To connect to the esmeralda testnet, use the --network flag:
+./tari_ootle_walletd
+--network
+esme
+Tip
+The first time you run the wallet, it will create a directory/directories for your new wallet. This includes
+configuration and the wallet SQLite database. The location depends on your platform.
+You can specify a specific location with the
+--base-path
+/
+-b
+ flag.
+Note
+By specifying the “esme”(ralda) network, your wallet will connect to a esmeralda testnet indexer. An indexer provides
+a view into the state of the blockchain, allowing your wallet to see transactions, balances, and other on-chain data.
+The wallet will serve a web UI by default at
+http://localhost:5100
+. You can open this in your browser to manage your wallet and view transactions.
+You can change this by using the
+--listen-on
+ flag when starting the wallet daemon.
+Terminal window
+# Listens on 127.0.0.1:12345 instead of the default
+./tari_ootle_walletd
+--network
+esme
+--listen-on
+127.0.0.1:12345
+Caution
+The Wallet Daemon is not necessarily how you’d want to work with mainnet funds as a user. It’s primary purpose
+is to provide a RPC service in a secure environment e.g. an exchange could use the wallet daemon internally.
+Other wallets suited for end users are in the works.
+2. Creating your first account
+Section titled “2. Creating your first account”
+When you first start the wallet, it will prompt you to create a new “default” account. The only step is to name it.
+This account represents a secret key and associated address that you can use to send and receive funds.
+You can create multiple accounts if you wish, but for this guide we’ll just use the default account.
+Once you create the account, you should see it in the wallet UI with a balance of 0.
+Tip
+You can create multiple accounts in the wallet. Each account has its own secret key and address managed within the
+same wallet.
+3. Get funds
+Section titled “3. Get funds”
+Once your wallet is running, you’ll need some funds to pay for transactions. On the public testnets, get
+tTARI
+ by
+burning Minotari on the base layer and claiming it in the wallet: see
+Burn Minotari for TARI
+.
+The wallet also has built-in support for the testnet faucet. Public testnets start with an empty faucet, so the
+“Claim Testnet Funds” button shows “Faucet Empty” until someone deposits into it. On a local network the faucet is
+funded, and clicking the button claims 1,000
+tTARI
+ into your account.
+You’re good to go! You can now use your wallet to send funds to your friends, publish templates, and explore the Tari L2 network.
+4. Sending and Receiving funds
+Section titled “4. Sending and Receiving funds”
+To send funds, click the “Send” button in the wallet UI. This will open a form where you can enter the recipient’s address and the amount you want to send.
+To receive funds, simply share your wallet address with the sender. You can find your wallet address under
+Account details > Address
+ in the wallet UI.
+Tip
+You can send funds within accounts in the same wallet, or to other wallets on the same network.
+5. A Note on Authentication
+Section titled “5. A Note on Authentication”
+The wallet daemon uses WebAuthn authentication by default. The first time you open the web UI, you register a
+passkey (or security key), and you use it to log in from then on. Automated clients authenticate with
+API keys
+ instead.
+On a local test network you can turn authentication off. Never do this on a wallet that holds real funds: anyone who
+can reach the port can then spend from it.
+Terminal window
+./tari_ootle_walletd
+--network
+localnet
+--authentication
+none
+6. Resetting your wallet (testnet only)
+Section titled “6. Resetting your wallet (testnet only)”
+During testnet development, the network may be reset, which invalidates all on-chain state. When this happens,
+your wallet’s local database will be out of sync with the network.
+To reset your wallet and clear all local on-chain state (accounts, transactions, balances, etc.), run:
+Terminal window
+./tari_ootle_walletd
+--network
+esme
+reset
+This will move your wallet database to a timestamped backup file (e.g.
+wallet.sqlite.1711540000.bak
+) and
+print a confirmation. The next time you start the wallet daemon, a fresh database will be created automatically.
+The backup may come with
+-wal
+ and
+-shm
+ files beside it (e.g.
+wallet.sqlite.1711540000.bak-wal
+), which can
+hold changes not yet written into the
+.bak
+ file. Keep them together, and to restore the backup, rename all of
+them back to
+wallet.sqlite
+,
+wallet.sqlite-wal
+ and
+wallet.sqlite-shm
+.
+Tip
+Your seed key is stored in the OS keyring and is
+not
+ affected by the reset. After resetting, your
+wallet will derive the same addresses from the seed, so your send addresses remain the same. However,
+since the network itself was reset, previous accounts and balances no longer exist on-chain.
+Caution
+The reset command is only available on testnet networks. It will refuse to run on mainnet.
+To skip the interactive confirmation prompt (useful for scripts), pass
+--confirm
+:
+Terminal window
+./tari_ootle_walletd
+--network
+esme
+reset
+--confirm
+We’re done
+Section titled “We’re done”
+Congratulations! If everything went smoothly you’ve successfully set up a wallet and connected it to the
+esmeralda
+ testnet.
+Next Steps
+Section titled “Next Steps”
+Now that you have a running wallet, you can start exploring the Tari L2 network. Here are some next steps:
+Explore the wallet UI and get familiar with its features.
+Try sending and receiving funds with your wallet.
+If you’re ready to start learning about template development, head over to
+Templates Overview guide
+.
+←
+Previous
+Glossary
+Next
+Templates Overview
+→

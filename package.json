@@ -1,0 +1,1 @@
+{"name":"oncerail","private":true,"type":"module","scripts":{"test":"node --test tests/intent.test.mjs","check-live":"node scripts/check-live.mjs"}}

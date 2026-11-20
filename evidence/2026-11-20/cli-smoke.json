@@ -1,0 +1,7 @@
+{
+  "check": "offline CLI smoke; no transaction submitted",
+  "signer": "built and generated valid payload",
+  "fresh_unsigned_requests": true,
+  "tampered_metadata_rejected": true,
+  "rejection": "Error: \"Intent display fields do not match encoded payment arguments\""
+}

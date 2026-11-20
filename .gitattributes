@@ -1,0 +1,4 @@
+# Preserve exact captured transcripts and third-party license bytes.
+evidence/**/engine-tests.txt -whitespace
+web/engine-tests.txt -whitespace
+web/fonts/OFL.txt -whitespace

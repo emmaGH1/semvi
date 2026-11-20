@@ -6,8 +6,8 @@ An automation worker can lose its response after a successful payment. Retrying 
 
 Proof: nine real engine tests; five different transaction hashes for one job, one 100-microTARI payout and four OperationConsumed refusals. Tests also cover signed fields, expiry, network/component binding, rollback, capacity and withdrawal. Offline CLI signs intents and prepares wallet requests; browser tool displays actual proof and checks encoded payment details locally.
 
-- Public code: https://github.com/emmaGH1/semvi (publication authorized; verify after push)
-- MVP link: https://emmaGH1.github.io/semvi/ (publication authorized; verify after deployment)
+- Public code: https://github.com/emmaGH1/semvi (public, MIT, verified)
+- MVP link: https://emmagh1.github.io/semvi/ (deployed; page and proof JSON verified)
 - Approved-platform social announcement: PENDING USER REVIEW
 - Tari L1 payout address: PENDING — this differs from the Ootle L2 deployment address
 
@@ -17,6 +17,8 @@ Limits: at-most-once per vault/job, 256 permanent IDs, public payment details, n
 PENDING MAINNET PUBLICATION AND REAL RUN. Never present engine hashes as mainnet proof. Include original entry, real template/component, publish transaction, timestamp, ready tool and archived receipt. Organizers determine eligibility and ranking.
 
 ## Approved fee-funding request — not posted yet
+Blocked on forum login access. Post as a standalone project/funding discussion, not an entry in either submissions-only contest thread. Suggested title: Semvi — a tested Ootle MVP looking for mainnet fee funding.
+
 I'm building Semvi for the November Tari MVP contest: a contract-enforced job registry preventing duplicate payouts when an agent retries after a timeout. The core is tested in the real Ootle engine. I have no mainnet TARI yet for publication and the demo run. Would anyone contribute a small amount of Ootle TARI for deployment fees? I will record what is used and return unused funds when the donor provides a return address.
 
 Code: https://github.com/emmaGH1/semvi

@@ -4,6 +4,8 @@ Originally developed under the working name OnceRail. The user approved Semvi as
 
 07:24–07:28 UTC: Semvi rename completed. All nine real engine tests and six JS tests pass; native signer/preparer and WASM rebuilt. Regenerated CLI smoke, engine manifest, actual proof transactions and all six desktop/mobile captures. Local deployment account name updated without changing keys/address. No funds, public publication or contact performed.
 
+07:30 UTC: after explicit user approval, created public emmaGH1/semvi repository, pushed source and enabled free GitHub Pages. Workflow 44695458426 succeeded, including file-safety checks; deployed site and proof JSON verified. Funding post authorized but not posted because forum browser is signed out; secure credential prompt requested. No contest entry submitted or money spent.
+
 - User entered and selected Semvi after competitor inventory and one Opus critique. Cancellable timelock and rental deposit ideas were rejected for overlap and unresolved disputes.
 - Connected to official mainnet, installed checksum-verified 0.54.0 wallet daemon, authenticated locally and created an empty deployment account. No money spent or network publication submitted.
 - Advertised official skill URLs returned 404; saved llms.txt and checked tagged source instead of guessing endpoints.

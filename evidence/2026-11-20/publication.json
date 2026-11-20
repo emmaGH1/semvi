@@ -1,0 +1,10 @@
+{
+  "checked_at": "2026-11-20T07:31:29.950130+00:00",
+  "url": "https://emmagh1.github.io/semvi/",
+  "http_status": 200,
+  "title": "Semvi \u2014 payment retry proof",
+  "proof_attempts": 5,
+  "mainnet_deployed": false,
+  "github_run": "https://github.com/emmaGH1/semvi/actions/runs/44695458426",
+  "result": "Public site and proof JSON verified"
+}

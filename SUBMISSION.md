@@ -2,57 +2,49 @@
 
 ## November MVP entry draft
 
-**Semvi — retry a payment job without paying it twice.**
+**Semvi: retry a payment without paying it twice**
 
-When an automation worker loses a payment response, its next transaction can pay again. Semvi puts the business job registry inside a Tari Ootle vault: consuming the signed job ID and paying its recipient are one atomic action. A fresh transaction cannot erase that record.
+When a payout worker loses a response, it can't tell whether the payment went through. If it retries with a fresh transaction, the supplier gets paid twice: transaction replay protection doesn't stop a *new* transaction for the same job. Semvi is a vault contract on Tari Ootle that pays each signed business job at most once. The job ID is recorded on chain in the same atomic step as the payment, so no retry, relayer or lost database can pay it again.
 
-**Real mainnet proof:** published 20 November 2026 at **08:16:21 UTC**. One job paid 100 microTARI. Two freshly signed sequential retries were refused with `OperationConsumed`, including one paid by a separate relayer account. The recipient stayed at 100 microTARI. Both accounts are managed by our demo wallet; no independent user is claimed. A real deposit and payer withdrawal also succeeded. A second job was run live on camera through the new operator console at 10:24 UTC: first send Accepted with its response withheld from the worker, fresh retry from the other relayer refused with `OperationConsumed`, recipient 100 → 200 microTARI.
+**Demo video (live on mainnet):** https://youtu.be/wkOu1xMxNpE
+**Try it:** https://emmagh1.github.io/semvi/
+**Code (MIT):** https://github.com/emmaGH1/semvi
 
-- App/proof: https://emmagh1.github.io/semvi/#proof
-- Code: https://github.com/emmaGH1/semvi — MIT
-- Mainnet evidence: https://github.com/emmaGH1/semvi/blob/main/evidence/2026-11-20/mainnet-proof.json
-- Publish transaction: https://explorer.tari.mw/tx/da02930aa405cc0af69816f776216e74249e35cf1c226219662514d65ce18032
-- Announcement: **PENDING public URL and final approval**
-- Minotari L1/XTM prize address: 125zkKWHBMVvZWzNTLig4USfD7UJmcMQCqiazwtuoh59JxwfgjA1kzr2xJYt47HoeQqUYdUhk7Dxbk2mGJcijG7gHHF — private backup handoff pending
+**What's on mainnet**
+- Template published 20 Nov 2026, 08:16:21 UTC: https://explorer.tari.mw/tx/da02930aa405cc0af69816f776216e74249e35cf1c226219662514d65ce18032
+- Run 1: one job paid 100 µT; two fresh retries (one from a separate fee account) refused with `OperationConsumed`; recipient stayed at 100 µT.
+- Run 2, recorded in the video: the console sent a job and withheld the response from the worker, then retried with a fresh transaction from a second relayer. Payment: https://explorer.tari.mw/tx/568fae79b3f70690c1434ce9487dd7c12c6a2cb40c547d4a86995d9cd0c785ab · refused retry: https://explorer.tari.mw/tx/33e8091ed429eafbbfc8ce41e33a25e869f3f3f347254f60ae697bf084d83778
+- A deposit and payer withdrawal also succeeded.
 
-The mainnet-first proof page can fetch public indexer receipts and compare them with the archived run. It also inspects signed intent files locally. The CLI signs intents, prepares V2 wallet requests and dry-runs before submission. Nine real Tari engine tests and six signed-file safety tests cover duplicates, tampering, expiry, network/component binding, rollback, capacity and withdrawal.
+**What you can use**
+- The site reads the vault live from Tari's public indexer: a 256-slot "job card" of paid job IDs, its balance, and a lookup that tells you whether any business reference was paid.
+- An operator console drives your own `tari_ootle_walletd` to sign, send, drop the response, retry and check, with a rehearsal (dry-run) mode.
+- A CLI signs jobs and builds wallet requests with Tari's transaction builder. Nine Tari engine tests cover duplicates, tampering, expiry, network/component binding, rollback, capacity and withdrawal.
 
-This is contract-enforced business idempotency, rather than gateway-side deduplication. It is at-most-once per vault/job, not guaranteed delivery. Each vault holds 256 permanent job IDs. Amounts, recipients and job IDs are public; refused retries cost fees. There is no early intent revocation. No external adoption or independent security audit is claimed.
+**Limits:** at most once per vault and job, not guaranteed delivery. 256 permanent job IDs per vault. Amounts, recipients and job IDs are public. A refused retry still pays a small network fee. Signed jobs can't be revoked before expiry. All mainnet runs use accounts in our own demo wallet; no outside users or security audit are claimed.
 
-Built with AI assistance under the entrant’s direction. Community member **0xHRA donated 500 TARI** for deployment/testing; fees used so far: **1.273945 TARI**. Donation does not imply endorsement.
+Built with AI assistance. Community member 0xHRA donated 500 TARI for mainnet fees; 1.27 TARI used so far. Narration uses an AI clone of my voice.
+
+**Payout address (Minotari L1):** 125zkKWHBMVvZWzNTLig4USfD7UJmcMQCqiazwtuoh59JxwfgjA1kzr2xJYt47HoeQqUYdUhk7Dxbk2mGJcijG7gHHF
 
 ## First-to-Launch bonus draft
 
-**Semvi is published and exercised on Ootle mainnet.**
+**Semvi is published and running on Ootle mainnet**
 
-Original November entry: **PENDING forum post URL**
+November entry: **[insert forum post URL]**
 
-- Mainnet tool and proof: https://emmagh1.github.io/semvi/#proof
-- MIT code: https://github.com/emmaGH1/semvi
-- Template: `template_84f1d72f8b9e38d104e639de9fcce8d6f71098daa825c56ea0b2772d35f60580`
-- Publication finalized: **2026-11-20 08:16:21 UTC**, epoch **39067**
-- Publish: https://explorer.tari.mw/tx/da02930aa405cc0af69816f776216e74249e35cf1c226219662514d65ce18032
-- Payment: https://explorer.tari.mw/tx/ef8926b8fd724286fad5071d7507e0b792a4988ce2735fb2c09d06a57e966990
-- Separate-fee-account retry: https://explorer.tari.mw/tx/f3544067030be4708bd3ff8011eb2aa7a5007e5eec7a35b3ebcfddde818870cf
-- Full deployment/withdrawal/balance receipts: https://github.com/emmaGH1/semvi/tree/main/evidence/2026-11-20
-- L1 prize address: 125zkKWHBMVvZWzNTLig4USfD7UJmcMQCqiazwtuoh59JxwfgjA1kzr2xJYt47HoeQqUYdUhk7Dxbk2mGJcijG7gHHF
+- Template `84f1d72f8b9e38d104e639de9fcce8d6f71098daa825c56ea0b2772d35f60580`, published **2026-11-20 08:16:21 UTC**, epoch 39067: https://explorer.tari.mw/tx/da02930aa405cc0af69816f776216e74249e35cf1c226219662514d65ce18032
+- Live vault, read from the public indexer: https://emmagh1.github.io/semvi/
+- Live demo on mainnet: https://youtu.be/wkOu1xMxNpE
+- Payment, then refused retry from another relayer: https://explorer.tari.mw/tx/568fae79b3f70690c1434ce9487dd7c12c6a2cb40c547d4a86995d9cd0c785ab · https://explorer.tari.mw/tx/33e8091ed429eafbbfc8ce41e33a25e869f3f3f347254f60ae697bf084d83778
+- All receipts: https://github.com/emmaGH1/semvi/tree/main/evidence/2026-11-20
+- Payout address (Minotari L1): 125zkKWHBMVvZWzNTLig4USfD7UJmcMQCqiazwtuoh59JxwfgjA1kzr2xJYt47HoeQqUYdUhk7Dxbk2mGJcijG7gHHF
 
-The mainnet page leads with the actual payout and refusals; the localnet engine run is separately labelled. A new transaction paid by a different relayer account was refused by Semvi’s `OperationConsumed` check, with recipient balance unchanged at 100 microTARI. Both demo accounts are managed by our wallet. Payer withdrawal was tested with dust before the payout.
+Please consider Semvi for First to Launch. Eligibility and ranking are the organizers' call.
 
-Please consider Semvi for First to Launch. Eligibility, deadline interpretation and first-20 ranking remain the organizers’ decision.
+## Public announcement
 
-## Public announcement draft — not posted
-
-Selected channel: https://youtube.com/@thefacelessmanwonders . Replacement demo (118 s, live mainnet console run, Eleven v4 narration in the user's clone, burned captions + SRT) is at /data/workspace/semvi-demo-v2, awaiting user review. The channel link is not the required announcement URL; insert the public video URL after approval/upload.
-
-I built Semvi for the Tari November MVP contest: an on-chain payment vault that lets automation workers retry a business job without paying twice.
-
-Real Ootle mainnet proof: one payout, fresh transactions refused, recipient paid once. One retry uses a separate fee account. The proof page fetches public receipts; source is MIT.
-
-Demo/proof: https://emmagh1.github.io/semvi/
-Code: https://github.com/emmaGH1/semvi
-
-Experimental, public payment details, network fees on retries. At-most-once per vault/job; no guaranteed delivery. Built with AI assistance. Mainnet fees supported by a community donation from 0xHRA.
+Posted: https://youtu.be/wkOu1xMxNpE (YouTube, @thefacelessmanwonders, public, verified via oEmbed 2026-11-20).
 
 ## Before either contest post
 

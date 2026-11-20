@@ -4,6 +4,7 @@ import {tmpdir} from 'node:os';
 import {join, resolve} from 'node:path';
 import {setTimeout as delay} from 'node:timers/promises';
 import {promisify} from 'node:util';
+import {resolveBinDir} from './lib/helpers.js';
 import {createIndexer, jobId} from './lib/ootle.js';
 
 export {createIndexer, INDEXER, jobId, MAX_JOBS} from './lib/ootle.js';
@@ -64,7 +65,7 @@ export class Semvi {
 
   constructor({
     walletd = 'http://127.0.0.1:5100/json_rpc', cookieFile, vault,
-    network = 'mainnet', indexer, binDir = 'target/debug/examples',
+    network = 'mainnet', indexer, binDir,
   } = {}) {
     if (typeof vault !== 'string' || !COMPONENT.test(vault)) throw TypeError('vault must be a component address');
     if (!['mainnet', 'esmeralda', 'localnet'].includes(network)) throw TypeError('Unknown Semvi network');
@@ -74,7 +75,7 @@ export class Semvi {
     this.#vault = vault;
     this.#network = network;
     this.#indexer = createIndexer(indexer);
-    this.#binDir = resolve(binDir);
+    this.#binDir = resolveBinDir(binDir);
   }
 
   async #rpc(method, params = {}, timeoutMs = RPC_TIMEOUT) {
@@ -102,7 +103,7 @@ export class Semvi {
       return (await run(join(this.#binDir, name), args, {timeout: 30_000})).stdout;
     } catch (error) {
       if (error.code === 'ENOENT') {
-        throw Error(`Missing Semvi ${name} helper. Run cargo build --locked --examples and check binDir.`);
+        throw Error(`Missing Semvi ${name} helper in ${this.#binDir}. Run npx semvi-helpers install or cargo build --locked --examples. Check binDir or SEMVI_BIN_DIR if set.`);
       }
       const detail = name === 'prepare' && error.stderr?.trim();
       throw Error(`Semvi ${name} helper failed${detail ? `: ${detail}` : ''}`);

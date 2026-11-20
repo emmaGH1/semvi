@@ -12,7 +12,7 @@ Entered; user explicitly selected OnceRail. User wants minimal involvement and m
 - Opus critique rejects cancellable timelock and rental escrow as weak overlap; recommends on-chain business idempotency. Search finds Tari Agent Pay with hub-side idempotency, so enforce and prove difference.
 
 ## Next action
-Await the two posted approval choices: public MIT GitHub repository/free Pages, and free starter gift plus up to 5 TARI deployment/test fees. Do not submit contest/social posts. Funding is still zero; MoonMail's three public 1-TARI showcase gifts were checked read-only and are all already claimed. No gift claimed and no funds spent. A donation request is prepared in SUBMISSION.md but not authorized to post.
+User approved claiming one publicly offered free starter gift if available, and spending up to 5 TARI of received funds on deployment/test fees, with per-transaction estimates. No fiat purchases, contest/social posts or organizer/community contact authorized. Public MIT GitHub/free Pages publication is still pending; user requested a more mature product name before publishing. Check name collisions and get the name selected before renaming identifiers/signature domains and regenerating proof. Funding remains zero; MoonMail's three public 1-TARI showcase gifts were already claimed. A donation request is prepared in SUBMISSION.md but not authorized to post.
 
 After funding: estimate publication; publish only with approval; create vault and verify a dust deposit/withdrawal through walletd using the imported payer key before a larger deposit. Then run a real payment and fresh sequential duplicate, archive receipts, update the UI from engine-only to explicitly separated real mainnet proof, and prepare final submission for user approval.
 

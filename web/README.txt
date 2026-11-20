@@ -2,13 +2,15 @@
 
 **Retry a payment job without paying it twice.** An immutable Tari Ootle vault consumes a business job ID atomically with its payment. A fresh transaction or another relayer cannot pay that job again.
 
+[Open the proof interface](https://emmaGH1.github.io/semvi/) · [Source](https://github.com/emmaGH1/semvi) · [Judge proof map](JUDGES.md)
+
 Built for automation builders recovering from timeouts, lost responses and restarted workers. Transaction replay protection rejects the same transaction; Semvi also rejects a different valid transaction for the same business job.
 
 ## Current proof
 
 Nine tests pass in the real Tari 0.54.0 engine. One job paid 100 microTARI; four fresh retry transactions were refused with `OperationConsumed`. The recipient stayed at 100 and the vault at 900. [Raw transcript](evidence/2026-11-20/engine-tests.txt) · [Judge proof map](JUDGES.md).
 
-**Mainnet publication and settlement are pending fee funding and authorization.** The browser proof is a recorded localnet engine run, clearly labelled. No external user adoption or security audit is claimed.
+**Mainnet publication and settlement are pending fee funding.** The browser proof is a recorded localnet engine run, clearly labelled. No external user adoption or security audit is claimed.
 
 ## Verify
 

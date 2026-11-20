@@ -11,7 +11,7 @@ At-most-once payouts per vault and business job ID, across different valid trans
 | Failed deposit/insufficient funds roll job registry back | tests/settlement.rs | cargo test | Verified in real engine |
 | Payer can withdraw, stranger cannot; full registry preserves old IDs and withdrawal | tests/settlement.rs | cargo test | Verified in real engine |
 | Signed-file metadata matches encoded payment arguments | examples/prepare.rs; web/intent.js | evidence/2026-11-20/cli-smoke.json; npm test | Verified offline and browser |
-| Mainnet publication and real payout | deployment tooling | Mainnet receipt and live re-check | Blocked on funding and authorization |
+| Mainnet publication and real payout | deployment tooling | Mainnet receipt and live re-check | Blocked on funding |
 
 ## Design boundary
 Registry holds up to 256 jobs per vault permanently, with no pruning. Capacity exhaustion blocks new jobs but never owner withdrawal. A fresh vault creates a new namespace: callers must retain their vault/job mapping. New job IDs are new payment authorizations. Expiry stops stale unpaid intents; it does not delete paid IDs.

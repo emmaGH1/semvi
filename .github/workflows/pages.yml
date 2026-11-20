@@ -2,7 +2,7 @@ name: Validate and publish proof interface
 on:
   push:
     branches: [main]
-    paths: ['web/**', 'tests/intent.test.mjs', '.github/workflows/pages.yml']
+    paths: ['web/**', 'packages/semvi/lib/**', 'tests/intent.test.mjs', '.github/workflows/pages.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -22,8 +22,10 @@ jobs:
       - name: Check signed-file safety
         run: node --test tests/intent.test.mjs
       - uses: actions/configure-pages@v5
+      - name: Stage static site with shared indexer modules
+        run: cp -RL web "${{ runner.temp }}/semvi-web"
       - uses: actions/upload-pages-artifact@v4
         with:
-          path: web
+          path: ${{ runner.temp }}/semvi-web
       - uses: actions/deploy-pages@v4
         id: deployment

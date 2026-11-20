@@ -30,7 +30,7 @@ The engine tests compile the actual WASM contract and run it in Tari's engine. T
 
 To see sign, send, lose the response, retry and check in one screen, run the operator console in rehearsal mode. Every send is a dry run, so nothing is submitted. You need `tari_ootle_walletd` 0.55 and your own vault (the [CLI guide](web/GUIDE.txt) covers creating one; creating one costs a small TARI network fee). See [console/README.md](console/README.md).
 
-For bots, the [Node package](packages/semvi/README.md) wraps the same flow as `sign()`, `relay()` and `status()`. Its [example bot](packages/semvi/examples/payout-bot.mjs) is dry-run by default.
+For bots, the Node package wraps the same flow as `sign()`, `relay()` and `status()`. Follow the quickstart to install prebuilt helpers on Linux or macOS once the release is available. The example bot is dry-run by default. [Node quickstart](packages/semvi/README.md) · [Example bot](packages/semvi/examples/payout-bot.mjs)
 
 ## Where each claim is proven
 

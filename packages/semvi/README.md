@@ -4,16 +4,27 @@ Sign a Tari Ootle payout, relay it through walletd, and check its business job I
 
 ## Five-minute quickstart
 
-Have a funded Semvi vault, its payer key, a recipient account component, and a funded relayer account in Tari Ootle walletd 0.55. The [CLI guide](../../web/GUIDE.txt) covers creating and funding a vault. Run the first two lines from the Semvi checkout on Linux or macOS with Rust installed.
+Have a funded Semvi vault, its payer key, a recipient account component, and a funded relayer account in Tari Ootle walletd 0.55. The [CLI guide](../../web/GUIDE.txt) covers creating and funding a vault. With Node 20+ on Linux or macOS (x64 or arm64), install the package and its prebuilt helpers from your bot's directory.
 
 ```sh
-export SEMVI_REPO="$PWD"
-cargo build --locked --examples
-export SEMVI_BIN_DIR="$SEMVI_REPO/target/debug/examples"
-
-# From your bot's directory
-npm install "$SEMVI_REPO/packages/semvi"
+npm install /path/to/semvi/packages/semvi
+npx semvi-helpers install
 ```
+
+The installer uses the GitHub release for the helper version embedded in the package. It checks the compressed archive against the package's platform-specific SHA-256 before extracting it. The cache is `~/.cache/semvi/helpers/<version>/<platform>`, or the directory you set in `SEMVI_HELPERS_DIR`. Use a dedicated directory under a writable parent so the installer can place both binaries together. Use a fresh directory or move the old one aside when changing versions. npm install itself runs no helper download.
+
+**First-release bootstrap.** The default installer requires embedded hashes. Once the GitHub release exists, reviewers using the bootstrap checkout can run `npx semvi-helpers install --allow-unpinned`. This checks the download against `SHA256SUMS` from the same release. It trusts GitHub and the release publisher for both files. Use a package revision with embedded hashes for routine installs. Keep the installed helpers in a directory writable only by users you trust. [Release and pinning procedure](../../RELEASING.md)
+
+### Build from source instead
+
+On Unix, use Rust if your platform has no compatible release or you prefer local builds. Run these commands from the Semvi checkout, then install the Node package in your bot's directory as above.
+
+```sh
+cargo build --locked --examples
+export SEMVI_BIN_DIR="$PWD/target/debug/examples"
+```
+
+### Sign and dry-run a payout
 
 ```js
 import {Semvi} from 'semvi';
@@ -22,7 +33,6 @@ import {writeFile} from 'node:fs/promises';
 const semvi = new Semvi({
   walletd: 'http://127.0.0.1:5100/json_rpc',
   cookieFile: process.env.TARI_WALLET_COOKIE_FILE,
-  binDir: process.env.SEMVI_BIN_DIR,
   vault: process.env.SEMVI_VAULT,
   network: 'mainnet',
 });
@@ -49,7 +59,7 @@ The [example bot](examples/payout-bot.mjs) reads or creates a saved intent and r
 
 | API | Behavior |
 | --- | --- |
-| `new Semvi({vault, network, walletd, cookieFile, indexer, binDir})` | Defaults to mainnet, its public indexer, loopback walletd and `target/debug/examples` relative to the working directory. Set `indexer` explicitly for `localnet` or `esmeralda`. The cookie is needed only for wallet calls. |
+| `new Semvi({vault, network, walletd, cookieFile, indexer, binDir})` | Defaults to mainnet, its public indexer and loopback walletd. Helper lookup checks `binDir`, `SEMVI_BIN_DIR`, the installed cache for this package's helper version, then `target/debug/examples` relative to the working directory. Set `indexer` explicitly for `localnet` or `esmeralda`. The cookie is needed only for wallet calls. |
 | `await jobId(reference)` | Lowercase SHA-256 hex of the UTF-8 bytes of `semvi.job.v1\0` followed by the reference. Reference spelling and Unicode bytes must stay stable across workers and retries. |
 | `sign({reference, recipient, amount, expiresInEpochs, payerKeyFile})` | Gets the current epoch from the indexer and invokes Rust `intent sign`. Returns portable `semvi.intent.v1` JSON. Expiry defaults to four epochs. |
 | `relay(job, {account, maxFee, dryRun, timeoutMs, pollIntervalMs})` | Checks the network and selected fee account's balance, builds a fresh V2 transaction with Rust `prepare`, then submits and polls. Defaults to live submission and polls every 2 seconds for up to 3 minutes after submission. |

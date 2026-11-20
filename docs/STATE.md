@@ -91,3 +91,9 @@ User approved posting both. Entry POST to topic 520 returned 422. Account heisem
 - Verified the mock wallet paths for acceptance, a lost response followed by a fresh distinct-relayer `OperationConsumed` retry, input-lock refusal, polling timeout, fee and network guards, and rehearsal. The console uses the package and retains approval, rehearsal, balance checks, and local evidence files.
 - The Node suite passed with the native helpers and a throwaway payer key. The separate read-only indexer test, five `check-live` checks, nine engine tests, local npm tarball import, and static Pages staging checks passed.
 - The package requires built Rust helpers and a funded vault with an authorized payer key. Live wallet calls were mocked for this change. No new transaction, spend, package publication, or deployment.
+
+## Prebuilt Node helpers
+
+- Added the native Linux and macOS helper build matrix and tag-only release job. The Node package installs on demand and checks the compressed archive against its embedded platform hash. First-release opt-in checks the hash from the same GitHub release.
+- Verified the locked Linux x64 release build, throwaway-key signing and V2 prepare smoke, archive checksum, and installation via the packed npm package with a mocked release response. All 26 Node tests passed with the installed native helpers. All nine settlement tests, five read-only live checks, and workflow lint passed.
+- The first release and its four embedded hashes are pending maintainer review. GitHub-hosted builds and release publication remain unverified. The steps are in [RELEASING.md](../RELEASING.md).

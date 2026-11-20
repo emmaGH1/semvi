@@ -18,6 +18,6 @@ Safety switches:
 - `SEMVI_REHEARSE=1` dry-runs every relay through walletd instead of submitting.
 - Payouts are capped at 1–1000 µT per job; `SEMVI_MAX_FEE` (default 10000 µT) caps each transaction's fee.
 - The server listens on 127.0.0.1, refuses cross-origin API calls, and never sends the key or cookie to the browser.
-- Each session writes intents, specs and receipts to `SEMVI_RUN_DIR` (default `.semvi-runs/`, git-ignored).
+- Each session writes intents, specs and receipts to `SEMVI_RUN_DIR` (default `.semvi-runs/`, git-ignored). The console uses the same [Node package](../packages/semvi/README.md) as payout bots.
 
 Step 2's "Drop the response" box makes the page hide the first transaction's result from the worker, the way a timed-out HTTP call would. The server still records it. Step 3 waits until that first send has settled before retrying, so the refusal you see comes from the contract (`OperationConsumed`), not from network input locking.

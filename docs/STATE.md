@@ -84,3 +84,10 @@ User approved posting both. Entry POST to topic 520 returned 422. Account heisem
 - MVP entry: https://community.tari.com/t/november-build-contest-thread-mvp/520/31 (13:42:48 UTC), public, not hidden; links video, site, source.
 - Bonus claim: https://community.tari.com/t/november-bonus-contest-first-to-launch/521/19 (13:46:44 UTC), public; links entry #31, evidence. Bonus thread had 16 earlier claims from 14 people.
 - Fox ruling (relayed by user, 2026-11-20): First to Launch pays only one bonus per person. More than one MVP contest entry per person is allowed. Semvi's claim (#19) is our one bonus claim.
+
+## Node.js integration
+
+- Added a local Node 20+ package with zero npm dependencies. It wraps the existing Rust `intent` and `prepare` helpers and shares the public indexer reader with the static proof page. Pages stages regular copies of the shared modules for upload.
+- Verified the mock wallet paths for acceptance, a lost response followed by a fresh distinct-relayer `OperationConsumed` retry, input-lock refusal, polling timeout, fee and network guards, and rehearsal. The console uses the package and retains approval, rehearsal, balance checks, and local evidence files.
+- The Node suite passed with the native helpers and a throwaway payer key. The separate read-only indexer test, five `check-live` checks, nine engine tests, local npm tarball import, and static Pages staging checks passed.
+- The package requires built Rust helpers and a funded vault with an authorized payer key. Live wallet calls were mocked for this change. No new transaction, spend, package publication, or deployment.

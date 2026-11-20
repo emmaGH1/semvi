@@ -167,25 +167,27 @@ export class Semvi {
     if (typeof job.job !== 'string' || !HASH.test(job.job)) throw TypeError('Invalid intent job ID');
   }
 
-  async #prepare(intent, {epoch, address, keyId, maxFee}) {
+  async #prepare(intent, {epoch, address, keyId, maxFee, onSpec}) {
     const dir = await mkdtemp(join(tmpdir(), 'semvi-relay-'));
     try {
       const intent_file = join(dir, 'intent.json');
       const specFile = join(dir, 'request.json');
       const spec = {
         action: 'execute', network: this.#network, current_epoch: String(epoch), fee_account: address,
-        max_fee: String(maxFee), seal_signer: keyId, intent_file,
+        max_fee: String(maxFee), seal_signer: keyId,
       };
       await writeFile(intent_file, intent, {mode: 0o600});
-      await writeFile(specFile, JSON.stringify(spec), {mode: 0o600});
+      await writeFile(specFile, JSON.stringify({...spec, intent_file}), {mode: 0o600});
+      if (onSpec) await onSpec(spec);
       return await this.#runHelper('prepare', [specFile]);
     } finally {
       await rm(dir, {recursive: true, force: true});
     }
   }
 
-  async submit(job, {account, maxFee, dryRun = false}) {
+  async submit(job, {account, maxFee, dryRun = false, onSpec}) {
     if (typeof dryRun !== 'boolean') throw TypeError('dryRun must be a boolean');
+    if (onSpec !== undefined && typeof onSpec !== 'function') throw TypeError('onSpec must be a function');
     this.#checkScope(job);
     const intent = JSON.stringify(job);
     this.#checkScope(JSON.parse(intent));
@@ -200,7 +202,7 @@ export class Semvi {
     if (BigInt(relayer.balance) < ceiling) {
       throw Error(`${account} holds ${relayer.balance} µT; it needs at least ${ceiling} µT to cover the fee ceiling`);
     }
-    const params = await this.#prepare(intent, {...relayer, epoch, maxFee: ceiling});
+    const params = await this.#prepare(intent, {...relayer, epoch, maxFee: ceiling, onSpec});
 
     if (dryRun) {
       const receipt = await this.#rpc('transactions.submit_dry_run', params);

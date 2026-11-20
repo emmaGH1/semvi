@@ -2,7 +2,7 @@
 
 **Retry a payment job without paying it twice.** An immutable Tari Ootle vault consumes a business job ID atomically with its payment. A fresh transaction or another relayer cannot pay that job again.
 
-[Open the proof interface](https://emmaGH1.github.io/semvi/) · [Source](https://github.com/emmaGH1/semvi) · [Judge proof map](JUDGES.md)
+[Open the proof interface](https://emmaGH1.github.io/semvi/) · [Source](https://github.com/emmaGH1/semvi) · **[Guide for judges](JUDGES.md)**: 2-minute browser check, 10-minute local tests.
 
 Built for automation builders recovering from timeouts, lost responses and restarted workers. Transaction replay protection rejects the same transaction; Semvi also rejects a different valid transaction for the same business job.
 
@@ -14,7 +14,7 @@ Built for automation builders recovering from timeouts, lost responses and resta
 
 A real 1,000-microTARI deposit and payer withdrawal also succeeded. Total deployment/test fees: **1.273945 TARI**, funded by a community donation from 0xHRA. The proof page leads with mainnet and can fetch public receipts to compare with the archived run. It relies on the public indexer; it does not independently verify validator consensus proofs.
 
-Separately, nine real Tari 0.54.0 engine tests pass. The five-attempt test pays one job once and refuses four retries. [Raw engine transcript](evidence/2026-11-20/engine-tests.txt) · [Judge proof map](JUDGES.md). No external user adoption or independent security audit is claimed.
+Separately, nine real Tari 0.54.0 engine tests pass. The five-attempt test pays one job once and refuses four retries. [Raw engine transcript](evidence/2026-11-20/engine-tests.txt) · [Guide for judges](JUDGES.md). No external user adoption or independent security audit is claimed.
 
 ## Verify
 
@@ -82,4 +82,4 @@ The dedicated payer key was imported into walletd, and a 1,000-microTARI deposit
 
 Existing entries cover budgets, per-call metering and post-payment reconciliation. A prior Tari Agent Pay gateway advertises hub-side idempotency. Semvi enforces its narrower business-job registry **on chain**, across newly signed transactions from two relayers, so resetting a gateway database cannot erase a paid-job record. No competitor source was incorporated into the product.
 
-MIT licensed. Public Sans is used under its [SIL Open Font License](web/fonts/OFL.txt).
+MIT licensed. Bricolage Grotesque, Instrument Sans and Martian Mono are used under the [SIL Open Font License](web/fonts/OFL.txt).

@@ -100,3 +100,4 @@ User approved posting both. Entry POST to topic 520 returned 422. Account heisem
 - Fox clarified in t/521 #20 (2026-11-20 14:49 UTC): First to Launch cutoff is 2026-11-21 11:11:11 UTC. Our claim (#19, 13:46 UTC Nov 20) is before it.
 - 2026-11-20: at the user's request, sent 20 TARI from semvi-deploy to a friend's Ootle address (stealth transfer, tx 98900aec111815a1b026c0bf09d0adccd4895a8e08d13dbe2b0a4b05085e9f5a, Accepted, fee 0.02 TARI). Not a project expense.
 - 2026-11-20: at the user's request, sent 20 TARI to a second friend's Ootle address (tx c77fbaf86781fb03347b2a79bf792a6821fc47b9b4ed64da42128698b840048c, Accepted, fee 0.02 TARI). Not a project expense.
+- 2026-11-21: at the user's request, sent 20 TARI to a third friend's Ootle address (tx aeab109f88e6fbe3649eacbfbc9c49315dd5cbae535633114723bfdc5ac0afaa, Accepted, fee 0.02 TARI). Not a project expense.
